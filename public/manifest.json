@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "TUT 会議室予約",
+  "name": "豊橋技科大 3系 会議室予約",
   "icons": [
     {
       "src": "favicon.ico",
