@@ -12,7 +12,6 @@ const ReservePage = () => {
 
   return (
     <div>
-      <h1>This is ReservePage</h1>
       <div className="reserve--upper-grid">
         <div>
           <div>{phone}</div>
