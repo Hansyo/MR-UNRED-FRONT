@@ -1,5 +1,31 @@
-.reserve-input {
+.reserve--event-input {
+  float:left;
   width: 500px;
+  height: 15px;
   padding: 8px 16px;
   background: #eee;
+  border-color:#eee;
+}
+
+.reserve--guest-input {
+  margin-left: 160px;
+  width: 500px;
+  height: 15px;
+  padding: 8px 16px;
+  background: #eee;
+  border-color:#eee;
+}
+
+.reserve-date {
+  width: 200px;
+  height: 15px;
+  padding: 8px 16px;
+  background: #eee;
+  border-color:#eee;
+}
+
+.reserve-icon{
+  width: 100px;
+  height: 100px;
+  margin-bottom:50px; 
 }
