@@ -2,6 +2,7 @@
 /* 選択は下のバーの色を変える */
 /* 入力は背景の色を変える */
 
+/*　入力フォームの文字のフォント */
 a{
   font-size: 20px;
 }
@@ -12,6 +13,20 @@ a{
 }
 
 .reserve--upper-grid {
+  height: 30%;
+  width: 100%;
+  display: flex;
+}
+
+.reserve--upper-calendar{
+  height: 10%;
+  width: 60%;
+  display: flex;
+}
+
+.reserve--upper-DAY{
+  height: 10%;
+  width: 60%;
   display: flex;
 }
 
@@ -36,13 +51,6 @@ a{
   background: #eee;
   border-color:#eee;
 }
-
-/* .reserve-saveButton{
-  width:100px;
-  height:50px;
-  margin: 20px 0 0 600px;
-  background-color: #c7000a;
-} */
 
 /* SAVEボタン */
 *,
@@ -94,51 +102,6 @@ a.reserve-saveButton--red:hover {
   color: #fff;
   background: #880007;
 }
-
-
-/* 元々のチェックボックス（非表示）
-.reserve--upper-grid input[type="checkbox"]{
-  display: none;
-}
-/* チェックボックスの代わりを成すラベル */
-/* .reserve--upper-grid input[type="checkbox"]+label{
-  box-sizing: border-box;
-  cursor: pointer;
-  padding: 5px 20px;
-  position: relative;
-  width: auto;
-} */
-/* ラベルの左に表示させる正方形のボックス□ */
-/* .reserve--upper-grid input[type="checkbox"]+label::before{
-  content: "";
-  position: absolute;
-  display: block;
-  box-sizing: border-box;
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-  left: 0;
-  top: 50%;
-  border: 1px solid;
-  border-color:  #AA0000; 
-  background-color: #FFF; 
-}
-/* チェックが入った時のレ点 */
-/* .reserve--upper-grid input[type="checkbox"]:checked+label::after{
-  content: "";
-  position: absolute;
-  display: block;
-  box-sizing: border-box;
-  width: 18px;
-  height: 9px;
-  margin-top: -9px;
-  top: 50%;
-  left: 3px;
-  transform: rotate(-45deg);
-  border-bottom: 3px solid;
-  border-left: 3px solid;
-  border-color:  #585753; 
-} */
 
 /* ALL DAYチェックボックス */
 .ECM_CheckboxInput {

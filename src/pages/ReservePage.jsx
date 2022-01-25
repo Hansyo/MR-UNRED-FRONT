@@ -47,6 +47,7 @@ const ReservePage = () => {
   //Room Name，電話番号，メールアドレスは自動で入る？
   return (
     <div>
+      {/* 部屋の名前 */}
       <div className="reserve--upper-grid">
         <h1>Room Name</h1>
         <div>
@@ -59,7 +60,9 @@ const ReservePage = () => {
         </div>
       </div>
       <hr className="reserve-line"></hr>
-      <div className="reserve--upper-grid">
+
+      {/* カレンダー選択 */}
+      <div className="reserve--upper-calendar">
         <div>
           <Calendar value={reserveDate} onChange={setReserveDate} />
         </div>
@@ -84,8 +87,8 @@ const ReservePage = () => {
         </div>
       </div>
 
-      <div className="reserve--upper-grid">
-        {/* <input id="allDayTag" value="1" type="checkbox" /><label for="allDayTag"> All Day </label>  */}
+      {/* DAYChoose */}
+      <div className="reserve--upper-DAY">
         <label class="ECM_CheckboxInput">
           <input
             value={shouldReserveAllDay}
@@ -157,12 +160,15 @@ const ReservePage = () => {
               placeholder="090-1234-5678"
             />
           </div>
-          <Input
-            value={guestPhone}
-            onChange={setGuestPhone}
-            className="reserve--guest-input"
-            placeholder="090-1234-5678"
-          />
+          <div class="flexbox">
+            <a>Guest Number</a>
+            <Input
+              value={guestPhone}
+              onChange={setGuestPhone}
+              className="reserve--guest-input"
+              placeholder="090-1234-5678"
+            />
+          </div>
         </div>
       </div>
 
@@ -177,22 +183,28 @@ const ReservePage = () => {
             placeholder="info@example.com"
           />
         </div>
-        <Input
-          value={guestEmail}
-          onChange={setGuestEmail}
-          className="reserve--guest-input"
-          placeholder="info@example.com"
-        />
+        <div class="flexbox">
+          <a>Guest E-Mail</a>
+          <Input
+            value={guestEmail}
+            onChange={setGuestEmail}
+            className="reserve--guest-input"
+            placeholder="info@example.com"
+          />
+        </div>
       </div>
 
       <div className="reserve--event-grid">
         <Icon index={3} />
-        <Input
-          value={description}
-          onChange={setDescription}
-          className="reserve--event-input"
-          placeholder="Add purpose and description"
-        />
+        <div class="flexbox">
+          <a>Purpose and Description</a>
+          <Input
+            value={description}
+            onChange={setDescription}
+            className="reserve--event-input"
+            placeholder="Add purpose and description"
+          />
+        </div>
       </div>
     </div>
   );
