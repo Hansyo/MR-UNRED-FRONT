@@ -12,8 +12,15 @@ import 'react-datepicker/dist/react-datepicker.css';
 const initialDate = new Date();
 registerLocale('ja', ja);
 
-export const Input = ({ className, placeholder }) => {
-  return <input className={className} placeholder={placeholder} />;
+export const Input = ({ value, onChange, className, placeholder }) => {
+  return (
+    <input
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className={className}
+      placeholder={placeholder}
+    />
+  );
 };
 
 export const Calendar = ({ value, onChange }) => {
