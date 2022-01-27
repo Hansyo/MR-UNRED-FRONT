@@ -64,17 +64,20 @@ const ReservePage = () => {
 
       {/* カレンダー選択 */}
       <div className="reserve--upper-calendar">
-        <h3>予約日時</h3>
+        <h4>日時</h4>
         <div>
           <Calendar value={reserveDate} onChange={setReserveDate} />
         </div>
+        <h4>開始時間</h4>
         <div>
-          <input 
+
+          <input
             type="time" 
             className="reserve-time"
             required
           />
         </div> 
+        <h4>終了時間</h4>
         <div>
           <input
             // value={reserveTimeTo}
@@ -130,8 +133,8 @@ const ReservePage = () => {
 
           <div className='reserve--event-form'>
             <div className="flexbox">
-              <a>利用者名</a>
-              <Input className="reserve--event-input" placeholder="実際に使用する人の名前" />
+              <a>利用者名・団体名</a>
+              <Input className="reserve--event-input" placeholder="実際に使用する人・団体の名前" />
             </div>
           </div>
 

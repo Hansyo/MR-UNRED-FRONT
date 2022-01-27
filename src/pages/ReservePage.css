@@ -3,14 +3,13 @@
 /* 入力は背景の色を変える */
 
 .page{
-  /* background-color: #e7e0dc; */
   margin: 5%;
-  font-family: 'Source Sans Pro',arial,sans-serif;
 }
 
 /*　入力フォームの文字のフォント */
 a{
-  font-size: 2.5em;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 b{
@@ -22,10 +21,11 @@ h2{
   margin-bottom: auto;
 }
 
-h3{
+h4{
   font-size: 18px;
   text-align: center;
-  margin-right: 30px;
+  margin-left: 15px;
+  margin-right: 5px;
 
 }
 
@@ -74,7 +74,7 @@ button.reserve-saveButton {
 .reserve-saveButton--red,
 a.reserve-saveButton--red {
   color: #fff;
-  background-color: #eee;
+  background-color: #FAFAFA;
 }
 .reserve-saveButton--red:hover,
 a.reserve-saveButton--red:hover {
@@ -83,7 +83,7 @@ a.reserve-saveButton--red:hover {
 }
 .reserve--upper-calendar{
   height: 15%;
-  width: 60%;
+  width: 80%;
   margin-top: 15px;
   margin-bottom: 15px;
   display: flex;
@@ -103,8 +103,15 @@ a.reserve-saveButton--red:hover {
   width: 100px;
   height: 15px;
   padding: 8px 16px;
-  background: #eee;
-  border-color:#eee;
+  background: #fafafa;
+  border: 1px solid #585858;
+  outline: none;
+}
+
+.Calendar{
+  background: #fafafa;
+  border: 1px solid #585858;
+  outline: none;
 }
 
 /* 繰り返し  */
@@ -202,6 +209,7 @@ a.reserve-saveButton--red:hover {
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-left: 15px;;
   }
   .ECM_CheckboxInput-Input {
   margin: 0;
@@ -331,7 +339,7 @@ input:focus{
   outline: none;
 }
 ::-webkit-input-placeholder {
-    color: #FAFAFA;
+    color: #4e4e4e;
 }
 :-moz-placeholder {
     color: #FAFAFA;  
