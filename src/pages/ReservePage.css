@@ -7,49 +7,13 @@ a{
   font-size: 20px;
 }
 
-.flexbox{
-  display: flex;
-  flex-direction: column;
-}
+
+
 
 .reserve--upper-grid {
   height: 30%;
   width: 100%;
   display: flex;
-}
-
-.reserve--upper-calendar{
-  height: 10%;
-  width: 60%;
-  display: flex;
-}
-
-.reserve--upper-DAY{
-  height: 10%;
-  width: 60%;
-  display: flex;
-}
-
-.reserve--event-grid {
-  display: flex;
-}
-
-.reserve--guest-grid {
-  margin-left: 600px;
-}
-.reserve-line {
-  width: 700px;
-  text-align: left;
-  margin-left: 0px;
-  margin-right: 300px;
-}
-
-.reserve-time {
-  width: 100px;
-  height: 15px;
-  padding: 8px 16px;
-  background: #eee;
-  border-color:#eee;
 }
 
 /* SAVEボタン */
@@ -59,13 +23,11 @@ a{
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
-
 html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 62.5%;
 }
-
 .reserve-saveButton,
 a.reserve-saveButton,
 button.reserve-saveButton {
@@ -90,20 +52,121 @@ button.reserve-saveButton {
   color: #212529;
   border-radius: 0.5rem;
 }
-
 .reserve-saveButton--red,
 a.reserve-saveButton--red {
   color: #fff;
   background-color: #c7000a;
 }
-
 .reserve-saveButton--red:hover,
 a.reserve-saveButton--red:hover {
   color: #fff;
   background: #880007;
 }
+.reserve--upper-calendar{
+  height: 10%;
+  width: 60%;
+  display: flex;
+}
 
-/* ALL DAYチェックボックス */
+
+
+
+.reserve--upper-DAY{
+  height: 10%;
+  width: 60%;
+  display: flex;
+}
+
+/* カレンダーのセレクトボックス */
+.ipselect {
+  position: relative;
+  width: 30%;
+  margin: 5em;
+  text-align: center;
+}
+.SB {
+  position: relative;
+  font-family: inherit;
+  background-color: transparent;
+  width: 100%;
+  padding: 10px 10px 10px 0;
+  font-size: 18px;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0, 0.3);
+}
+.SB:focus {
+  outline: none;
+  border-bottom: 1px solid rgba(0,0,0, 0);
+}
+.ipselect .SB {
+  appearance: none;
+  -webkit-appearance:none
+}
+.ipselect select::-ms-expand {
+  display: none;
+}
+.ipselect:after {
+  position: absolute;
+  top: 18px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+.SB_selectlabel {
+  color: rgba(0,0,0, 0.5);
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  top: 10px;
+  transition: 0.2s ease all;
+}
+.SB:focus ~ .SB_selectlabel, .SB:valid ~ .SB_selectlabel {
+  color: #c7000a;
+  top: -20px;
+  transition: 0.2s ease all;
+  font-size: 14px;
+}
+.SB_selectbar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.SB_selectbar:before, .SB_selectbar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #c7000a;
+  transition: 0.2s ease all;
+}
+.SB_selectbar:before {
+  left: 50%;
+}
+.SB_selectbar:after {
+  right: 50%;
+}
+.SB:focus ~ .SB_selectbar:before, .SB:focus ~ .SB_selectbar:after {
+  width: 50%;
+}
+.SB_highlight {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* 期間のセレクトボックス */
 .ECM_CheckboxInput {
   padding: 20px 8px;
   display: flex;
@@ -165,94 +228,60 @@ a.reserve-saveButton--red:hover {
   font-weight: bold;
   }
 
-  /* カレンダーの味方のセレクトボックス */
-  .ipselect {
-    position: relative;
-    width: 30%;
-    margin: 5em;
-    text-align: center;
-  }
-  .SB {
-    position: relative;
-    font-family: inherit;
-    background-color: transparent;
-    width: 100%;
-    padding: 10px 10px 10px 0;
-    font-size: 18px;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid rgba(0,0,0, 0.3);
-  }
-  .SB:focus {
-    outline: none;
-    border-bottom: 1px solid rgba(0,0,0, 0);
-  }
-  .ipselect .SB {
-    appearance: none;
-    -webkit-appearance:none
-  }
-  .ipselect select::-ms-expand {
-    display: none;
-  }
-  .ipselect:after {
-    position: absolute;
-    top: 18px;
-    right: 10px;
-    width: 0;
-    height: 0;
-    padding: 0;
-    content: '';
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid rgba(0, 0, 0, 0.3);
-    pointer-events: none;
-  }
-  .SB_selectlabel {
-    color: rgba(0,0,0, 0.5);
-    font-size: 18px;
-    font-weight: normal;
-    position: absolute;
-    pointer-events: none;
-    left: 0;
-    top: 10px;
-    transition: 0.2s ease all;
-  }
-  .SB:focus ~ .SB_selectlabel, .SB:valid ~ .SB_selectlabel {
-    color: #c7000a;
-    top: -20px;
-    transition: 0.2s ease all;
-    font-size: 14px;
-  }
-  .SB_selectbar {
-    position: relative;
-    display: block;
-    width: 100%;
-  }
-  .SB_selectbar:before, .SB_selectbar:after {
-    content: '';
-    height: 2px;
-    width: 0;
-    bottom: 1px;
-    position: absolute;
-    background: #c7000a;
-    transition: 0.2s ease all;
-  }
-  .SB_selectbar:before {
-    left: 50%;
-  }
-  .SB_selectbar:after {
-    right: 50%;
-  }
-  .SB:focus ~ .SB_selectbar:before, .SB:focus ~ .SB_selectbar:after {
-    width: 50%;
-  }
-  .SB_highlight {
-    position: absolute;
-    top: 25%;
-    left: 0;
-    pointer-events: none;
-    opacity: 0.5;
-  }
+/* ーーーーーーーーーーー */
+/* 予約者詳細入力 */
+/* ーーーーーーーーーーー */
+
+.reserve--event-grid {
+  height: auto;
+  width: 100%;
+  display: flex;
+}
+
+.flexbox{
+  display: flex;
+  flex-direction: column;
+}
+
+.reserve--event-form{
+  display: flex;
+}
+
+.reserve--event-user{
+  height: auto;
+  width: 60%;
+}
+
+.reserve--event-guest{
+  height: auto;
+  width: 40%;
+}
+
+.reserve--event-usertitle{
+  height: 10%;
+}
+
+.reserve--event-input-typetext{
+  height: 100px;
+  width: 80%;
+  padding: 100;
+  line-height: 280px
+}
+
+.reserve-line {
+  width: 700px;
+  text-align: left;
+  margin-left: 0px;
+  margin-right: 300px;
+}
+.reserve-time {
+  width: 100px;
+  height: 15px;
+  padding: 8px 16px;
+  background: #eee;
+  border-color:#eee;
+}
+
 
 /* 入力フォーム */
 input:first-of-type
