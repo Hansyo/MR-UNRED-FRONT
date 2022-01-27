@@ -1,33 +1,48 @@
 import React, { useState } from 'react';
-import Datepicker from "react-datepicker";
+import Datepicker from 'react-datepicker';
 import TimePicker from 'react-time-picker';
 
 import './ReservePage.css';
 import { Calendar, Input, Selectbox, Icon } from '../components/reserve/Input';
 //import Select from 'react-select';
 
+const Repeat = {
+  NO_REPEAT: 'NO',
+  DAILY: 'DAILY',
+  WEEKLY: 'WEEKLY',
+  MONTHLY: 'MONTHLY',
+};
+
 const ReservePage = () => {
-  const [phone, setPhone] = useState('');
-  const [initDate, setDate] = useState(new Date());
-  //const [initRepeat, setRepeat] = useState('');
-  /*
-  const onPhoneChange = (e) => {
-    setPhone(e.target.value);
-    <div>
-          <div>{phone}</div>
-          <Input value={phone} onChange={onPhoneChange} />
-        </div>
-  };*/
+  const [reserveDate, setReserveDate] = useState(new Date());
+  const [reserveTimeFrom, setReserveTimeFrom] = useState('00:00');
+  const [reserveTimeTo, setReserveTimeTo] = useState('00:00');
+  const [shouldReserveAllDay, setShouldReserveAllDay] = useState(false);
+  const [reserveRepeat, setReserveRepeat] = useState(Repeat.NO_REPEAT);
+  const [userName, setUserName] = useState('');
+  const [userPhone, setUserPhone] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [description, setDescription] = useState('');
+  const [guestName, setGuestName] = useState('');
+  const [guestPhone, setGuestPhone] = useState('');
+  const [guestEmail, setGuestEmail] = useState('');
 
-  const onDateChange = (date) => {
-    setDate(date);
+  const sendReserve = () => {
+    console.log({
+      reserveDate,
+      reserveTimeFrom,
+      reserveTimeTo,
+      shouldReserveAllDay,
+      reserveRepeat,
+      userName,
+      userPhone,
+      userEmail,
+      description,
+      guestName,
+      guestPhone,
+      guestEmail,
+    });
   };
-  /*
-  const onRepeatChange = (repeat) => {
-    setRepeat(repeat);
-  };*/
-
-
 
   //Room Name，電話番号，メールアドレスは自動で入る？
   return (
@@ -35,42 +50,86 @@ const ReservePage = () => {
     <div>
       {/* 部屋の名前 */}
       <div className="reserve--upper-grid">
-      <h1>Room Name</h1>
+        <h1>Room Name</h1>
         <div>
-          <a type="submit" className="reserve-saveButton reserve-saveButton--red ">SAVE</a>
+          <button
+            class="reserve-saveButton reserve-saveButton--red"
+            onClick={sendReserve}
+          >
+            SAVE
+          </button>
         </div>
       </div>
-      <hr className='reserve-line'></hr>
+      <hr className="reserve-line"></hr>
 
       {/* カレンダー選択 */}
       <div className="reserve--upper-calendar">
         <div>
-          <Calendar value={initDate} onChange={onDateChange} />
+          <Calendar value={reserveDate} onChange={setReserveDate} />
         </div>
         <div>
           <input type="time" className="reserve-time" required></input>
         </div> 
         <div>
           <input type="time" className="reserve-time" required></input>
+          <input
+            value={reserveTimeFrom}
+            onChange={(e) => setReserveTimeFrom(e.target.value)}
+            type="time"
+            class="reserve-time"
+            required
+          />
         </div>
-      </div> 
+
+        <div>
+          <input
+            value={reserveTimeTo}
+            onChange={(e) => setReserveTimeTo(e.target.value)}
+            type="time"
+            class="reserve-time"
+            required
+          />
+        </div>
+      </div>
 
       {/* DAYChoose */}
       <div className="reserve--upper-DAY">
         <label className="ECM_CheckboxInput">
           <input className="ECM_CheckboxInput-Input" type="checkbox"></input><span class="ECM_CheckboxInput-DummyInput"></span><span class="ECM_CheckboxInput-LabelText">ALL DAY</span>
         </label>
-        <div className="ipselect">
-          <select className="SB" required>
+        {/* <div className="ipselect">
+          <select className="SB" required></select>
           <option value="" hidden disabled selected></option>
           <option value="1">daily</option>
           <option value="2">weekly</option>
           <option value="3">monthly</option>
-          </select>
-          <span className="SB_highlight"></span>
-          <span className="SB_selectbar"></span>
-          <label className="SB_selectlabel">Choose</label>
-        </div>
+          <label class="ECM_CheckboxInput">
+            <input
+              value={shouldReserveAllDay}
+              onChange={(e) => setShouldReserveAllDay(e.target.checked)}
+              class="ECM_CheckboxInput-Input"
+              type="checkbox"
+            />
+           <span class="ECM_CheckboxInput-DummyInput"></span>
+            <span class="ECM_CheckboxInput-LabelText">ALL DAY</span>
+          </label> */}
+          <div class="ipselect">
+            <select
+              value={reserveRepeat}
+              onChange={(e) => setReserveRepeat(e.target.value)}
+              class="SB"
+              required
+            >
+              <option value={Repeat.NO_REPEAT} hidden disabled selected></option>
+              <option value={Repeat.DAILY}>daily</option>
+              <option value={Repeat.WEEKLY}>weekly</option>
+              <option value={Repeat.MONTHLY}>monthly</option>
+            </select>
+            <span className="SB_highlight"></span>
+            <span className="SB_selectbar"></span>
+            <label className="SB_selectlabel">Choose</label>
+          </div>
+        
       </div>
 
       {/* 予約者情報入力 */}
@@ -130,7 +189,6 @@ const ReservePage = () => {
         </div>
 
       </div>
-      
     </div>
   );
 };
