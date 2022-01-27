@@ -2,13 +2,32 @@
 /* 選択は下のバーの色を変える */
 /* 入力は背景の色を変える */
 
-/*　入力フォームの文字のフォント */
-a{
-  font-size: 20px;
+.page{
+  /* background-color: #e7e0dc; */
+  margin: 5%;
+  font-family: 'Source Sans Pro',arial,sans-serif;
 }
 
+/*　入力フォームの文字のフォント */
+a{
+  font-size: 2.5em;
+}
 
+b{
+  font-size: 5em;
+}
 
+h2{
+  font-size: 3.5em;
+  margin-bottom: auto;
+}
+
+h3{
+  font-size: 18px;
+  text-align: center;
+  margin-right: 30px;
+
+}
 
 .reserve--upper-grid {
   height: 30%;
@@ -55,35 +74,47 @@ button.reserve-saveButton {
 .reserve-saveButton--red,
 a.reserve-saveButton--red {
   color: #fff;
-  background-color: #c7000a;
+  background-color: #eee;
 }
 .reserve-saveButton--red:hover,
 a.reserve-saveButton--red:hover {
   color: #fff;
-  background: #880007;
+  background: #bbb9a5;
 }
 .reserve--upper-calendar{
-  height: 10%;
+  height: 15%;
   width: 60%;
+  margin-top: 15px;
+  margin-bottom: 15px;
   display: flex;
+  align-items: center;
+
 }
-
-
-
 
 .reserve--upper-DAY{
-  height: 10%;
+  height: 15%;
   width: 60%;
   display: flex;
 }
 
-/* カレンダーのセレクトボックス */
+
+/* 時計 */
+.reserve-time {
+  width: 100px;
+  height: 15px;
+  padding: 8px 16px;
+  background: #eee;
+  border-color:#eee;
+}
+
+/* 繰り返し  */
 .ipselect {
   position: relative;
   width: 30%;
-  margin: 5em;
   text-align: center;
+  margin-left: 20px;
 }
+
 .SB {
   position: relative;
   font-family: inherit;
@@ -130,7 +161,7 @@ a.reserve-saveButton--red:hover {
   transition: 0.2s ease all;
 }
 .SB:focus ~ .SB_selectlabel, .SB:valid ~ .SB_selectlabel {
-  color: #c7000a;
+  color: #bbb9a5;
   top: -20px;
   transition: 0.2s ease all;
   font-size: 14px;
@@ -146,7 +177,7 @@ a.reserve-saveButton--red:hover {
   width: 0;
   bottom: 1px;
   position: absolute;
-  background: #c7000a;
+  background: #bbb9a5;
   transition: 0.2s ease all;
 }
 .SB_selectbar:before {
@@ -166,9 +197,8 @@ a.reserve-saveButton--red:hover {
   opacity: 0.5;
 }
 
-/* 期間のセレクトボックス */
+/* 終日 */
 .ECM_CheckboxInput {
-  padding: 20px 8px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -179,13 +209,13 @@ a.reserve-saveButton--red:hover {
   opacity: 0;
   }
   .ECM_CheckboxInput:hover > .ECM_CheckboxInput-DummyInput{
-  background: #c7000a;
+  background: #cac7bf;
   }
   .ECM_CheckboxInput-Input:focus + .ECM_CheckboxInput-DummyInput{
-  background: #c7000a;
+  background: #cac7bf;
   }
   .ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput {
-  background: #880007;
+  background: #bbb9a5;
   }
   .ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput::before {
   content: "";
@@ -197,7 +227,7 @@ a.reserve-saveButton--red:hover {
   height: 2px;
   transform: translate(-5px, 6px) rotateZ(-135deg);
   transform-origin: 1px 1px;
-  background: #c7000a;
+  background: #000000;
   }
   .ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput::after {
   content: "";
@@ -209,7 +239,7 @@ a.reserve-saveButton--red:hover {
   height: 2px;
   transform: translate(-5px, 6px) rotateZ(-45deg);
   transform-origin: 1px 1px;
-  background: #FFFFFF;
+  background: #000000;
   }
   .ECM_CheckboxInput-DummyInput {
   position: relative;
@@ -239,6 +269,8 @@ a.reserve-saveButton--red:hover {
 }
 
 .flexbox{
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
 }
@@ -261,27 +293,12 @@ a.reserve-saveButton--red:hover {
   height: 10%;
 }
 
-.reserve--event-input-typetext{
-  height: 100px;
-  width: 80%;
-  padding: 100;
-  line-height: 280px
-}
-
 .reserve-line {
   width: 700px;
   text-align: left;
   margin-left: 0px;
   margin-right: 300px;
 }
-.reserve-time {
-  width: 100px;
-  height: 15px;
-  padding: 8px 16px;
-  background: #eee;
-  border-color:#eee;
-}
-
 
 /* 入力フォーム */
 input:first-of-type
@@ -291,15 +308,15 @@ input:first-of-type
 }
 
 input:focus{
-  background: #9e4d4d;
+  background: #bbb9a5;
 }
 
 .reserve--event-input{
-  /* font-size: 1em; */
+  font-size: 2em;
   padding: 15px 10px 10px;
   font-family: 'Source Sans Pro',arial,sans-serif;
-  border: 1px solid #cecece;
-  background: #d7d7d7;
+  border: 1px solid #585858;
+  background: #FAFAFA;
   color:#000;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -310,8 +327,8 @@ input:focus{
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 80%;
-  max-width: 600px;
+  width: 60%;
+  outline: none;
 }
 ::-webkit-input-placeholder {
     color: #FAFAFA;
@@ -324,4 +341,34 @@ input:focus{
 }
 :-ms-input-placeholder {  
     color: #FAFAFA;  
+}
+
+/* テキストエリア */
+.reserve--event-textarea,.reserve--event-guesttextarea{
+  font-size: 2em;
+  padding: 15px 10px 10px;
+  font-family: 'Source Sans Pro',arial,sans-serif;
+  background: #FAFAFA;
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #585858;
+  outline: none;
+  line-height: 1.6;
+  resize: none;
+}
+.reserve--event-textarea:focus{
+  background: #bbb9a5;
+}
+.reserve--event-guesttextarea:focus{
+  background: #bbb9a5;
+}
+
+.reserve--event-guesttextarea{
+  width: 80%;
+}
+
+.reserve--event-textarea{
+  width: 60%;
 }
