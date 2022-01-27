@@ -108,7 +108,8 @@ a.reserve-saveButton--red:hover {
   outline: none;
 }
 
-.Calendar{
+/* カレンダー */
+.reserve-date{
   background: #fafafa;
   border: 1px solid #585858;
   outline: none;
