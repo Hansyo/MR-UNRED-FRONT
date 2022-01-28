@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import Datepicker from 'react-datepicker';
-import TimePicker from 'react-time-picker';
 
 import './ReservePage.css';
-import { Calendar, Input, Selectbox, Icon } from '../components/reserve/Input';
+import { Calendar, Input } from '../components/reserve/Input';
 //import Select from 'react-select';
 
 const Repeat = {
