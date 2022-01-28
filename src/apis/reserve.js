@@ -1,36 +1,28 @@
 import { requestPost } from './request';
 
 export const postReserve = async (
-  reserveDate,
-  reserveTimeFrom,
-  reserveTimeTo,
-  shouldReserveAllDay,
-  reserveRepeat,
-  userName,
-  description,
+  startDateTime,
+  endDateTime,
+  reserverName,
+  purpose,
   guestName,
   guestDetail,
 ) => {
   console.log({
-    reserveDate,
-    reserveTimeFrom,
-    reserveTimeTo,
-    shouldReserveAllDay,
-    reserveRepeat,
-    userName,
-    description,
+    startDateTime,
+    endDateTime,
+    reserverName,
+    purpose,
     guestName,
     guestDetail,
   });
   await requestPost('/reserve', {
-    reserveDate,
-    reserveTimeFrom,
-    reserveTimeTo,
-    shouldReserveAllDay,
-    reserveRepeat,
-    userName,
-    description,
+    startDateTime,
+    endDateTime,
+    reserverName,
+    purpose,
     guestName,
     guestDetail,
+    roomId: 0, // TODO: roomIdをセット
   });
 };

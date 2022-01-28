@@ -16,25 +16,32 @@ const ReservePage = () => {
   const [reserveDate, setReserveDate] = useState(new Date());
   const [reserveTimeFrom, setReserveTimeFrom] = useState('00:00');
   const [reserveTimeTo, setReserveTimeTo] = useState('00:00');
-  const [shouldReserveAllDay, setShouldReserveAllDay] = useState(false);
   const [reserveRepeat, setReserveRepeat] = useState(Repeat.NO_REPEAT);
-  const [userName, setUserName] = useState('');
-  const [description, setDescription] = useState('');
+  const [reserverName, setReserverName] = useState('');
+  const [purpose, setPurpose] = useState('');
   const [guestName, setGuestName] = useState('');
   const [guestDetail, setGuestDetail] = useState('');
 
   const sendReserve = () => {
-    postReserve({
-      reserveDate,
-      reserveTimeFrom,
-      reserveTimeTo,
-      shouldReserveAllDay,
-      reserveRepeat,
-      userName,
-      description,
+    const startDate = new Date(reserveDate);
+    const endDate = new Date(reserveDate);
+    startDate.setHours(
+      Number(reserveTimeFrom.slice(0, 2)),
+      Number(reserveTimeFrom.slice(-2)),
+    );
+    endDate.setHours(
+      Number(reserveTimeTo.slice(0, 2)),
+      Number(reserveTimeTo.slice(-2)),
+    );
+
+    postReserve(
+      startDate.toISOString(),
+      endDate.toISOString(),
+      reserverName,
+      purpose,
       guestName,
       guestDetail,
-    });
+    );
   };
 
   //Room Name，電話番号，メールアドレスは自動で入る？
@@ -85,16 +92,6 @@ const ReservePage = () => {
 
       {/* 終日選択 */}
       <div className="reserve--upper-DAY">
-        <label className="ECM_CheckboxInput">
-          <input
-            value={shouldReserveAllDay}
-            onChange={(e) => setShouldReserveAllDay(e.target.checked)}
-            className="ECM_CheckboxInput-Input"
-            type="checkbox"
-          ></input>
-          <span className="ECM_CheckboxInput-DummyInput"></span>
-          <span className="ECM_CheckboxInput-LabelText">終日</span>
-        </label>
         <div className="ipselect">
           <select
             value={reserveRepeat}
@@ -126,8 +123,8 @@ const ReservePage = () => {
             <div className="flexbox">
               <div className="reserve--event-label">予約者名</div>
               <Input
-                value={userName}
-                onChange={setUserName}
+                value={reserverName}
+                onChange={setReserverName}
                 className="reserve--event-input"
                 placeholder="予約をした人の名前"
               />
@@ -165,8 +162,8 @@ const ReservePage = () => {
             <div className="flexbox">
               <div className="reserve--event-label">利用目的</div>
               <textarea
-                value={description}
-                onChange={setDescription}
+                value={purpose}
+                onChange={setPurpose}
                 rows={10}
                 className="reserve--event-guesttextarea"
                 placeholder="~の会議で使用するなど"
