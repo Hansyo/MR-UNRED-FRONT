@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import './ReservePage.css';
 import { Calendar, Input } from '../components/reserve/Input';
+import { postReserve } from '../apis/reserve';
 //import Select from 'react-select';
 
 const Repeat = {
@@ -23,7 +24,7 @@ const ReservePage = () => {
   const [guestDetail, setGuestDetail] = useState('');
 
   const sendReserve = () => {
-    console.log({
+    postReserve({
       reserveDate,
       reserveTimeFrom,
       reserveTimeTo,
