@@ -45,7 +45,7 @@ const ReservePage = () => {
         <b>会議室の名前</b>
         <div>
           <button
-            class="reserve-saveButton reserve-saveButton--red"
+            className="reserve-saveButton reserve-saveButton--red"
             onClick={sendReserve}
           >
             保存
@@ -76,7 +76,7 @@ const ReservePage = () => {
             value={reserveTimeTo}
             onChange={(e) => setReserveTimeTo(e.target.value)}
             type="time"
-            class="reserve-time"
+            className="reserve-time"
             required
           />
         </div>
@@ -91,14 +91,14 @@ const ReservePage = () => {
             className="ECM_CheckboxInput-Input"
             type="checkbox"
           ></input>
-          <span class="ECM_CheckboxInput-DummyInput"></span>
-          <span class="ECM_CheckboxInput-LabelText">終日</span>
+          <span className="ECM_CheckboxInput-DummyInput"></span>
+          <span className="ECM_CheckboxInput-LabelText">終日</span>
         </label>
-        <div class="ipselect">
+        <div className="ipselect">
           <select
             value={reserveRepeat}
             onChange={(e) => setReserveRepeat(e.target.value)}
-            class="SB"
+            className="SB"
             required
           >
             <option value={Repeat.NO_REPEAT}>繰り返さない</option>
