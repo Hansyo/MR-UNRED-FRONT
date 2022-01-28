@@ -1,14 +1,307 @@
+/* 選択されたとき */
+/* 選択は下のバーの色を変える */
+/* 入力は背景の色を変える */
+
+.page {
+  margin: 5%;
+}
+
+/*　入力フォームの文字のフォント */
+.reserve--event-label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+b {
+  font-size: 5em;
+}
+
+h2 {
+  font-size: 3.5em;
+  margin-bottom: auto;
+}
+
+h4 {
+  font-size: 18px;
+  text-align: center;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
 .reserve--upper-grid {
+  height: 30%;
+  width: 100%;
   display: flex;
 }
+
+/* SAVEボタン */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+.reserve-saveButton,
+a.reserve-saveButton,
+button.reserve-saveButton {
+  margin: 20px 0 0 400px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+.reserve-saveButton--red,
+a.reserve-saveButton--red {
+  color: #fff;
+  background-color: #fafafa;
+}
+.reserve-saveButton--red:hover,
+a.reserve-saveButton--red:hover {
+  color: #fff;
+  background: #bbb9a5;
+}
+.reserve--upper-calendar {
+  height: 15%;
+  width: 80%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.reserve--upper-DAY {
+  height: 15%;
+  width: 60%;
+  display: flex;
+}
+
+/* 時計 */
+.reserve-time {
+  width: 100px;
+  height: 15px;
+  padding: 8px 16px;
+  background: #fafafa;
+  border: 1px solid #585858;
+  outline: none;
+}
+
+/* カレンダー */
+.reserve-date {
+  background: #fafafa;
+  border: 1px solid #585858;
+  outline: none;
+}
+
+/* 繰り返し  */
+.ipselect {
+  position: relative;
+  width: 30%;
+  text-align: center;
+  margin-left: 20px;
+}
+
+.SB {
+  position: relative;
+  font-family: inherit;
+  background-color: transparent;
+  width: 100%;
+  padding: 10px 10px 10px 0;
+  font-size: 18px;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+.SB:focus {
+  outline: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+.ipselect .SB {
+  appearance: none;
+  -webkit-appearance: none;
+}
+.ipselect select::-ms-expand {
+  display: none;
+}
+.ipselect:after {
+  position: absolute;
+  top: 18px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+.SB_selectlabel {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  top: 10px;
+  transition: 0.2s ease all;
+}
+.SB:focus ~ .SB_selectlabel,
+.SB:valid ~ .SB_selectlabel {
+  color: #bbb9a5;
+  top: -20px;
+  transition: 0.2s ease all;
+  font-size: 14px;
+}
+.SB_selectbar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.SB_selectbar:before,
+.SB_selectbar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #bbb9a5;
+  transition: 0.2s ease all;
+}
+.SB_selectbar:before {
+  left: 50%;
+}
+.SB_selectbar:after {
+  right: 50%;
+}
+.SB:focus ~ .SB_selectbar:before,
+.SB:focus ~ .SB_selectbar:after {
+  width: 50%;
+}
+.SB_highlight {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* 終日 */
+.ECM_CheckboxInput {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 15px;
+}
+.ECM_CheckboxInput-Input {
+  margin: 0;
+  width: 0;
+  opacity: 0;
+}
+.ECM_CheckboxInput:hover > .ECM_CheckboxInput-DummyInput {
+  background: #cac7bf;
+}
+.ECM_CheckboxInput-Input:focus + .ECM_CheckboxInput-DummyInput {
+  background: #cac7bf;
+}
+.ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput {
+  background: #bbb9a5;
+}
+.ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 35%;
+  height: 2px;
+  transform: translate(-5px, 6px) rotateZ(-135deg);
+  transform-origin: 1px 1px;
+  background: #000000;
+}
+.ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 2px;
+  transform: translate(-5px, 6px) rotateZ(-45deg);
+  transform-origin: 1px 1px;
+  background: #000000;
+}
+.ECM_CheckboxInput-DummyInput {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: #f5f5f5;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4) inset;
+}
+.ECM_CheckboxInput-LabelText {
+  margin-left: 12px;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ーーーーーーーーーーー */
+/* 予約者詳細入力 */
+/* ーーーーーーーーーーー */
 
 .reserve--event-grid {
+  height: auto;
+  width: 100%;
   display: flex;
 }
 
-.reserve--guest-grid {
-  margin-left: 600px;
+.flexbox {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
 }
+
+.reserve--event-form {
+  display: flex;
+}
+
+.reserve--event-user {
+  height: auto;
+  width: 60%;
+}
+
+.reserve--event-guest {
+  height: auto;
+  width: 40%;
+}
+
+.reserve--event-usertitle {
+  height: 10%;
+}
+
 .reserve-line {
   width: 700px;
   text-align: left;
@@ -16,61 +309,75 @@
   margin-right: 300px;
 }
 
-.reserve-time {
-  width: 100px;
-  height: 15px;
-  padding: 8px 16px;
-  background: #eee;
-  border-color:#eee;
+/* 入力フォーム */
+input:first-of-type {
+  margin-top: 5px;
+  height: 40px;
 }
 
-.reserve-saveButton{
-  width:100px;
-  height:50px;
-  margin: 20px 0 0 600px;
-  background-color: #AA0000;
+input:focus {
+  background: #bbb9a5;
 }
 
-/* 元々のチェックボックス（非表示） */
-.reserve--upper-grid input[type="checkbox"]{
-  display: none;
-}
-/* チェックボックスの代わりを成すラベル */
-.reserve--upper-grid input[type="checkbox"]+label{
+.reserve--event-input {
+  font-size: 2em;
+  padding: 15px 10px 10px;
+  font-family: 'Source Sans Pro', arial, sans-serif;
+  border: 1px solid #585858;
+  background: #fafafa;
+  color: #000;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
-  cursor: pointer;
-  padding: 5px 20px;
-  position: relative;
-  width: auto;
+  width: 60%;
+  outline: none;
 }
-/* ラベルの左に表示させる正方形のボックス□ */
-.reserve--upper-grid input[type="checkbox"]+label::before{
-  content: "";
-  position: absolute;
-  display: block;
-  box-sizing: border-box;
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-  left: 0;
-  top: 50%;
-  border: 1px solid;
-  border-color:  #AA0000; 
-  background-color: #FFF; 
+::-webkit-input-placeholder {
+  color: #4e4e4e;
 }
-/* チェックが入った時のレ点 */
-.reserve--upper-grid input[type="checkbox"]:checked+label::after{
-  content: "";
-  position: absolute;
-  display: block;
+:-moz-placeholder {
+  color: #fafafa;
+}
+::-moz-placeholder {
+  color: #fafafa;
+}
+:-ms-input-placeholder {
+  color: #fafafa;
+}
+
+/* テキストエリア */
+.reserve--event-textarea,
+.reserve--event-guesttextarea {
+  font-size: 2em;
+  padding: 15px 10px 10px;
+  font-family: 'Source Sans Pro', arial, sans-serif;
+  background: #fafafa;
+  display: inline-block;
+  vertical-align: top;
   box-sizing: border-box;
-  width: 18px;
-  height: 9px;
-  margin-top: -9px;
-  top: 50%;
-  left: 3px;
-  transform: rotate(-45deg);
-  border-bottom: 3px solid;
-  border-left: 3px solid;
-  border-color:  #585753;
+  border-radius: 5px;
+  border: 1px solid #585858;
+  outline: none;
+  line-height: 1.6;
+  resize: none;
+}
+.reserve--event-textarea:focus {
+  background: #bbb9a5;
+}
+.reserve--event-guesttextarea:focus {
+  background: #bbb9a5;
+}
+
+.reserve--event-guesttextarea {
+  width: 80%;
+}
+
+.reserve--event-textarea {
+  width: 60%;
 }
