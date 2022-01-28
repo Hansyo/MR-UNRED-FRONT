@@ -6,7 +6,7 @@ const ReservationsDailyPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
-    <div>
+    <div className="reservations-daily--page">
       <DateSwitcher selectedDate={selectedDate} onChange={setSelectedDate} />
       <DailyCalendar reservations={[]} />
     </div>
