@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { DailyCalendar } from '../components/reservations/daily/DailyCalendar/DailyCalendar';
 import { DateSwitcher } from '../components/reservations/daily/DateSwitcher';
 
 const ReservationsDailyPage = () => {
@@ -7,6 +8,7 @@ const ReservationsDailyPage = () => {
   return (
     <div>
       <DateSwitcher selectedDate={selectedDate} onChange={setSelectedDate} />
+      <DailyCalendar reservations={[]} />
     </div>
   );
 };

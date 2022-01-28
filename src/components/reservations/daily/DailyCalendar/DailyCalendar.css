@@ -1,0 +1,62 @@
+.daily-calendar--container {
+  --daily-calendar--column-width: 256px;
+  --daily-calendar--row-height: 64px;
+  --daily-calendar--room-label-height: 48px;
+  --daily-calendar--divider-color: #e2e8f0;
+
+  position: relative;
+  display: flex;
+  align-items: stretch;
+
+  margin-top: 2rem;
+}
+
+.daily-calendar--times {
+  position: sticky;
+  left: 0;
+
+  padding-top: var(--daily-calendar--room-label-height);
+  padding-right: 16px;
+  border-right: 1px solid #e2e8f0;
+  background: #fff;
+}
+
+.daily-calendar--time {
+  position: relative;
+
+  height: var(--daily-calendar--row-height);
+  top: -6px;
+
+  font-size: 12px;
+  line-height: 1em;
+}
+
+.daily-calendar--room-columns {
+  flex: 1;
+  display: flex;
+  justify-content: stretch;
+}
+
+.daily-calendar--room-column {
+  width: var(--daily-calendar--column-width);
+  border-right: 1px solid var(--daily-calendar--divider-color);
+}
+
+.daily-calendar--room-label {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+
+  height: var(--daily-calendar--room-label-height);
+  border-bottom: 1px solid var(--daily-calendar--divider-color);
+  background: #fff;
+
+  font-size: 20px;
+  line-height: 1em;
+}
+
+.daily-calendar--cell {
+  height: var(--daily-calendar--row-height);
+  border-bottom: 1px solid var(--daily-calendar--divider-color);
+}
