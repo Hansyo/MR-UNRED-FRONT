@@ -91,8 +91,10 @@ export const DailyCalendar = ({ rooms = dummyRooms }) => {
       <div className="daily-calendar--header">
         <div className="daily-calendar--time-spacer" />
         {rooms.map((room) => (
-          <div className="daily-calendar--room-label" key={room.id}>
-            {room.name}
+          <div className='daily-calendar--room-labels'>
+            <div className="daily-calendar--room-label" key={room.id}>
+              {room.name}
+            </div>
           </div>
         ))}
       </div>
