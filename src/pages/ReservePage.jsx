@@ -115,7 +115,7 @@ const ReservePage = () => {
 
       <div className='reserve--event-usertitle'>
         <h2> 予約詳細</h2> 
-        <hr className='reserve-line'></hr><br></br>
+        <hr className='reserve-line2'></hr><br></br>
       </div>
 
       {/* 予約者情報入力 */}
