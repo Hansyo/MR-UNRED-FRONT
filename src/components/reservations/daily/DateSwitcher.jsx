@@ -21,19 +21,23 @@ export const DateSwitcher = ({ selectedDate, onChange }) => {
 
   return (
     <div className="reservations-daily--date-switch-container">
-      <button
-        className="reservations-daily--date-switch-button"
-        onClick={onClickPrev}
-      >
-        前へ
-      </button>
-      <div className="reservations-daily--date">{dateString}</div>
-      <button
-        className="reservations-daily--date-switch-button"
-        onClick={onClickNext}
-      >
-        次へ
-      </button>
+      <div className='reservations-daily--date-switch-buttons'>
+        <button
+          className="reservations-daily--date-switch-button"
+          onClick={onClickPrev}
+        >
+         前へ
+        </button>
+      </div>
+        <div className="reservations-daily--date">{dateString}</div>
+      <div className='reservations-daily--date-switch-buttons'>
+        <button
+          className="reservations-daily--date-switch-button"
+          onClick={onClickNext}
+        >
+         次へ
+        </button>
+      </div>
     </div>
   );
 };
