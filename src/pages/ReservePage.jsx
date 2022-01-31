@@ -35,8 +35,8 @@ const ReservePage = () => {
     );
 
     postReserve(
-      startDate.toISOString(),
-      endDate.toISOString(),
+      startDate,
+      endDate,
       reserverName,
       purpose,
       guestName,
@@ -148,7 +148,7 @@ const ReservePage = () => {
               <div className="reserve--event-label">利用者詳細</div>
               <textarea
                 value={guestDetail}
-                onChange={setGuestDetail}
+                onChange={(e) => setGuestDetail(e.target.value)}
                 rows="8"
                 className="reserve--event-textarea"
                 placeholder="メールアドレス,電話番号など"
@@ -163,7 +163,7 @@ const ReservePage = () => {
               <div className="reserve--event-label">利用目的</div>
               <textarea
                 value={purpose}
-                onChange={setPurpose}
+                onChange={(e) => setPurpose(e.target.value)}
                 rows={10}
                 className="reserve--event-guesttextarea"
                 placeholder="~の会議で使用するなど"

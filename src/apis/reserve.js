@@ -8,21 +8,13 @@ export const postReserve = async (
   guestName,
   guestDetail,
 ) => {
-  console.log({
-    startDateTime,
-    endDateTime,
-    reserverName,
-    purpose,
-    guestName,
-    guestDetail,
-  });
   await requestPost('/reserve', {
-    startDateTime,
-    endDateTime,
-    reserverName,
+    start_date_time: startDateTime.toISOString().slice(0, 16),
+    end_date_time: endDateTime.toISOString().slice(0, 16),
+    reserver_name: reserverName,
     purpose,
-    guestName,
-    guestDetail,
-    roomId: 0, // TODO: roomIdをセット
+    guest_name: guestName,
+    guest_detail: guestDetail,
+    room_id: 0, // TODO: roomIdをセット
   });
 };
