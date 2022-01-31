@@ -1,12 +1,11 @@
 .daily-calendar {
-  margin-left: 2%;
-  margin-right: 2%;
-  /* --daily-calendar--column-width: 20%;
-  --daily-calendar--row-height: 10%; */
-  /* --daily-calendar--time-column-width: 70px;
-  --daily-calendar--room-label-height: 48px; */
-  --daily-calendar--divider-color: #e2e8f0;
+  padding-left: 2%;
+  padding-right: 2%;
+  --daily-calendar--row-height: 70px;
+  --daily-calendar--divider-color: #94989e;
   position: relative;
+  font-family: 'Source Sans Pro', arial, sans-serif;
+  font-weight: bold;
 }
 
 .daily-calendar--header {
@@ -14,32 +13,25 @@
   top: 0;
   z-index: 1;
   display: flex;
-
-  /* width: fit-content; */
-  width: 90%;
-  /* margin-top: 32px; */
-  height: 10%;
+  height: var(--daily-calendar--row-height);
   border-bottom: 1px solid var(--daily-calendar--divider-color);
   background: #fff;
 }
 
 .daily-calendar--time-spacer {
   flex: 0 0 auto;
-  width: var(--daily-calendar--time-column-width);
+  width: 5%;
+}
+
+.daily-calendar--room-labels {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .daily-calendar--room-label {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* width: var(--daily-calendar--column-width); */
-  width: 15%;
-  /* height: var(--daily-calendar--room-label-height); */
-  height: 3.5%;
-  background: #fff;
-
+  background: #fafafa;
   font-size: 20px;
   line-height: 1em;
 }
@@ -56,8 +48,6 @@
   position: sticky;
   left: 0;
   z-index: 2;
-
-  /* width: var(--daily-calendar--time-column-width); */
   width: 5%;
   border-right: 1px solid #e2e8f0;
   background: #fff;
@@ -65,8 +55,7 @@
 
 .daily-calendar--time {
   position: relative;
-  /* height: var(--daily-calendar--row-height); */
-  height: 40px;
+  height: var(--daily-calendar--row-height);
   top: -6px;
 
   font-size: 12px;
@@ -80,16 +69,15 @@
 }
 
 .daily-calendar--room-column {
-  /* width: var(--daily-calendar--column-width); */
   width: 20%;
   border-right: 1px solid var(--daily-calendar--divider-color);
 }
 
 .daily-calendar--cell {
   position: relative;
-  /* height: var(--daily-calendar--row-height); */
-  height: 40px;
+  height: var(--daily-calendar--row-height);
   border-bottom: 1px solid var(--daily-calendar--divider-color);
+  background: #fafafa;
 }
 
 .daily-calendar--reservation-item {
@@ -101,9 +89,9 @@
   min-height: 2em;
   padding: 0 8px;
   border-radius: 6px;
-  background: #3b82f6;
+  background: #447fdd;
 
-  color: #fff;
+  color: #fafafa;
   font-size: 12px;
   line-height: 2em;
   font-weight: bold;
