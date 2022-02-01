@@ -22,7 +22,7 @@ const ReservePage = () => {
   const [guestName, setGuestName] = useState('');
   const [guestDetail, setGuestDetail] = useState('');
 
-  const sendReserve = () => {
+  const sendReserve = async () => {
     const startDate = new Date(reserveDate);
     const endDate = new Date(reserveDate);
     startDate.setHours(
@@ -38,14 +38,18 @@ const ReservePage = () => {
       0,
     );
 
-    postReserve(
-      startDate,
-      endDate,
-      reserverName,
-      purpose,
-      guestName,
-      guestDetail,
-    );
+    try {
+      await postReserve(
+        startDate,
+        endDate,
+        reserverName,
+        purpose,
+        guestName,
+        guestDetail,
+      );
+    } catch (err) {
+      alert(`保存に失敗しました：${err.message}`);
+    }
   };
 
   //Room Name，電話番号，メールアドレスは自動で入る？

@@ -1,6 +1,6 @@
 import { requestPost } from './request';
 
-export const postReserve = async (
+export const postReserve = (
   startDateTime,
   endDateTime,
   reserverName,
@@ -8,7 +8,7 @@ export const postReserve = async (
   guestName,
   guestDetail,
 ) => {
-  await requestPost('/reserve', {
+  return requestPost('/reserve', {
     start_date_time: startDateTime.toISOString(),
     end_date_time: endDateTime.toISOString(),
     reserver_name: reserverName,

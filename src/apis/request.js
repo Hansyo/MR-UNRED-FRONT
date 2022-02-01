@@ -9,5 +9,9 @@ export const requestPost = async (path, body) => {
     },
     body: JSON.stringify(body),
   });
+  if (!res.ok) {
+    const json = await res.json();
+    throw new Error(JSON.stringify(json));
+  }
   return res.json();
 };
