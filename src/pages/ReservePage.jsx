@@ -28,10 +28,14 @@ const ReservePage = () => {
     startDate.setHours(
       Number(reserveTimeFrom.slice(0, 2)),
       Number(reserveTimeFrom.slice(-2)),
+      0,
+      0,
     );
     endDate.setHours(
       Number(reserveTimeTo.slice(0, 2)),
       Number(reserveTimeTo.slice(-2)),
+      0,
+      0,
     );
 
     postReserve(
