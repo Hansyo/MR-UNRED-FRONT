@@ -43,7 +43,9 @@ const ReservePage = () => {
     <div className="page">
       {/* 部屋の名前 */}
       <div className="reserve--upper-grid">
-        <b>会議室の名前</b>
+        <div className='reserve--upper-grid-roomname'>
+          <b>会議室の名前</b>
+        </div>
         <div>
           <button
             className="reserve-saveButton reserve-saveButton--red"
@@ -85,16 +87,6 @@ const ReservePage = () => {
 
       {/* 終日選択 */}
       <div className="reserve--upper-DAY">
-        <label className="ECM_CheckboxInput">
-          <input
-            value={shouldReserveAllDay}
-            onChange={(e) => setShouldReserveAllDay(e.target.checked)}
-            className="ECM_CheckboxInput-Input"
-            type="checkbox"
-          ></input>
-          <span className="ECM_CheckboxInput-DummyInput"></span>
-          <span className="ECM_CheckboxInput-LabelText">終日</span>
-        </label>
         <div className="ipselect">
           <select
             value={reserveRepeat}

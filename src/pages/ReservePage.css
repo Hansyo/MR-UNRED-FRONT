@@ -29,9 +29,12 @@ h4 {
 }
 
 .reserve--upper-grid {
-  height: 30%;
-  width: 100%;
   display: flex;
+}
+
+.reserve--upper-grid-roomname{
+  height: 30%;
+  width: 50%;
 }
 
 /* SAVEボタン */
@@ -49,7 +52,7 @@ html {
 .reserve-saveButton,
 a.reserve-saveButton,
 button.reserve-saveButton {
-  margin: 20px 0 0 400px;
+  margin: 20px 0 0 0px;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.5;
@@ -205,68 +208,6 @@ a.reserve-saveButton--red:hover {
   opacity: 0.5;
 }
 
-/* 終日 */
-.ECM_CheckboxInput {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  margin-left: 15px;
-}
-.ECM_CheckboxInput-Input {
-  margin: 0;
-  width: 0;
-  opacity: 0;
-}
-.ECM_CheckboxInput:hover > .ECM_CheckboxInput-DummyInput {
-  background: #cac7bf;
-}
-.ECM_CheckboxInput-Input:focus + .ECM_CheckboxInput-DummyInput {
-  background: #cac7bf;
-}
-.ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput {
-  background: #bbb9a5;
-}
-.ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 35%;
-  height: 2px;
-  transform: translate(-5px, 6px) rotateZ(-135deg);
-  transform-origin: 1px 1px;
-  background: #000000;
-}
-.ECM_CheckboxInput-Input:checked + .ECM_CheckboxInput-DummyInput::after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 70%;
-  height: 2px;
-  transform: translate(-5px, 6px) rotateZ(-45deg);
-  transform-origin: 1px 1px;
-  background: #000000;
-}
-.ECM_CheckboxInput-DummyInput {
-  position: relative;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 32px;
-  height: 32px;
-  background: #f5f5f5;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4) inset;
-}
-.ECM_CheckboxInput-LabelText {
-  margin-left: 12px;
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-}
-
 /* ーーーーーーーーーーー */
 /* 予約者詳細入力 */
 /* ーーーーーーーーーーー */
@@ -290,12 +231,12 @@ a.reserve-saveButton--red:hover {
 
 .reserve--event-user {
   height: auto;
-  width: 60%;
+  width: 50%;
 }
 
 .reserve--event-guest {
   height: auto;
-  width: 40%;
+  width: 50%;
 }
 
 .reserve--event-usertitle {
@@ -303,7 +244,7 @@ a.reserve-saveButton--red:hover {
 }
 
 .reserve-line {
-  width: 700px;
+  width: 50%;
   text-align: left;
   margin-left: 0px;
   margin-right: 300px;
@@ -335,7 +276,7 @@ input:focus {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 60%;
+  width: 80%;
   outline: none;
 }
 ::-webkit-input-placeholder {
@@ -379,5 +320,5 @@ input:focus {
 }
 
 .reserve--event-textarea {
-  width: 60%;
+  width: 80%;
 }
