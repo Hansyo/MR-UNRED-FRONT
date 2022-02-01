@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import Datepicker from 'react-datepicker';
-import TimePicker from 'react-time-picker';
 
 import './ReservePage.css';
-import { Calendar, Input, Selectbox, Icon } from '../components/reserve/Input';
+import { Calendar, Input } from '../components/reserve/Input';
+import { postReserve } from '../apis/reserve';
 //import Select from 'react-select';
 
 const Repeat = {
@@ -17,43 +16,52 @@ const ReservePage = () => {
   const [reserveDate, setReserveDate] = useState(new Date());
   const [reserveTimeFrom, setReserveTimeFrom] = useState('00:00');
   const [reserveTimeTo, setReserveTimeTo] = useState('00:00');
-  const [shouldReserveAllDay, setShouldReserveAllDay] = useState(false);
   const [reserveRepeat, setReserveRepeat] = useState(Repeat.NO_REPEAT);
-  const [userName, setUserName] = useState('');
-  const [userPhone, setUserPhone] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [description, setDescription] = useState('');
+  const [reserverName, setReserverName] = useState('');
+  const [purpose, setPurpose] = useState('');
   const [guestName, setGuestName] = useState('');
-  const [guestPhone, setGuestPhone] = useState('');
-  const [guestEmail, setGuestEmail] = useState('');
+  const [guestDetail, setGuestDetail] = useState('');
 
-  const sendReserve = () => {
-    console.log({
-      reserveDate,
-      reserveTimeFrom,
-      reserveTimeTo,
-      shouldReserveAllDay,
-      reserveRepeat,
-      userName,
-      userPhone,
-      userEmail,
-      description,
-      guestName,
-      guestPhone,
-      guestEmail,
-    });
+  const sendReserve = async () => {
+    const startDate = new Date(reserveDate);
+    const endDate = new Date(reserveDate);
+    startDate.setHours(
+      Number(reserveTimeFrom.slice(0, 2)),
+      Number(reserveTimeFrom.slice(-2)),
+      0,
+      0,
+    );
+    endDate.setHours(
+      Number(reserveTimeTo.slice(0, 2)),
+      Number(reserveTimeTo.slice(-2)),
+      0,
+      0,
+    );
+
+    try {
+      await postReserve(
+        startDate,
+        endDate,
+        reserverName,
+        purpose,
+        guestName,
+        guestDetail,
+      );
+    } catch (err) {
+      alert(`保存に失敗しました：${err.message}`);
+    }
   };
 
   //Room Name，電話番号，メールアドレスは自動で入る？
   return (
     // 入力フォーム
-    <div className='page'>
+    <div className="page">
       {/* 部屋の名前 */}
       <div className="reserve--upper-grid">
         <b>会議室の名前</b>
         <div>
           <button
-            class="reserve-saveButton reserve-saveButton--red"
+            className="reserve-saveButton reserve-saveButton--red"
             onClick={sendReserve}
           >
             保存
@@ -70,20 +78,21 @@ const ReservePage = () => {
         </div>
         <h4>開始時間</h4>
         <div>
-
           <input
-            type="time" 
+            value={reserveTimeFrom}
+            onChange={(e) => setReserveTimeFrom(e.target.value)}
+            type="time"
             className="reserve-time"
             required
           />
-        </div> 
+        </div>
         <h4>終了時間</h4>
         <div>
           <input
-            // value={reserveTimeTo}
+            value={reserveTimeTo}
             onChange={(e) => setReserveTimeTo(e.target.value)}
             type="time"
-            class="reserve-time"
+            className="reserve-time"
             required
           />
         </div>
@@ -91,16 +100,11 @@ const ReservePage = () => {
 
       {/* 終日選択 */}
       <div className="reserve--upper-DAY">
-        <label className="ECM_CheckboxInput">
-          <input className="ECM_CheckboxInput-Input" type="checkbox"></input>
-          <span class="ECM_CheckboxInput-DummyInput"></span>
-          <span class="ECM_CheckboxInput-LabelText">終日</span>
-        </label>
-        <div class="ipselect">
+        <div className="ipselect">
           <select
             value={reserveRepeat}
             onChange={(e) => setReserveRepeat(e.target.value)}
-            class="SB"
+            className="SB"
             required
           >
             <option value={Repeat.NO_REPEAT}>繰り返さない</option>
@@ -113,49 +117,68 @@ const ReservePage = () => {
         </div>
       </div>
 
-      <div className='reserve--event-usertitle'>
-        <h2> 予約詳細</h2> 
-        <hr className='reserve-line2'></hr><br></br>
+      <div className="reserve--event-usertitle">
+        <h2> 予約詳細</h2>
+        <hr className="reserve-line2"></hr>
+        <br></br>
       </div>
 
       {/* 予約者情報入力 */}
       <div className="reserve--event-grid">
         {/* 教員用入力画面 */}
-        <div className='reserve--event-user'>
-
-
-          <div className='reserve--event-form'>
+        <div className="reserve--event-user">
+          <div className="reserve--event-form">
             <div className="flexbox">
-              <a>予約者名</a>
-              <Input className="reserve--event-input" placeholder="予約をした人の名前" />
+              <div className="reserve--event-label">予約者名</div>
+              <Input
+                value={reserverName}
+                onChange={setReserverName}
+                className="reserve--event-input"
+                placeholder="予約をした人の名前"
+              />
             </div>
           </div>
 
-          <div className='reserve--event-form'>
+          <div className="reserve--event-form">
             <div className="flexbox">
-              <a>利用者名・団体名</a>
-              <Input className="reserve--event-input" placeholder="実際に使用する人・団体の名前" />
+              <div className="reserve--event-label">利用者名・団体名</div>
+              <Input
+                value={guestName}
+                onChange={setGuestName}
+                className="reserve--event-input"
+                placeholder="実際に使用する人・団体の名前"
+              />
             </div>
           </div>
 
-          <div className='reserve--event-form'>
+          <div className="reserve--event-form">
             <div className="flexbox">
-              <a>利用者詳細</a>
-              <textarea rows="8" className="reserve--event-textarea" placeholder="メールアドレス,電話番号など" />
-            </div>
-          </div>
-        
-        </div> 
-        {/* ゲスト用入力画面 */}
-        <div className='reserve--event-guest'>
-          <div className='reserve--event-form'>
-            <div className="flexbox"> 
-              <a>利用目的</a>
-              <textarea rows={10} className="reserve--event-guesttextarea" placeholder="~の会議で使用するなど" />
+              <div className="reserve--event-label">利用者詳細</div>
+              <textarea
+                value={guestDetail}
+                onChange={(e) => setGuestDetail(e.target.value)}
+                rows="8"
+                className="reserve--event-textarea"
+                placeholder="メールアドレス,電話番号など"
+              />
             </div>
           </div>
         </div>
-
+        {/* ゲスト用入力画面 */}
+        <div className="reserve--event-guest">
+          <div className="reserve--event-form">
+            <div className="flexbox">
+              <div className="reserve--event-label">利用目的</div>
+              <textarea
+                value={purpose}
+                onChange={(e) => setPurpose(e.target.value)}
+                rows={10}
+                className="reserve--event-guesttextarea"
+                placeholder="~の会議で使用するなど"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
