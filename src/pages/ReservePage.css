@@ -12,6 +12,12 @@
   font-weight: bold;
 }
 
+C {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff0000;
+}
+
 b {
   font-size: 5em;
 }
@@ -69,6 +75,7 @@ button.reserve-saveButton {
   letter-spacing: 0.1em;
   color: #212529;
   border-radius: 0.5rem;
+  border: 1px solid #585858;
 }
 .reserve-saveButton--red,
 a.reserve-saveButton--red {

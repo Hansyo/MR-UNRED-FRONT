@@ -129,7 +129,7 @@ const ReservePage = () => {
         <div className="reserve--event-user">
           <div className="reserve--event-form">
             <div className="flexbox">
-              <div className="reserve--event-label">予約者名</div>
+              <div className="reserve--event-label">予約者名<c>*</c></div>
               <Input
                 value={reserverName}
                 onChange={setReserverName}
@@ -141,7 +141,7 @@ const ReservePage = () => {
 
           <div className="reserve--event-form">
             <div className="flexbox">
-              <div className="reserve--event-label">利用者名・団体名</div>
+              <div className="reserve--event-label">利用者名・団体名<c>*</c></div>
               <Input
                 value={guestName}
                 onChange={setGuestName}
