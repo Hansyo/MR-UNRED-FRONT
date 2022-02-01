@@ -10,6 +10,7 @@
 .reserve--event-label {
   font-size: 18px;
   font-weight: bold;
+  margin-top: 10px;
 }
 
 b {
@@ -21,11 +22,12 @@ h2 {
   margin-bottom: auto;
 }
 
-h4 {
+.reserve--time-label {
   font-size: 18px;
   text-align: center;
   margin-left: 15px;
   margin-right: 5px;
+  font-weight: bold;
 }
 
 .reserve--upper-grid {
@@ -72,6 +74,7 @@ button.reserve-saveButton {
   letter-spacing: 0.1em;
   color: #212529;
   border-radius: 0.5rem;
+  border: 1px solid #585858;
 }
 .reserve-saveButton--red,
 a.reserve-saveButton--red {
@@ -83,6 +86,7 @@ a.reserve-saveButton--red:hover {
   color: #fff;
   background: #bbb9a5;
 }
+
 .reserve--upper-calendar {
   height: 15%;
   width: 80%;
@@ -252,7 +256,6 @@ a.reserve-saveButton--red:hover {
 
 /* 入力フォーム */
 input:first-of-type {
-  margin-top: 5px;
   height: 40px;
 }
 
