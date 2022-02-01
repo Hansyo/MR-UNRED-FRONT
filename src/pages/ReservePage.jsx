@@ -119,7 +119,7 @@ const ReservePage = () => {
 
       <div className="reserve--event-usertitle">
         <h2> 予約詳細</h2>
-        <hr className="reserve-line"></hr>
+        <hr className="reserve-line2"></hr>
         <br></br>
       </div>
 

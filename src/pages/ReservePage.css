@@ -309,6 +309,13 @@ a.reserve-saveButton--red:hover {
   margin-right: 300px;
 }
 
+.reserve-line2 {
+  width: 60%;
+  text-align: left;
+  margin-left: 0px;
+  margin-right: 300px;
+}
+
 /* 入力フォーム */
 input:first-of-type {
   margin-top: 5px;
