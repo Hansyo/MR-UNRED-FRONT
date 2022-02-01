@@ -58,7 +58,9 @@ const ReservePage = () => {
     <div className="page">
       {/* 部屋の名前 */}
       <div className="reserve--upper-grid">
-        <b>会議室の名前</b>
+        <div className='reserve--upper-grid-roomname'>
+          <b>会議室の名前</b>
+        </div>
         <div>
           <button
             className="reserve-saveButton reserve-saveButton--red"
