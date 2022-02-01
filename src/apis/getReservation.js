@@ -6,8 +6,8 @@ export const getReserve = async (
     roomId,
 ) => {
     const params = {
-        start_date_time: startDateTime.toISOString().slice(0, 19),
-        end_date_time: endDateTime.toISOString().slice(0, 19),
+        start_date_time: startDateTime.toISOString(),
+        end_date_time: endDateTime.toISOString(),
         room_Id: roomId
     };
     console.log({
