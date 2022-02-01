@@ -141,7 +141,7 @@ const ReservePage = () => {
 
           <div className="reserve--event-form">
             <div className="flexbox">
-              <div className="reserve--event-label">利用者名・団体名<c>*</c></div>
+              <div className="reserve--event-label">利用者名・団体名</div>
               <Input
                 value={guestName}
                 onChange={setGuestName}
@@ -168,7 +168,7 @@ const ReservePage = () => {
         <div className="reserve--event-guest">
           <div className="reserve--event-form">
             <div className="flexbox">
-              <div className="reserve--event-label">利用目的</div>
+              <div className="reserve--event-label">利用目的<c>*</c></div>
               <textarea
                 value={purpose}
                 onChange={(e) => setPurpose(e.target.value)}
