@@ -8,7 +8,7 @@ const ReservationsDailyPage = () => {
   
   return (
     <div className="reservations-daily--page">
-      <DailyCalendar reservations={dataData} selectedDate={selectedDate} onDateChange={setSelectedDate} onChangeData = {setDateData} />
+      <DailyCalendar reservations={dateData} selectedDate={selectedDate} onDateChange={setSelectedDate} onChangeData = {setDateData} />
     </div>
   );
 };
