@@ -43,7 +43,9 @@ const ReservePage = () => {
     <div className="page">
       {/* 部屋の名前 */}
       <div className="reserve--upper-grid">
-        <b>会議室の名前</b>
+        <div className='reserve--upper-grid-roomname'>
+          <b>会議室の名前</b>
+        </div>
         <div>
           <button
             className="reserve-saveButton reserve-saveButton--red"
@@ -57,11 +59,11 @@ const ReservePage = () => {
 
       {/* カレンダー選択 */}
       <div className="reserve--upper-calendar">
-        <h4>日時</h4>
+      <div className="reserve--time-label">日時</div>
         <div>
           <Calendar value={reserveDate} onChange={setReserveDate} />
         </div>
-        <h4>開始時間</h4>
+        <div className="reserve--time-label">開始時間</div>
         <div>
           <input
             value={reserveTimeFrom}
@@ -71,7 +73,7 @@ const ReservePage = () => {
             required
           />
         </div>
-        <h4>終了時間</h4>
+        <div className="reserve--time-label">終了時間</div>
         <div>
           <input
             value={reserveTimeTo}
@@ -85,16 +87,6 @@ const ReservePage = () => {
 
       {/* 終日選択 */}
       <div className="reserve--upper-DAY">
-        <label className="ECM_CheckboxInput">
-          <input
-            value={shouldReserveAllDay}
-            onChange={(e) => setShouldReserveAllDay(e.target.checked)}
-            className="ECM_CheckboxInput-Input"
-            type="checkbox"
-          ></input>
-          <span className="ECM_CheckboxInput-DummyInput"></span>
-          <span className="ECM_CheckboxInput-LabelText">終日</span>
-        </label>
         <div className="ipselect">
           <select
             value={reserveRepeat}
