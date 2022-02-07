@@ -1,6 +1,6 @@
 import { requestGet } from './request';
 
-export const getReserve = async (
+export const getReserve = (
     startDateTime,
     endDateTime,
     roomId,
@@ -10,8 +10,7 @@ export const getReserve = async (
         end_date_time: endDateTime.toISOString(),
         room_id: roomId
     };
-    //console.log(startDateTime);
     /* URLSearchParamsは':'が'%3A'になるので注意 */
     const query_params = ((new URLSearchParams(params)).toString()).split('%3A');
-    await requestGet('/reserve/?' + query_params.join(':'));
+    return requestGet('/reserve/?' + query_params.join(':'));
   };
