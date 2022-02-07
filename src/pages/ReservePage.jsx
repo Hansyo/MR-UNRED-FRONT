@@ -16,25 +16,40 @@ const ReservePage = () => {
   const [reserveDate, setReserveDate] = useState(new Date());
   const [reserveTimeFrom, setReserveTimeFrom] = useState('00:00');
   const [reserveTimeTo, setReserveTimeTo] = useState('00:00');
-  const [shouldReserveAllDay, setShouldReserveAllDay] = useState(false);
   const [reserveRepeat, setReserveRepeat] = useState(Repeat.NO_REPEAT);
-  const [userName, setUserName] = useState('');
-  const [description, setDescription] = useState('');
+  const [reserverName, setReserverName] = useState('');
+  const [purpose, setPurpose] = useState('');
   const [guestName, setGuestName] = useState('');
   const [guestDetail, setGuestDetail] = useState('');
 
-  const sendReserve = () => {
-    postReserve({
-      reserveDate,
-      reserveTimeFrom,
-      reserveTimeTo,
-      shouldReserveAllDay,
-      reserveRepeat,
-      userName,
-      description,
-      guestName,
-      guestDetail,
-    });
+  const sendReserve = async () => {
+    const startDate = new Date(reserveDate);
+    const endDate = new Date(reserveDate);
+    startDate.setHours(
+      Number(reserveTimeFrom.slice(0, 2)),
+      Number(reserveTimeFrom.slice(-2)),
+      0,
+      0,
+    );
+    endDate.setHours(
+      Number(reserveTimeTo.slice(0, 2)),
+      Number(reserveTimeTo.slice(-2)),
+      0,
+      0,
+    );
+
+    try {
+      await postReserve(
+        startDate,
+        endDate,
+        reserverName,
+        purpose,
+        guestName,
+        guestDetail,
+      );
+    } catch (err) {
+      alert(`保存に失敗しました：${err.message}`);
+    }
   };
 
   //Room Name，電話番号，メールアドレスは自動で入る？
@@ -106,7 +121,7 @@ const ReservePage = () => {
 
       <div className="reserve--event-usertitle">
         <h2> 予約詳細</h2>
-        <hr className="reserve-line"></hr>
+        <hr className="reserve-line2"></hr>
         <br></br>
       </div>
 
@@ -116,10 +131,10 @@ const ReservePage = () => {
         <div className="reserve--event-user">
           <div className="reserve--event-form">
             <div className="flexbox">
-              <div className="reserve--event-label">予約者名</div>
+              <div className="reserve--event-label">予約者名<c>*</c></div>
               <Input
-                value={userName}
-                onChange={setUserName}
+                value={reserverName}
+                onChange={setReserverName}
                 className="reserve--event-input"
                 placeholder="予約をした人の名前"
               />
@@ -143,7 +158,7 @@ const ReservePage = () => {
               <div className="reserve--event-label">利用者詳細</div>
               <textarea
                 value={guestDetail}
-                onChange={setGuestDetail}
+                onChange={(e) => setGuestDetail(e.target.value)}
                 rows="8"
                 className="reserve--event-textarea"
                 placeholder="メールアドレス,電話番号など"
@@ -155,10 +170,10 @@ const ReservePage = () => {
         <div className="reserve--event-guest">
           <div className="reserve--event-form">
             <div className="flexbox">
-              <div className="reserve--event-label">利用目的</div>
+              <div className="reserve--event-label">利用目的<c>*</c></div>
               <textarea
-                value={description}
-                onChange={setDescription}
+                value={purpose}
+                onChange={(e) => setPurpose(e.target.value)}
                 rows={10}
                 className="reserve--event-guesttextarea"
                 placeholder="~の会議で使用するなど"
