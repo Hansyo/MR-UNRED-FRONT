@@ -15,3 +15,12 @@ export const requestPost = async (path, body) => {
   }
   return res.json();
 };
+
+export const requestGet = async (path) => {
+  const res = await fetch(`${BASE_URL}${path}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return res.json();
+};
