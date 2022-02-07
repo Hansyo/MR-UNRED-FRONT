@@ -16,7 +16,7 @@ export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
     onChange(nextDate);
   };
   
-  const receiveReserve = () => {
+  const receiveReserve = async () => {
     const roomTotal = 6;
     const roomNames = ["会議室1","会議室2","会議室3","会議室4","会議室5","会議室6"];
     let roomId = '';
@@ -27,31 +27,22 @@ export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
     startDateTime.setHours(0+UTCTOJST, 0, 0, 0);
     endDateTime.setHours(23+UTCTOJST, 59, 59, 0);
     
-    /* コンパクトにしたい */
     for (let i = 1; i <= roomTotal; i++) {
       roomId = String(i);
-      getReserveData = JSON.parse(JSON.stringify(getReserve(
+      getReserveData = await getReserve(
         startDateTime,
         endDateTime,
         roomId,
-      )));
-      if (Object.keys(getReserveData).length) {
-        items.push({
-          id: i,
-          name: roomNames[i - 1],
-          reservations: [
-            getReserveData
-          ],
-        });
-      }
-      else {
-        items.push({
-          id: i,
-          name: roomNames[i - 1],
-          reservations: [
-          ],
-        });
-      }
+      ); 
+     
+      if (Object.keys(getReserveData).length) 
+        getReserveData = JSON.parse(getReserveData);
+      
+      items.push({
+        id: i,
+        name: roomNames[i - 1],
+        reservations: getReserveData,
+      });
     };
     onChangeData(items);
   };
