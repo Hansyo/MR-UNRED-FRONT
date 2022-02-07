@@ -1,0 +1,113 @@
+.monthly-calendar {
+  padding-left: 2%;
+  padding-right: 2%;
+  --monthly-calendar--day-row-height: 60px;
+  --monthly-calendar--row-height: 120px;
+  --monthly-calendar--divider-color: #94989e;
+  position: relative;
+  font-family: 'Source Sans Pro', arial, sans-serif;
+  font-weight: bold;
+}
+
+.monthly-calendar * {
+  box-sizing: border-box;
+}
+
+.monthly-calendar--header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid var(--monthly-calendar--divider-color);
+  background: #fff;
+}
+
+.monthly-calendar--header-room-month {
+  display: flex;
+  align-items: center;
+}
+
+.monthly-calendar--header-room {
+  flex: 0 0 auto;
+  padding: 4px 12px;
+  font-size: 16px;
+}
+
+.monthly-calendar--header-month-switch-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monthly-calendar--header-month {
+  text-align: center;
+  font-size: 1.6rem;
+  padding: 15px 15px;
+  font-size: 20px;
+}
+
+.monthly-calendar--header-month-switch-button {
+}
+
+.monthly-calendar--header-day {
+  display: flex;
+  height: var(--monthly-calendar--day-row-height);
+}
+
+.monthly-calendar--day-label {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid var(--monthly-calendar--divider-color);
+  border-left-width: 0;
+  border-bottom: 0;
+  background: #fafafa;
+
+  font-size: 20px;
+  line-height: 1em;
+}
+.monthly-calendar--day-label:first-child {
+  border-left-width: 1px;
+}
+
+.monthly-calendar--day-label__sunday {
+  color: #dd2727;
+}
+
+.monthly-calendar--body {
+  position: relative;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+
+  border: 1px solid var(--monthly-calendar--divider-color);
+  border-top: 0;
+}
+
+.monthly-calendar--cell {
+  min-height: var(--monthly-calendar--row-height);
+  background: #fafafa;
+  outline: 1px solid var(--monthly-calendar--divider-color);
+}
+
+.monthly-calendar--cell-date {
+  width: 24px;
+  padding-top: 4px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.monthly-calendar--reservation-item {
+  min-height: 2em;
+  margin-top: 2px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: #447fdd;
+
+  color: #fafafa;
+  font-size: 12px;
+  line-height: 2em;
+  font-weight: bold;
+}
