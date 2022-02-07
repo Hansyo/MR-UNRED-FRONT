@@ -43,7 +43,7 @@ const getMonthDateCount = (month) => {
 };
 
 export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
-  const [selectedRoom, setSelectedRoom] = useState(rooms[0].id);
+  const [selectedRoomIdx, setSelectedRoomIdx] = useState(0);
 
   const dates = useMemo(() => {
     const monthDateCount = getMonthDateCount(selectedMonth);
@@ -54,7 +54,7 @@ export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
     }));
 
     // 予定を追加
-    for (const reservation of rooms[selectedRoom].reservations) {
+    for (const reservation of rooms[selectedRoomIdx].reservations) {
       const date = new Date(reservation.startDateTime);
       arr[date.getDate() - 1].reservations.push(reservation);
     }
@@ -84,7 +84,7 @@ export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
     );
 
     return arr;
-  }, [rooms, selectedMonth, selectedRoom]);
+  }, [rooms, selectedMonth, selectedRoomIdx]);
 
   return (
     <div className="monthly-calendar">
@@ -92,11 +92,11 @@ export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
         <div className="monthly-calendar--header-room-month">
           <select
             className="monthly-calendar--header-room"
-            value={selectedRoom}
-            onChange={(e) => setSelectedRoom(e.target.value)}
+            value={selectedRoomIdx}
+            onChange={(e) => setSelectedRoomIdx(e.target.value)}
           >
-            {rooms.map(({ id, name }) => (
-              <option value={id}>{name}</option>
+            {rooms.map(({ name }, idx) => (
+              <option value={idx}>{name}</option>
             ))}
           </select>
           <MonthSwitcher
