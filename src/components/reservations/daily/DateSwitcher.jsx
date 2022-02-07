@@ -34,9 +34,6 @@ export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
         endDateTime,
         roomId,
       ); 
-     
-      if (Object.keys(getReserveData).length) 
-        getReserveData = JSON.parse(getReserveData);
       
       items.push({
         id: i,
