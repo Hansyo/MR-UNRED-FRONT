@@ -5,6 +5,8 @@ import TopPage from './pages/TopPage';
 import ReservePage from './pages/ReservePage';
 import ReservationsDailyPage from './pages/ReservationsDailyPage';
 import ReservationsMonthlyPage from './pages/ReservationsMonthlyPage';
+import ReservationsWeeklyPage from './pages/ReservationWeeklyPage';
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           path="/reservations/monthly"
           element={<ReservationsMonthlyPage />}
         />
+        <Route path="/reservations/weekly" element={<ReservationsWeeklyPage />} />
       </Routes>
     </BrowserRouter>
   );

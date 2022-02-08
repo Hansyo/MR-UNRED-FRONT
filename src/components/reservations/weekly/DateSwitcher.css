@@ -1,0 +1,16 @@
+.reservations-weekly--date-switch-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reservations-weekly--date{
+  width: 250px;
+  text-align: center;
+  font-size: 1.6rem;
+  padding: 15px 15px;
+}
+
+.reservations-weekly--date-switch-button {
+}
+
