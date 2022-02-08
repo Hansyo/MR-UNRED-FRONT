@@ -6,7 +6,7 @@ export const getReserve = (startDateTime, endDateTime, roomId) => {
     end_date_time: endDateTime.toISOString(),
   };
   if (roomId) {
-    params.roomId = roomId;
+    params.room_id = roomId;
   }
 
   const query_params = new URLSearchParams(params).toString();
