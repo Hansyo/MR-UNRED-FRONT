@@ -1,7 +1,6 @@
 import { React, useEffect } from 'react';
 import { getReserve } from '../../../apis/getReservation';
 import './DateSwitcher.css';
-const UTCTOJST = 9;
 
 export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
   const onClickPrev = () => {
@@ -24,8 +23,8 @@ export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
     const items = [];
     const startDateTime = new Date(selectedDate);
     const endDateTime = new Date(selectedDate);
-    startDateTime.setHours(0+UTCTOJST, 0, 0, 0);
-    endDateTime.setHours(23+UTCTOJST, 59, 59, 0);
+    startDateTime.setHours(0, 0, 0, 0);
+    endDateTime.setHours(23, 59, 59, 0);
     
     for (let i = 1; i <= roomTotal; i++) {
       roomId = String(i);
