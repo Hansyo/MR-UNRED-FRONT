@@ -5,6 +5,7 @@ import TopPage from './pages/TopPage';
 import ReservePage from './pages/ReservePage';
 import ReservationsDailyPage from './pages/ReservationsDailyPage';
 import ReservationsMonthlyPage from './pages/ReservationsMonthlyPage';
+import ReservationDetailPage from './pages/ReservationDetailPage';
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
         <Route
           path="/reservations/monthly"
           element={<ReservationsMonthlyPage />}
+        />
+        <Route
+          path="/reservations/:reservationId"
+          element={<ReservationDetailPage />}
         />
       </Routes>
     </BrowserRouter>
