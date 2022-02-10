@@ -25,17 +25,6 @@ export const requestGet = async (path) => {
   return res.json();
 };
 
-export const requestDetails = async (path) => {
-  const res = await fetch(`${BASE_URL}${path}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest',
-    },
-  });
-  return res.json();
-};
-
 export const requestDelete = async (path) => {
   const res = await fetch(`${BASE_URL}${path}`, {
     method: 'DELETE',
