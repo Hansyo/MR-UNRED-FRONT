@@ -1,0 +1,32 @@
+.reservations-detail--grid{
+    font-size: 27px;
+    margin: 5%;
+}
+
+.reservations-detail--container{
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid;
+    margin: 3%;
+}
+
+.reservations-detail--label {
+    background: #ffff;
+    line-height: 1em;
+    width: 20%;
+ }
+
+ .reservations-detail--data {
+    /*align-items: center;*/
+    width: 65%;
+    word-wrap: break-word;
+    background: #ffff;
+    margin-bottom: 3%;
+ }
+
+ .reservations-detail--button {
+     margin-bottom: 20%;
+     margin-left: 10%;
+     width: 90px;
+     height: 50px;
+ }
