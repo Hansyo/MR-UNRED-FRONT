@@ -17,7 +17,7 @@ export const DetailFormat = ({ detailData, repetitionData }) => {
             </div>
             <div className="reservations-detail--container">
                 <div className="reservations-detail--label"> 日時</div>
-                <div className="reservations-detail--data">{detailData.start_date_time }-{detailData.end_date_time }</div>
+                <div className="reservations-detail--data">{`${((detailData.start_date_time).slice(0,19)).replace('T','/')} - ${((detailData.end_date_time).slice(0,19)).replace('T','/')}`} </div>
                 <div>
                     <button className="reservations-detail--button"> 削除 </button>
                 </div>
