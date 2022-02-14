@@ -3,10 +3,6 @@ const BASE_URL = 'http://localhost/api';
 export const requestPost = async (path, body) => {
   const res = await fetch(`${BASE_URL}${path}`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest',
-    },
     body: JSON.stringify(body),
   });
   if (!res.ok) {
@@ -18,9 +14,6 @@ export const requestPost = async (path, body) => {
 
 export const requestGet = async (path) => {
   const res = await fetch(`${BASE_URL}${path}`, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
   });
   return res.json();
 };
