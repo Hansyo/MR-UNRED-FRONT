@@ -21,6 +21,7 @@ export const DailyCalendarRoomColumn = ({ reservations }) => {
               endDateTime={reservation.end_date_time}
               reserverName={reservation.reserver_name}
               guestName={reservation.guest_name}
+              id = {reservation.id}
             />
           ))}
         </div>
