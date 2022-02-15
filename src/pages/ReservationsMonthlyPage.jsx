@@ -2,6 +2,7 @@ import { endOfMonth, startOfMonth } from 'date-fns';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { getReserve } from '../apis/getReservation';
+import { Header } from '../components/common/Header/Header';
 import { MonthlyCalendar } from '../components/reservations/monthly/MonthlyCalendar';
 
 const emptyRooms = [
@@ -65,12 +66,15 @@ const ReservationsMonthlyPage = () => {
   }, [selectedMonth]);
 
   return (
-    <div className="reservations-daily--page">
-      <MonthlyCalendar
-        rooms={rooms}
-        selectedMonth={selectedMonth}
-        onMonthChange={setSelectedMonth}
-      />
+    <div>
+      <Header />
+      <div className="reservations-daily--page">
+        <MonthlyCalendar
+          rooms={rooms}
+          selectedMonth={selectedMonth}
+          onMonthChange={setSelectedMonth}
+        />
+      </div>
     </div>
   );
 };
