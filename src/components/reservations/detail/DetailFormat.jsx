@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { deleteReserve } from '../../../apis/delete';
 import './DetailFormat.css';
 
 export const DetailFormat = ({ detailData, repetitionData }) => {
-    console.log(detailData);
+    const navigate = useNavigate();
     const roomName = ["会議室1", "会議室2", "会議室3", "会議室4", "会議室5", "会議室6", "会議室7", "会議室8"];
     const listItems = repetitionData.map((data) => (
         <div key={data.id}>
@@ -10,16 +12,26 @@ export const DetailFormat = ({ detailData, repetitionData }) => {
         </div>
     ));
 
-    const deleteSingleReservations = () => {
+    const deleteSingleReservations = async () => {
         if (window.confirm("この予約を削除してもよろしいですか？")) {
-            console.log("一日だけdeleteするよ");
-      }
+            try {
+                await deleteReserve(detailData.id);
+              } catch (err) {
+                alert(`保存に失敗しました：${err.message}`);
+              }
+            //await deleteReserve(detailData.id);
+            alert('削除しました');
+            navigate(`./../monthly`);
+        }
     };
 
-    const deleteMultipleReservations = () => {
+    const deleteMultipleReservations = async () => {
+        /*　未実装　*/
         if (window.confirm("すべての予約削除してもよろしいですか？")) {
-            console.log("すべてdeleteするよ"); /*未実装*/
-      }
+            console.log("すべてdeleteするよ");
+            alert('削除しました');
+            navigate(`./../monthly`);
+        }
     };
 
     return (
