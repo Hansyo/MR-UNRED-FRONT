@@ -21,7 +21,7 @@ export const Header = () => {
       <header className="header">
         <div className="header__logo">3系会議室予約</div>
         <Link
-          to="/reservations/monthly"
+          to="/reservations/weekly"
           className={getLinkClassName(pathname, /^\/reservations/)}
         >
           予約確認

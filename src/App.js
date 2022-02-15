@@ -6,6 +6,7 @@ import TopPage from './pages/TopPage';
 import ReservePage from './pages/ReservePage';
 import ReservationsDailyPage from './pages/ReservationsDailyPage';
 import ReservationsMonthlyPage from './pages/ReservationsMonthlyPage';
+import ReservationsWeeklyPage from './pages/ReservationWeeklyPage';
 import ReservationDetailPage from './pages/ReservationDetailPage';
 
 const history = createBrowserHistory({
@@ -22,6 +23,10 @@ function App() {
         <Route
           path="/reservations/monthly"
           element={<ReservationsMonthlyPage />}
+        />
+        <Route
+          path="/reservations/weekly"
+          element={<ReservationsWeeklyPage />}
         />
         <Route
           path="/reservations/:reservationId"
