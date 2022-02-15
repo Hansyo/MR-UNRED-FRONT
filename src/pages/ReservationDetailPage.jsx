@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useLayoutEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDetails } from '../apis/getDetails';
 import { DetailFormat } from '../components/reservations/detail/DetailFormat';
 
 const ReservationDetailPage = () => {
   const { reservationId } = useParams();
-  
+
   const [detailData, setDetailData] = useState({
       start_date_time: "                ",
       end_date_time: "                ",
   });
-  
+
   const [repetitionData, setRepetitionData] = useState([]);
 
   const receiveDetails = async () => {
     setDetailData(await getDetails(reservationId));
     };
-   
+
   //TODO 繰り返し予約の取得
   const dumyrep = [
     {
@@ -45,11 +44,11 @@ const ReservationDetailPage = () => {
       updated_at: "2022-02-10T07:17:06.000000Z"
     },
   ];
-  
+
   useEffect(() => {
     receiveDetails();
   },[]);
-  
+
   return (
     <div className="reservations-detail--page">
       <DetailFormat detailData={detailData} repetitionData={dumyrep} />
