@@ -127,6 +127,7 @@ export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
                 endDateTime={reservation.endDateTime}
                 reserverName={reservation.reserverName}
                 guestName={reservation.guestName}
+                id={reservation.id}
               />
             ))}
           </div>
