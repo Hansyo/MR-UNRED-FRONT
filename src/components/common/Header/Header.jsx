@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 // activeRegExpは、リンク先のページのパスを判定する正規表現
@@ -20,16 +20,16 @@ export const Header = () => {
 
       <header className="header">
         <div className="header__logo">3系会議室予約</div>
-        <a
-          href="/reservations/weekly"
+        <Link
+          to="/reservations/weekly"
           className={getLinkClassName(pathname, /^\/reservations\/daily/)}
         >
           予約確認
-        </a>
+        </Link>
         {/* TODO: 予約簡易履歴ページへのリンクを追加 */}
-        <a href="#TODO" className={getLinkClassName(pathname, /^\/TODO/)}>
+        <Link to="#TODO" className={getLinkClassName(pathname, /^\/TODO/)}>
           予約履歴
-        </a>
+        </Link>
         {/* TODO: 部屋管理ページへのリンクを追加 */}
         {/* TODO: ユーザー管理ページへのリンクを追加 */}
       </header>
