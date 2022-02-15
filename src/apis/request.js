@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost/api';
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const requestPost = async (path, body) => {
   const res = await fetch(`${BASE_URL}${path}`, {
@@ -16,8 +16,7 @@ export const requestPost = async (path, body) => {
 };
 
 export const requestGet = async (path) => {
-  const res = await fetch(`${BASE_URL}${path}`, {
-  });
+  const res = await fetch(`${BASE_URL}${path}`, {});
   return res.json();
 };
 
