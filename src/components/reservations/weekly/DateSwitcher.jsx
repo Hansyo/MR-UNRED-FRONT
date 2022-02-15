@@ -1,4 +1,7 @@
 import React from 'react';
+import { startOfWeek,endOfWeek,format } from 'date-fns'
+
+
 
 import './DateSwitcher.css';
 
@@ -15,8 +18,8 @@ export const DateSwitcher = ({ selectedDate, onChange }) => {
     onChange(nextDate);
   };
 
-  const ThisWeekStart =`${selectedDate.getFullYear()}/${selectedDate.getMonth() + 1}/${(selectedDate.getDate() - selectedDate.getDay())}`;
-  const ThisWeekEnd = `${selectedDate.getFullYear()}/${selectedDate.getMonth() + 1}/${(selectedDate.getDate() - selectedDate.getDay() + 6)}`;
+  const ThisWeekStart = format(startOfWeek(selectedDate),"PPP")
+  const ThisWeekEnd = format(endOfWeek(selectedDate),"PPP")
 
 
   return (

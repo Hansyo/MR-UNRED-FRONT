@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
 import { WeeklyCalendarReservationItem } from './WeeklyCalendarReservationItem';
+import { useMemo } from 'react';
 
 export const WeeklyCalendarRoomColumn = ({ reservations }) => {
   const reservationsPerDay = useMemo(() => {
-    const arr = new Array(7).fill().map();
+    const arr = new Array(7).fill().map([]);
     for (const reservation of reservations) {
       const startTime = new Date(reservation.startDateTime);
       arr[startTime.getDay()].push(reservation);
