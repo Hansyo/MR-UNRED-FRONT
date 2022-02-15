@@ -5,7 +5,6 @@ export const requestPost = async (path, body) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest',
     },
     body: JSON.stringify(body),
   });
@@ -18,9 +17,6 @@ export const requestPost = async (path, body) => {
 
 export const requestGet = async (path) => {
   const res = await fetch(`${BASE_URL}${path}`, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
   });
   return res.json();
 };
