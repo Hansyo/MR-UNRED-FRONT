@@ -1,5 +1,5 @@
-import { requestGetDetails } from './request';
+import { requestGet } from './request';
 
 export const getDetails = (id) => {
-  return requestGetDetails(`/reserve/${id}`);
+  return requestGet(`/reserve/${id}`);
 };

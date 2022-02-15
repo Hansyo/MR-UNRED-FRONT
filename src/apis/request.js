@@ -21,12 +21,6 @@ export const requestGet = async (path) => {
   return res.json();
 };
 
-export const requestGetDetails = async (path) => {
-  const res = await fetch(`${BASE_URL}${path}`, {
-  });
-  return res.json();
-};
-
 export const requestDelete = async (path) => {
   const res = await fetch(`${BASE_URL}${path}`, {
     method: 'DELETE',

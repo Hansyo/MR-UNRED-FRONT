@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { deleteReserve } from '../../../apis/delete';
+import { getRepeatReservation } from '../../../apis/getRepeatReservation';
 import './DetailFormat.css';
 
 export const DetailFormat = ({ detailData, repetitionData }) => {
@@ -19,14 +20,13 @@ export const DetailFormat = ({ detailData, repetitionData }) => {
               } catch (err) {
                 alert(`保存に失敗しました：${err.message}`);
               }
-            //await deleteReserve(detailData.id);
             alert('削除しました');
             navigate(`./../monthly`);
         }
     };
 
     const deleteMultipleReservations = async () => {
-        /*　未実装　*/
+        /*　未実装　繰り返し予約の削除ができてから*/
         if (window.confirm("すべての予約削除してもよろしいですか？")) {
             console.log("すべてdeleteするよ");
             alert('削除しました');
