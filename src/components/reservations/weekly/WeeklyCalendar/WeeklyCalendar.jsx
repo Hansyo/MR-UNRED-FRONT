@@ -1,7 +1,7 @@
 import React from 'react';
 import './WeeklyCalendar.css';
 import { addDays, format, startOfWeek } from 'date-fns';
-import { weeklyCalendarRoomColumn } from './WeeklyCalendarRoomColumn';
+import { WeeklyCalendarDayRow } from './WeeklyCalendarDayRow';
 import { DateSwitcher } from '../DateSwitcher';
 
 
@@ -11,14 +11,14 @@ const dummyRooms = [
     id: 0,
     name: '会議室1',
     reservations: [{
-      startDateTime: '2022-01-28T14:00:00',
-      endDateTime: '2022-01-28T15:00:00',
+      startDateTime: new Date('2022-02-18T14:00:00'),
+      endDateTime: new Date('2022-02-18T15:00:00'),
       reserverName: '泉水',
       guestName: '',
     },
     {
-      startDateTime: '2022-01-28T17:00:00',
-      endDateTime: '2022-01-28T20:00:00',
+      startDateTime: new Date('2022-02-18T17:00:00'),
+      endDateTime: new Date('2022-02-18T20:00:00'),
       reserverName: '泉水',
       guestName: '小田',
     },],
@@ -78,6 +78,7 @@ export const WeeklyCalendar = ({ rooms = dummyRooms, selectedDate, onDateChange 
     {id: 6, Day: sat,},
   ]
 
+
   return (    
     <div className="weekly-calendar">
       <div className="weekly-calendar--header">
@@ -99,9 +100,9 @@ export const WeeklyCalendar = ({ rooms = dummyRooms, selectedDate, onDateChange 
             </div>
           ))}
         </div>
-        <div className="weekly-calendar--room-columns">
+        <div className="weekly-calendar--day-rows">
           {rooms.map((room) => (
-            <weeklyCalendarRoomColumn
+            <WeeklyCalendarDayRow
               reservations={room.reservations}
               key={room.id}
             />

@@ -1,7 +1,7 @@
 .weekly-calendar {
   padding-left: 2%;
   padding-right: 2%;
-  --weekly-calendar--row-height: 70px;
+  --weekly-calendar--row-height: 170px;
   --weekly-calendar--divider-color: #94989e;
   position: relative;
   font-family: 'Source Sans Pro', arial, sans-serif;
@@ -63,31 +63,28 @@
   line-height: 1em;
 }
 
-.weekly-calendar--room-columns {
+.weekly-calendar--day-rows {
   flex: 1;
   display: flex;
   justify-content: stretch;
+  width: 100%;
 }
 
-.weekly-calendar--room-column {
+.weekly-calendar--day-row {
   width: 20%;
   border-right: 1px solid var(--weekly-calendar--divider-color);
 }
 
 .weekly-calendar--cell {
-  position: relative;
+  /* min-height: var(--weekly-calendar--row-height); */
   height: var(--weekly-calendar--row-height);
   border-bottom: 1px solid var(--weekly-calendar--divider-color);
   background: #fafafa;
 }
 
 .weekly-calendar--reservation-item {
-  position: absolute;
-  left: 0;
-  right: 0;
-  z-index: 1;
-
   min-height: 2em;
+  margin-top: 2px;
   padding: 0 8px;
   border-radius: 6px;
   background: #447fdd;

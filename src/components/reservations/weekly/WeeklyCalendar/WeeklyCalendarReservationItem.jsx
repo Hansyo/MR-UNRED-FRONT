@@ -7,16 +7,16 @@ const dateToHourAndMinute = (date) => {
 };
 
 export const WeeklyCalendarReservationItem = ({
-  startDateDay,
-  endDateDay,
+  startDateTime,
+  endDateTime,
   guestName,
   reserverName,
 }) => {
-  const startDate = new Date(startDateDay);
-  const endDate = new Date(endDateDay);
-  const periodStr = `${dateToHourAndMinute(startDate)} ~ ${dateToHourAndMinute(
-    endDate,
-  )}`;
+  const startDate = new Date(startDateTime);
+  console.log(startDate)
+  const endDate = new Date(endDateTime);
+  const periodStr = `${dateToHourAndMinute(startDate)} ~ ${dateToHourAndMinute(endDate,)
+  }`;
 
   return (
     <div
