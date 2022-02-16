@@ -12,3 +12,7 @@ export const getReserve = (startDateTime, endDateTime, roomId) => {
   const query_params = new URLSearchParams(params).toString();
   return requestGet('/reserve/?' + query_params);
 };
+
+export const getAllReservations = () => {
+  return requestGet('/reserve');
+};
