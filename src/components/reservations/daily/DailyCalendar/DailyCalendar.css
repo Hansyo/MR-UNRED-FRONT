@@ -96,3 +96,8 @@
   line-height: 2em;
   font-weight: bold;
 }
+
+.daily-calendar--link{
+  text-decoration: none;
+  color: #fafafa;
+}
