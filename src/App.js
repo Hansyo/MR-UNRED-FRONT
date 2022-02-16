@@ -8,6 +8,7 @@ import ReservationsDailyPage from './pages/ReservationsDailyPage';
 import ReservationsMonthlyPage from './pages/ReservationsMonthlyPage';
 import ReservationsWeeklyPage from './pages/ReservationWeeklyPage';
 import ReservationDetailPage from './pages/ReservationDetailPage';
+import ReservationLogPage from './pages/ReservationLogPage';
 
 const history = createBrowserHistory({
   basename: process.env.PUBLIC_URL,
@@ -32,6 +33,7 @@ function App() {
           path="/reservations/:reservationId"
           element={<ReservationDetailPage />}
         />
+        <Route path="/log" element={<ReservationLogPage />} />
       </Routes>
     </BrowserRouter>
   );
