@@ -13,6 +13,7 @@ const getLinkClassName = (pathname, activeRegExp) => {
 
 export const Header = () => {
   const { pathname } = useLocation();
+  const isReservePage = /^\/reserve\/?$/.test(pathname);
 
   return (
     <div>
@@ -31,6 +32,12 @@ export const Header = () => {
         </Link>
         {/* TODO: 部屋管理ページへのリンクを追加 */}
         {/* TODO: ユーザー管理ページへのリンクを追加 */}
+        <div className="header__flex-spacer" />
+        {!isReservePage && (
+          <Link className="header__reserve-btn" to="/reserve">
+            会議室を予約
+          </Link>
+        )}
       </header>
     </div>
   );
