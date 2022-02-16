@@ -26,8 +26,7 @@ export const Header = () => {
         >
           予約確認
         </Link>
-        {/* TODO: 予約簡易履歴ページへのリンクを追加 */}
-        <Link to="#TODO" className={getLinkClassName(pathname, /^\/TODO/)}>
+        <Link to="/log" className={getLinkClassName(pathname, /^\/log/)}>
           予約履歴
         </Link>
         {/* TODO: 部屋管理ページへのリンクを追加 */}
