@@ -71,6 +71,9 @@
   align-items: flex-start;
 }
 
+.reservation-log__item-detail-flex-inner {
+  flex: 1;
+}
 .reservation-log__item-detail-flex-inner:not(:first-child) {
   margin-left: 32px;
 }

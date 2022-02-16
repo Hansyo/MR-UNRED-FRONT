@@ -39,15 +39,15 @@ export const ReservationLogList = ({ reservations }) => {
               </div>
               <div className="reservation-log__item-detail-flex">
                 <div className="reservation-log__item-detail-flex-inner">
-                  <div className="reservation-log__item-label">予約者</div>
-                  <div className="reservation-log__item-data">
-                    {reservation.reserverName}
-                  </div>
-                </div>
-                <div className="reservation-log__item-detail-flex-inner">
                   <div className="reservation-log__item-label">利用者</div>
                   <div className="reservation-log__item-data">
                     {reservation.guestName}
+                  </div>
+                </div>
+                <div className="reservation-log__item-detail-flex-inner">
+                  <div className="reservation-log__item-label">予約者</div>
+                  <div className="reservation-log__item-data">
+                    {reservation.reserverName}
                   </div>
                 </div>
               </div>
