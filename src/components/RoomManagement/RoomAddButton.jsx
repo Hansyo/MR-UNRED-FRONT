@@ -31,26 +31,26 @@ export const RoomAddButton = ({ updateRoom }) => {
         className="room-add-form-container"
         style={{ display: !isOpen ? "none" : "" }}
       >
-        <div className="room-add-form__item-input">
+        <div className="room-add-form__item-name">
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
             type="text"
-            className="rooms-list__item-input"
+            className="rooms-add-form__item-input"
           />
         </div>
         <div className="room-add-form__item-detail">
           <textarea
             value={detail}
             onChange={(e) => setDetail(e.target.value)}
-            className="rooms-list__item-textarea"
+            className="rooms-add-form__item-textarea"
           />
         </div>
-        <button className="rooms-list-item__submit" onClick={addRoom}>
+        <button className="rooms-add-form__item-submit" onClick={addRoom}>
           追加
         </button>
         <button
-          className="rooms-list__item-delete-button"
+          className="rooms-add-form__item-delete-button"
           onClick={() => setIsOpen(false)}
         >
           取り消し
