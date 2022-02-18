@@ -39,7 +39,6 @@ export const DetailFormat = ({ detailData, repetitionData, setRepetitionData }) 
     };
 
     const deleteRepeatReservations = async () => {
-        /*　未実装　繰り返し予約の削除ができてから*/
         if (window.confirm("すべての予約削除してもよろしいですか？")) {
             try {
                 await deleteReserve(detailData.id, true);
@@ -58,8 +57,6 @@ export const DetailFormat = ({ detailData, repetitionData, setRepetitionData }) 
                     {`${detailData.startDateTime} - ${detailData.endDateTime}`}
                 </div>
             ];
-
-            
             if (new Date(detailData.startDateTime) > currentDate.getTime()) {
                 listItems.push(
                     <div>
@@ -87,7 +84,6 @@ export const DetailFormat = ({ detailData, repetitionData, setRepetitionData }) 
                     })}
                 </div>
             ];
-        
             if (new Date(repetitionData.slice(-1)[0].startDateTime) > currentDate.getTime()) {
                 listItems.push(
                     <div>
