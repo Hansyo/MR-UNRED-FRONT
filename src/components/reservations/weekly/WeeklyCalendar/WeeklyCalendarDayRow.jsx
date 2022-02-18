@@ -11,9 +11,9 @@ export const WeeklyCalendarDayRow = ({ rooms, date }) => {
         const endDateTime = reservation.endDateTime;
 
         // この行の日付が予約期間に含まれない場合はスキップ
-        if (endOfDay(date) < startDateTime) {
+        if (endOfDay(date) <= startDateTime) {
           continue;
-        } else if (endDateTime < startOfDay(date)) {
+        } else if (endDateTime <= startOfDay(date)) {
           continue;
         }
 
@@ -38,11 +38,12 @@ export const WeeklyCalendarDayRow = ({ rooms, date }) => {
         <div className="weekly-calendar--cell" key={room.id}>
           {room.reservations.map((reservation, index) => (
             <WeeklyCalendarReservationItem
-              key={index}
+              id={reservation.id}
               startDateTime={reservation.startDateTime}
               endDateTime={reservation.endDateTime}
               reserverName={reservation.reserverName}
               guestName={reservation.guestName}
+              key={index}
             />
           ))}
         </div>
