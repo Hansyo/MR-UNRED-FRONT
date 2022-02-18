@@ -6,15 +6,6 @@ const formatDateTime = (date) => {
   return format(date, 'yyyy年M月d日 H:mm');
 };
 
-const roomIdToName = {
-  1: '会議室１',
-  2: '会議室２',
-  3: '会議室３',
-  4: '会議室４',
-  5: '会議室５',
-  6: '会議室６',
-};
-
 export const ReservationLogList = ({ reservations }) => {
   return (
     <ul className="reservation-log__grid">
@@ -25,7 +16,7 @@ export const ReservationLogList = ({ reservations }) => {
             to={`/reservations/${reservation.id}`}
           >
             <div className="reservation-log__item-room">
-              {roomIdToName[reservation.roomId]}
+              {reservation.room.name}
             </div>
             <div className="reservation-log__item-period">
               {`${formatDateTime(reservation.startDateTime)} ~ ${formatDateTime(

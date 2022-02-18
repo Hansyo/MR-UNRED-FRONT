@@ -22,6 +22,7 @@ export const DailyCalendarRoomColumn = ({ reservations }) => {
               reserverName={reservation.reserver_name}
               guestName={reservation.guest_name}
               id = {reservation.id}
+              key={reservation.id}
             />
           ))}
         </div>
