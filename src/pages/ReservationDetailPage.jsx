@@ -33,6 +33,7 @@ const ReservationDetailPage = () => {
     <div>
       <Header />
       <div className="reservations-detail--page">
+        <button className="reservations-detail--back">戻る</button>
         <DetailFormat detailData={detailData} repetitionData={repetitionData} setRepetitionData={setRepetitionData} />
       </div>
     </div> 
