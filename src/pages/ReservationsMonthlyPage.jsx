@@ -55,7 +55,7 @@ const ReservationsMonthlyPage = () => {
         guestName: reservation.guest_name,
         guestDetail: reservation.guest_detail,
         purpose: reservation.purpose,
-        roomId: reservation.room_id,
+        roomId: reservation.room.id,
       }));
       const rooms = JSON.parse(JSON.stringify(emptyRooms));
       for (const reservation of reservations) {
