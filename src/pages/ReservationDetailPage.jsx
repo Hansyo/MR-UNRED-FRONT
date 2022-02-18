@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getDetails } from '../apis/getDetails';
 import { DetailFormat } from '../components/reservations/detail/DetailFormat';
 import { format } from 'date-fns';
+import { Header } from '../components/common/Header/Header';
 
 const ReservationDetailPage = () => {
   const { reservationId } = useParams();
@@ -29,9 +30,12 @@ const ReservationDetailPage = () => {
   },[]);
 
   return (
-    <div className="reservations-detail--page">
-      <DetailFormat detailData={detailData} repetitionData={repetitionData} setRepetitionData={setRepetitionData} />
-    </div>
+    <div>
+      <Header />
+      <div className="reservations-detail--page">
+        <DetailFormat detailData={detailData} repetitionData={repetitionData} setRepetitionData={setRepetitionData} />
+      </div>
+    </div> 
   );
 };
 export default ReservationDetailPage;
