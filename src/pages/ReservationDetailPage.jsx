@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getDetails } from '../apis/getDetails';
 import { DetailFormat } from '../components/reservations/detail/DetailFormat';
 import { format } from 'date-fns';
@@ -9,7 +9,7 @@ const ReservationDetailPage = () => {
   const { reservationId } = useParams();
   const [detailData, setDetailData] = useState([]);
   const [repetitionData, setRepetitionData] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const receiveDetail = async () => {
         const detail = await getDetails(reservationId);
@@ -33,7 +33,8 @@ const ReservationDetailPage = () => {
     <div>
       <Header />
       <div className="reservations-detail--page">
-        <button className="reservations-detail--back">戻る</button>
+        <a class="reservations-detail--back" href="#"
+          onClick={() => { navigate(-1); return false; }}>戻る</a>
         <DetailFormat detailData={detailData} repetitionData={repetitionData} setRepetitionData={setRepetitionData} />
       </div>
     </div> 
