@@ -1,7 +1,5 @@
 import React from 'react';
-import { startOfWeek,endOfWeek,format } from 'date-fns'
-
-
+import { startOfWeek, endOfWeek, format } from 'date-fns';
 
 import './DateSwitcher.css';
 
@@ -18,22 +16,23 @@ export const DateSwitcher = ({ selectedDate, onChange }) => {
     onChange(nextDate);
   };
 
-  const ThisWeekStart = format(startOfWeek(selectedDate),"PPP")
-  const ThisWeekEnd = format(endOfWeek(selectedDate),"PPP")
-
+  const ThisWeekStart = format(startOfWeek(selectedDate), 'PPP');
+  const ThisWeekEnd = format(endOfWeek(selectedDate), 'PPP');
 
   return (
     <div className="reservations-weekly--date-switch-container">
-      <div className='reservations-weekly--date-switch-buttons'>
+      <div className="reservations-weekly--date-switch-buttons">
         <button
           className="reservations-weekly--date-switch-button"
           onClick={onClickPrev}
         >
-         先週
+          先週
         </button>
       </div>
-        <div className="reservations-weekly--date">{ThisWeekStart} - {ThisWeekEnd}</div>
-      <div className='reservations-weekly--date-switch-buttons'>
+      <div className="reservations-weekly--date">
+        {ThisWeekStart} - {ThisWeekEnd}
+      </div>
+      <div className="reservations-weekly--date-switch-buttons">
         <button
           className="reservations-weekly--date-switch-button"
           onClick={onClickNext}
