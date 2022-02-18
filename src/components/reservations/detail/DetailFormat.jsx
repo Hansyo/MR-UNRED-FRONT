@@ -29,12 +29,11 @@ export const DetailFormat = ({ detailData, repetitionData, setRepetitionData }) 
     const deleteSingleReservations = async () => {
         if (window.confirm("この予約を削除してもよろしいですか？")) {
             try {
-                await deleteReserve(detailData.id);
-                alert('削除しました');
-                navigate(`./../monthly`);
-              } catch (err) {
+                await deleteReserve(detailData.id, false);
+                navigate(`./../monthly`);  
+            } catch (err) {
                 alert(`保存に失敗しました：${err.message}`);
-              }
+            }
         }
     };
 
@@ -69,21 +68,21 @@ export const DetailFormat = ({ detailData, repetitionData, setRepetitionData }) 
     };
 
     const viewRepeatDate = () => {
-        const listItems = [
-            <div className="reservations-detail--data">
-                {repetitionData.map((data) => {
-                    if (new Date(data.startDateTime) > currentDate.getTime()) {
-                        return (
-                            <div key={data.id}>
-                                {`${data.startDateTime} - ${data.endDateTime}`}
-                            </div>
-                        );
-                    }
-                })}
-            </div>
-        ];
+        if (repetitionData.length > 1) {
+            const listItems = [
+                <div className="reservations-detail--data">
+                    {repetitionData.map((data) => {
+                        if (new Date(data.startDateTime) > currentDate.getTime()) {
+                            return (
+                                <div key={data.id}>
+                                    {`${data.startDateTime} - ${data.endDateTime}`}
+                                </div>
+                            );
+                        }
+                    })}
+                </div>
+            ];
         
-        if (repetitionData.length) { 
             if (new Date(repetitionData.slice(-1)[0].startDateTime) > currentDate.getTime()) {
                 listItems.push(
                     <div>
@@ -92,8 +91,8 @@ export const DetailFormat = ({ detailData, repetitionData, setRepetitionData }) 
                     </div>
                 );
             }
+            return listItems;
         }
-        return listItems;
     };
 
     return (
