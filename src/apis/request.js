@@ -24,12 +24,13 @@ export const requestGet = async (path) => {
   return res.json();
 };
 
-export const requestDelete = async (path) => {
+export const requestDelete = async (path, body) => {
   const res = await fetch(`${BASE_URL}${path}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify(body),
   });
   return res.json();
 };
