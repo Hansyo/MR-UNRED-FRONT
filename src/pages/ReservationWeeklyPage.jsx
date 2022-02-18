@@ -12,7 +12,7 @@ const convertReservationResponse = (data) => ({
   guestName: data.guest_name,
   guestDetail: data.guest_detail,
   purpose: data.purpose,
-  roomId: data.room_id,
+  roomId: data.room.id,
 });
 
 const ReservationsWeeklyPage = () => {
