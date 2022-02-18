@@ -9,6 +9,7 @@ import ReservationsMonthlyPage from './pages/ReservationsMonthlyPage';
 import ReservationsWeeklyPage from './pages/ReservationWeeklyPage';
 import ReservationDetailPage from './pages/ReservationDetailPage';
 import ReservationLogPage from './pages/ReservationLogPage';
+import RoomManagementPage from './pages/RoomManagementPage';
 
 const history = createBrowserHistory({
   basename: process.env.PUBLIC_URL,
@@ -34,6 +35,7 @@ function App() {
           element={<ReservationDetailPage />}
         />
         <Route path="/log" element={<ReservationLogPage />} />
+        <Route path="/admin/room" element={<RoomManagementPage />} />
       </Routes>
     </BrowserRouter>
   );
