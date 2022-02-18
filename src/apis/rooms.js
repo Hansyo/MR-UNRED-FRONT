@@ -1,4 +1,4 @@
-import { requestGet } from "./request";
+import { requestGet } from './request';
 
 export const getAllRooms = () => {
   return requestGet('/rooms');
