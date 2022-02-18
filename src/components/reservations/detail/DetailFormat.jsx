@@ -30,6 +30,7 @@ export const DetailFormat = ({ detailData, repetitionData, setRepetitionData }) 
         if (window.confirm("この予約を削除してもよろしいですか？")) {
             try {
                 await deleteReserve(detailData.id, false);
+                alert('削除しました');
                 navigate(`./../monthly`);  
             } catch (err) {
                 alert(`保存に失敗しました：${err.message}`);
@@ -40,9 +41,13 @@ export const DetailFormat = ({ detailData, repetitionData, setRepetitionData }) 
     const deleteRepeatReservations = async () => {
         /*　未実装　繰り返し予約の削除ができてから*/
         if (window.confirm("すべての予約削除してもよろしいですか？")) {
-            console.log("すべてdeleteするよ");
-            alert('削除しました');
-            navigate(`./../monthly`);
+            try {
+                await deleteReserve(detailData.id, true);
+                alert('削除しました');
+                navigate(`./../monthly`);  
+            } catch (err) {
+                alert(`保存に失敗しました：${err.message}`);
+            }
         }
     };
 
