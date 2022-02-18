@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const dateToHourAndMinute = (date) => {
   return `${('00' + date.getHours()).slice(-2)}:${(
@@ -7,6 +8,8 @@ const dateToHourAndMinute = (date) => {
 };
 
 export const WeeklyCalendarReservationItem = ({
+  id,
+
   startDateTime,
   endDateTime,
   guestName,
@@ -17,11 +20,13 @@ export const WeeklyCalendarReservationItem = ({
   const periodStr = `${dateToHourAndMinute(startDate)} ~ ${dateToHourAndMinute(
     endDate,
   )}`;
-
   return (
-    <div className="weekly-calendar--reservation-item">
+    <Link
+      className="weekly-calendar--reservation-item"
+      to={`/reservations/${id}`}
+    >
       {periodStr}
       {`（${guestName || reserverName}）`}
-    </div>
+    </Link>
   );
 };
