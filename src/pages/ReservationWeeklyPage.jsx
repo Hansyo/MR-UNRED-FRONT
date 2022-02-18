@@ -3,64 +3,41 @@ import { endOfWeek, startOfWeek } from 'date-fns';
 import { Header } from '../components/common/Header';
 import { WeeklyCalendar } from '../components/reservations/weekly/WeeklyCalendar/WeeklyCalendar';
 import { getReserve } from '../apis/getReservation';
+import { getAllRooms } from '../apis/rooms';
 
-const emptyRooms = [
-  {
-    id: 1,
-    name: '会議室1',
-    reservations: [],
-  },
-  {
-    id: 2,
-    name: '会議室2',
-    reservations: [],
-  },
-  {
-    id: 3,
-    name: '会議室3',
-    reservations: [],
-  },
-  {
-    id: 4,
-    name: '会議室4',
-    reservations: [],
-  },
-  {
-    id: 5,
-    name: '会議室5',
-    reservations: [],
-  },
-  {
-    id: 6,
-    name: '会議室6',
-    reservations: [],
-  },
-];
+const convertReservationResponse = (data) => ({
+  id: data.id,
+  startDateTime: new Date(data.start_date_time),
+  endDateTime: new Date(data.end_date_time),
+  guestName: data.guest_name,
+  guestDetail: data.guest_detail,
+  purpose: data.purpose,
+  roomId: data.room_id,
+});
 
 const ReservationsWeeklyPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [rooms, setRooms] = useState(emptyRooms);
+  const [rooms, setRooms] = useState([]);
 
   // Fetch reservation data for the selected month
   useEffect(() => {
     (async () => {
       const dateFrom = startOfWeek(selectedDate);
       const dateTo = endOfWeek(selectedDate);
-      const rawReservations = await getReserve(dateFrom, dateTo);
-      const reservations = rawReservations.map((reservation) => ({
-        id: reservation.id,
-        startDateTime: new Date(reservation.start_date_time),
-        endDateTime: new Date(reservation.end_date_time),
-        guestName: reservation.guest_name,
-        guestDetail: reservation.guest_detail,
-        purpose: reservation.purpose,
-        roomId: reservation.room_id,
-      }));
-      const rooms = JSON.parse(JSON.stringify(emptyRooms));
-      for (const reservation of reservations) {
-        rooms[reservation.roomId - 1].reservations.push(reservation);
-      }
-      setRooms(rooms);
+      const rooms = await getAllRooms();
+      const roomsWithReservations = await Promise.all(
+        rooms.map(async ({ id, name }) => {
+          const reservations = (await getReserve(dateFrom, dateTo, id)).map(
+            convertReservationResponse,
+          );
+          return {
+            id,
+            name,
+            reservations,
+          };
+        }),
+      );
+      setRooms(roomsWithReservations);
     })();
   }, [selectedDate]);
 

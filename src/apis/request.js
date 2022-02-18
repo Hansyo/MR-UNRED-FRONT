@@ -27,7 +27,11 @@ export const requestDelete = async (path) => {
       'Content-Type': 'application/json',
     },
   });
-  return res.json();
+  if (!res.ok) {
+    const json = await res.json();
+    throw new Error(JSON.stringify(json));  
+  }
+  return res.ok;
 };
 
 export const requestPut = async (path, body) => {

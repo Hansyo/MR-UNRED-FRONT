@@ -18,7 +18,10 @@ const ReservationLogPage = () => {
         guestName: reservation.guest_name,
         guestDetail: reservation.guest_detail,
         purpose: reservation.purpose,
-        roomId: reservation.room_id,
+        room: {
+          id: reservation.room.id,
+          name: reservation.room.name,
+        },
       }));
       setReservations(reservations);
     })();
