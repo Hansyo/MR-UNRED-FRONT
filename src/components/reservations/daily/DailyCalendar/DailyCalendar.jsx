@@ -33,6 +33,7 @@ export const DailyCalendar = ({ reservations, selectedDate, onDateChange, onChan
           {reservations.map((room) => (
             <DailyCalendarRoomColumn
               reservations={room.reservations}
+              selectedDate={selectedDate}
               key={room.id}
             />
           ))}

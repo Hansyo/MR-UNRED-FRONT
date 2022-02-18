@@ -1,13 +1,8 @@
+import { differenceInMinutes, format } from 'date-fns';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ROW_HEIGHT_PX = 64;
-
-const dateToHourAndMinute = (date) => {
-  return `${('00' + date.getHours()).slice(-2)}:${(
-    '00' + date.getMinutes()
-  ).slice(-2)}`;
-};
+const ROW_HEIGHT_PX = 70;
 
 export const DailyCalendarReservationItem = ({
   startDateTime,
@@ -18,13 +13,10 @@ export const DailyCalendarReservationItem = ({
 }) => {
   const startDate = new Date(startDateTime);
   const endDate = new Date(endDateTime);
-  const periodStr = `${dateToHourAndMinute(startDate)} ~ ${dateToHourAndMinute(
-    endDate,
-  )}`;
-  const durationHours = (endDate - startDate) / 1000 / 60 / 60;
-  const height = ROW_HEIGHT_PX * durationHours;
-  const topOffset = (ROW_HEIGHT_PX * startDate.getMinutes()) / 60;
-  
+  const periodStr = `${format(startDate, 'H:mm')} ~ ${format(endDate, 'H:mm')}`;
+  const height = ROW_HEIGHT_PX * (differenceInMinutes(endDate, startDate) / 60);
+  const topOffset = ROW_HEIGHT_PX * (startDate.getMinutes() / 60);
+
   return (
     <div
       className="daily-calendar--reservation-item"

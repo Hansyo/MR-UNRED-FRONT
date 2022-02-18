@@ -32,5 +32,9 @@ export const requestDelete = async (path, body) => {
     },
     body: JSON.stringify(body),
   });
-  return res.json();
+  if (!res.ok) {
+    const json = await res.json();
+    throw new Error(JSON.stringify(json));  
+  }
+  return res.ok;
 };
