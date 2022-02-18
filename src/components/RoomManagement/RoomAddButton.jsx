@@ -1,5 +1,7 @@
+import { Button } from "@material-ui/core";
 import { React, useState } from "react";
 import { postRoom } from "../../apis/roomRequest";
+import './RoomAddButton.css'
 
 export const RoomAddButton = ({ updateRoom }) => {
   const [name, setName] = useState("");
@@ -24,9 +26,9 @@ export const RoomAddButton = ({ updateRoom }) => {
 
   return (
     <div className="room-add-container">
-      <div className="room-add-form-opener" onClick={() => setIsOpen(true)}>
+      <button className="room-add-form-opener" onClick={() => setIsOpen(true)}>
         会議室を追加
-      </div>
+      </button>
       <div
         className="room-add-form-container"
         style={{ display: !isOpen ? "none" : "" }}
@@ -37,6 +39,7 @@ export const RoomAddButton = ({ updateRoom }) => {
             onChange={(e) => setName(e.target.value)}
             type="text"
             className="rooms-add-form__item-input"
+            placeholder="追加する会議室名"
           />
         </div>
         <div className="room-add-form__item-detail">
@@ -44,6 +47,7 @@ export const RoomAddButton = ({ updateRoom }) => {
             value={detail}
             onChange={(e) => setDetail(e.target.value)}
             className="rooms-add-form__item-textarea"
+            placeholder="追加する部屋の詳細"
           />
         </div>
         <button className="rooms-add-form__item-submit" onClick={addRoom}>

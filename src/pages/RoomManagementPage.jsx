@@ -3,6 +3,8 @@ import { Header } from '../components/common/Header/Header';
 import { getRooms } from '../apis/roomRequest';
 import { RoomList } from '../components/RoomManagement/RoomList';
 import { RoomAddButton } from '../components/RoomManagement/RoomAddButton';
+import './RoomManagementPage.css'
+
 
 const RoomManagementPage = () => {
   const [rooms, setRooms] = useState([]);
@@ -21,8 +23,14 @@ const RoomManagementPage = () => {
     <div>
       <Header />
       <div className='rooms-title'>会議室一覧</div>
-      <RoomAddButton updateRoom={updateRooms}/>
-      <RoomList rooms={rooms} updateRooms={updateRooms}/>
+      <div className='rooms-item'>
+        <div className='room-list-erea'>
+          <RoomList rooms={rooms} updateRooms={updateRooms}/>
+        </div>
+        <div className='room-add-button-erea'>      
+          <RoomAddButton updateRoom={updateRooms}/>
+        </div>
+      </div>
     </div>
   );
 };

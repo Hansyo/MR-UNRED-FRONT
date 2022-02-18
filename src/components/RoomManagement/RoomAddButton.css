@@ -1,0 +1,29 @@
+.room-add-container{
+}
+
+.room-add-form-opener,
+.rooms-add-form__item-delete-button,
+.rooms-add-form__item-submit{
+    border-radius: 0.3rem;
+    border: 1px solid #585858;
+    display: inline-block;
+    margin-bottom: 2px;
+    margin-right: 2px;
+    height: 50px;
+    width: 150px;
+    font-size: 2em;
+}
+
+.rooms-add-form__item-input{
+    font-size: 2em;
+    height: 80px;
+    width: 302px; 
+    margin-bottom: 2px;
+}
+
+.rooms-add-form__item-textarea{
+    font-size: 2em;
+    height: 100px;
+    width: 302px;
+    resize: none;
+}

@@ -3,7 +3,7 @@
 /* 入力は背景の色を変える */
 
 .page {
-  margin: 5%;
+  margin: 1% 5% 5% 5%;
 }
 
 /*　入力フォームの文字のフォント */
@@ -273,7 +273,7 @@ input:first-of-type {
 }
 
 input:focus {
-  background: #bbb9a5;
+  background: #ffffff;
 }
 
 .reserve--event-input {
@@ -293,7 +293,6 @@ input:focus {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 80%;
-  outline: none;
 }
 ::-webkit-input-placeholder {
   color: #4e4e4e;
@@ -314,21 +313,20 @@ input:focus {
   font-size: 2em;
   padding: 15px 10px 10px;
   font-family: 'Source Sans Pro', arial, sans-serif;
-  background: #fafafa;
+  background: #ffffff;
   display: inline-block;
   vertical-align: top;
   box-sizing: border-box;
   border-radius: 5px;
   border: 1px solid #585858;
-  outline: none;
   line-height: 1.6;
   resize: none;
 }
 .reserve--event-textarea:focus {
-  background: #bbb9a5;
+  background: #ffffff;
 }
 .reserve--event-guesttextarea:focus {
-  background: #bbb9a5;
+  background: #ffffff;
 }
 
 .reserve--event-guesttextarea {
