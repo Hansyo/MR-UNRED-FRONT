@@ -1,27 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import './WeeklyCalendar.css';
-import { addDays, format, startOfWeek } from 'date-fns';
+import { addDays, startOfWeek } from 'date-fns';
 import { WeeklyCalendarDayRow } from './WeeklyCalendarDayRow';
 import { DateSwitcher } from '../DateSwitcher';
 
 export const WeeklyCalendar = ({ rooms, selectedDate, onDateChange }) => {
-  const ThisWeekStart = format(startOfWeek(selectedDate), 'L/d');
-  const mon = format(addDays(startOfWeek(selectedDate), 1), 'L/d');
-  const thu = format(addDays(startOfWeek(selectedDate), 2), 'L/d');
-  const wed = format(addDays(startOfWeek(selectedDate), 3), 'L/d');
-  const thr = format(addDays(startOfWeek(selectedDate), 4), 'L/d');
-  const fri = format(addDays(startOfWeek(selectedDate), 5), 'L/d');
-  const sat = format(addDays(startOfWeek(selectedDate), 6), 'L/d');
-
-  const Days = [
-    { id: 0, Day: ThisWeekStart },
-    { id: 1, Day: mon },
-    { id: 2, Day: thu },
-    { id: 3, Day: wed },
-    { id: 4, Day: thr },
-    { id: 5, Day: fri },
-    { id: 6, Day: sat },
-  ];
+  const dates = useMemo(() => {
+    const arr = [];
+    const weekStartDate = startOfWeek(selectedDate);
+    for (let i = 0; i < 7; i++) {
+      arr.push(addDays(weekStartDate, i));
+    }
+    return arr;
+  }, [selectedDate]);
 
   return (
     <div className="weekly-calendar">
@@ -37,18 +28,12 @@ export const WeeklyCalendar = ({ rooms, selectedDate, onDateChange }) => {
         </div>
       </div>
       <div className="weekly-calendar--body">
-        <div className="weekly-calendar--times">
-          {Days.map((Day) => (
-            <div className="weekly-calendar--time" key={Day.id}>
-              {Day.Day}
-            </div>
-          ))}
-        </div>
         <div className="weekly-calendar--day-rows">
-          {rooms.map((room) => (
+          {dates.map((date) => (
             <WeeklyCalendarDayRow
-              reservations={room.reservations}
-              key={room.id}
+              rooms={rooms}
+              date={date}
+              key={date.toISOString()}
             />
           ))}
         </div>
