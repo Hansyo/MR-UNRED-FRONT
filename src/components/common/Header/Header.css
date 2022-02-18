@@ -54,3 +54,18 @@
   border-bottom-color: #334155;
   font-weight: bold;
 }
+
+.header__flex-spacer {
+  flex: 1;
+}
+
+.header__reserve-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: #447fdd;
+
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}

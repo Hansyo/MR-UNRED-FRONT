@@ -1,0 +1,79 @@
+.reservation-log__page {
+  padding: 32px;
+}
+
+.reservation-log__date-section {
+  margin-top: 32px;
+}
+.reservation-log__date-section:first-child {
+  margin-top: 0;
+}
+
+.reservation-log__date-title {
+  margin: 0;
+
+  color: #334155;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.reservation-log__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(416px, 1fr));
+  grid-gap: 16px;
+
+  margin-top: 16px;
+  padding: 0;
+
+  list-style: none;
+}
+
+.reservation-log__item {
+  display: block;
+
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+
+  color: #334155;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.reservation-log__item-room {
+  font-weight: bold;
+}
+
+.reservation-log__item-period {
+  margin-top: 8px;
+}
+
+.reservation-log__item-detail {
+  margin-top: 16px;
+}
+
+.reservation-log__item-label {
+  margin-top: 8px;
+
+  font-size: 12px;
+  color: #64748b;
+  font-weight: bold;
+}
+
+.reservation-log__item-data {
+  margin-top: 4px;
+
+  line-height: 1.5em;
+}
+
+.reservation-log__item-detail-flex {
+  display: flex;
+  align-items: flex-start;
+}
+
+.reservation-log__item-detail-flex-inner {
+  flex: 1;
+}
+.reservation-log__item-detail-flex-inner:not(:first-child) {
+  margin-left: 32px;
+}
