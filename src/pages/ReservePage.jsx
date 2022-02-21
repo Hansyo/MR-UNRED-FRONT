@@ -55,6 +55,7 @@ const ReservePage = () => {
 
     try {
       await postReserve(
+        roomid,
         startDate,
         endDate,
         reserverName,
@@ -82,14 +83,7 @@ const ReservePage = () => {
         {/* 部屋の名前 */}
         <div className="reserve--upper-grid">
           <div className="reserve--upper-grid-roomname">
-          <select
-              value={roomid}
-              onChange={(e) => setRoomid(e.target.value)}
-              className="room-select"
-              required
-            >
-              <RoomSelect rooms={rooms}/>
-            </select>
+            <RoomSelect rooms={rooms} setRoomid={setRoomid}/>
           </div>
           <div>
             <button

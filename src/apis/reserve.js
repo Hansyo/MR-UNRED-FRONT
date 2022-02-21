@@ -1,6 +1,7 @@
 import { requestPost } from './request';
 
 export const postReserve = (
+  roomid,
   startDateTime,
   endDateTime,
   reserverName,
@@ -18,7 +19,7 @@ export const postReserve = (
     purpose,
     guest_name: guestName,
     guest_detail: guestDetail,
-    room_id: 1, // TODO: roomIdをセット
+    room_id: roomid,
     repitation: {
       type: repitationType,
     }
