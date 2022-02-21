@@ -13,20 +13,20 @@ export const DailyCalendarReservationItem = ({
 }) => {
   const startDate = new Date(startDateTime);
   const endDate = new Date(endDateTime);
-  const endTime = format(endDate, 'H:mm') === '00:00' ? '24:00' : format(endDate, 'H:mm');
+  const endTime =
+    format(endDate, 'H:mm') === '00:00' ? '24:00' : format(endDate, 'H:mm');
   const periodStr = `${format(startDate, 'H:mm')} ~ ${endTime}`;
   const height = ROW_HEIGHT_PX * (differenceInMinutes(endDate, startDate) / 60);
   const topOffset = ROW_HEIGHT_PX * (startDate.getMinutes() / 60);
 
   return (
-    <div
+    <Link
+      to={`./../${id}`}
       className="daily-calendar--reservation-item"
       style={{ height, top: topOffset }}
     >
-    <Link to={`./../${id}`} className="daily-calendar--link">
       {periodStr}
       {`（${guestName || reserverName}）`}
-    </Link>  
-    </div>
+    </Link>
   );
 };
