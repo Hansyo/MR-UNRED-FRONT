@@ -77,7 +77,8 @@ export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
       const durationInDays = Math.ceil(
         differenceInHours(endDateTime, startDateTime) / 24,
       );
-      for (let i = 0; i < durationInDays; i++) {
+      // 1時間未満の予約があり得るため、1度は実行する
+      for (let i = 0; i <= durationInDays; i++) {
         const date = addDays(startDateTime, i);
 
         // 前月、翌月に続く予定は、今月分のみ表示する
