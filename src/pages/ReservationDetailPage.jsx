@@ -29,7 +29,7 @@ const ReservationDetailPage = () => {
       setDetailData(arrangeDetail);
     };
     receiveDetail();
-  }, []);
+  }, [reservationId]);
 
   useEffect(() => {
     const receiveRepeatDetail = async () => {
