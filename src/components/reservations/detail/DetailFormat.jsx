@@ -1,78 +1,111 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { deleteReserve } from '../../../apis/delete';
-import { getRepeatReservation } from '../../../apis/getRepeatReservation';
 import './DetailFormat.css';
 
-export const DetailFormat = ({ detailData, repetitionData }) => {
+export const DetailFormat = ({ detailData, repetitionData}) => {
     const navigate = useNavigate();
-    const roomName = ["会議室1", "会議室2", "会議室3", "会議室4", "会議室5", "会議室6", "会議室7", "会議室8"];
-    const listItems = repetitionData.map((data) => (
-        <div key={data.id}>
-            {`${((data.start_date_time).slice(0,19)).replace('T','/')} - ${((data.end_date_time).slice(0,19)).replace('T','/')}`} 
-        </div>
-    ));
+    const currentDate = new Date();
 
     const deleteSingleReservations = async () => {
         if (window.confirm("この予約を削除してもよろしいですか？")) {
-            try {
-                await deleteReserve(detailData.id);
-              } catch (err) {
-                alert(`保存に失敗しました：${err.message}`);
-              }
+            await deleteReserve(detailData.id, false);
             alert('削除しました');
-            navigate(`./../monthly`);
+            navigate(`./../weekly`);
         }
     };
 
-    const deleteMultipleReservations = async () => {
-        /*　未実装　繰り返し予約の削除ができてから*/
+    const deleteRepeatReservations = async () => {
         if (window.confirm("すべての予約削除してもよろしいですか？")) {
-            console.log("すべてdeleteするよ");
+            await deleteReserve(detailData.id, true);
             alert('削除しました');
-            navigate(`./../monthly`);
+            navigate(`./../weekly`);
+        }
+    };
+
+    const viewSingleDate = () => {
+        const repeatItems = [
+            <div className="reservations-detail--data">
+                {`${detailData.startDateTime} - ${detailData.endDateTime}`}
+            </div>
+        ];
+        /* 予定の開始時刻が現在の時刻以降の場合のみ，削除ボタンが表示される */
+        if (new Date(detailData.startDateTime) > currentDate.getTime()) {
+            repeatItems.push(
+                <div>
+                    <button className="reservations-detail--button"
+                        onClick={deleteSingleReservations}>削除</button>
+                </div>
+            );
+        }
+        return repeatItems;
+    };
+
+    const viewRepeatDate = () => {
+        /* 繰り返し予定の開始時刻が現在の時刻以降の場合のみ表示される
+        ただし，残りの繰り返し予定が現在表示している予定だけの場合は表示されない */
+        if (new Date(repetitionData.slice(-1)[0].startDateTime) > currentDate.getTime()) {
+            let checkRepeatDate = false;
+            const repeatItems = [
+                <div className="reservations-detail--data">
+                    {repetitionData.map((data) => {
+                        if (new Date(data.startDateTime) > currentDate.getTime()) {
+                            if (data.id !== detailData.id) {
+                                checkRepeatDate = true;
+                            }
+                            if (checkRepeatDate) {
+                                return (
+                                    <div>
+                                        {`${data.startDateTime} - ${data.endDateTime}`}
+                                    </div>
+                                );
+                            }
+                        }
+                    })}
+                </div>
+            ];
+            if (checkRepeatDate)
+                repeatItems.push(
+                    <div>
+                        <button className="reservations-detail--button"
+                            onClick={deleteRepeatReservations}>すべて削除</button>
+                    </div>
+                );
+            return repeatItems;
         }
     };
 
     return (
         <div className="reservations-detail--grid">
             <div className="reservations-detail--container">
-                <div className="reservations-detail--label"> 会議室名</div>
-                <div className="reservations-detail--data">{roomName[detailData.room_id - 1]}</div>
+                <div className="reservations-detail--label">会議室名</div>
+                <div className="reservations-detail--data">{detailData.roomName}</div>
             </div>
             <div className="reservations-detail--container">
-                <div className="reservations-detail--label"> 日時</div>
-                <div className="reservations-detail--data">{`${((detailData.start_date_time).slice(0,19)).replace('T','/')} - ${((detailData.end_date_time).slice(0,19)).replace('T','/')}`} </div>
-                <div>
-                    <button className="reservations-detail--button"
-                    onClick={deleteSingleReservations}> 削除 </button>
-                </div>
+                <div className="reservations-detail--label">日時</div>
+                {viewSingleDate()}
             </div>
             <div className="reservations-detail--container">
-                <div className="reservations-detail--label"> 一覧</div>
-                <div className="reservations-detail--data">{listItems}</div>
-                <div>
-                    <button className="reservations-detail--button"
-                        onClick={deleteMultipleReservations}> すべて削除 </button>
-                </div>
+                <div className="reservations-detail--label">繰り返し一覧</div>
+                {viewRepeatDate()}
             </div>
             <div className="reservations-detail--container">
-                <div className="reservations-detail--label"> 予約者</div>
-                <div className="reservations-detail--data">Subscriber</div>
+                <div className="reservations-detail--label">予約者</div>
+                <div className="reservations-detail--data">{detailData.reserverName}</div>
             </div>
             <div className="reservations-detail--container">
-                <div className="reservations-detail--label"> 利用者</div>
-                <div className="reservations-detail--data">{detailData.guest_name}</div>
+                <div className="reservations-detail--label">利用者</div>
+                <div className="reservations-detail--data">{detailData.guestName}</div>
             </div>
             <div className="reservations-detail--container">
-                <div className="reservations-detail--label"> 利用者詳細</div>
-                <div className="reservations-detail--data">{detailData.guest_detail}</div>
+                <div className="reservations-detail--label">利用者詳細</div>
+                <div className="reservations-detail--data">{detailData.guestDetail}</div>
             </div>
             <div className="reservations-detail--container">
-                <div className="reservations-detail--label"> 利用者目的</div>
+                <div className="reservations-detail--label">利用者目的</div>
                 <div className="reservations-detail--data">{detailData.purpose}</div>
             </div>
         </div>
-        
+
     );
 };
