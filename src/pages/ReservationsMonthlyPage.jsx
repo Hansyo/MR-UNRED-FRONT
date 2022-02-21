@@ -1,6 +1,7 @@
 import { endOfMonth, startOfMonth } from 'date-fns';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getReserve } from '../apis/getReservation';
 import { getAllRooms } from '../apis/rooms';
 import { Header } from '../components/common/Header/Header';
@@ -45,6 +46,17 @@ const ReservationsMonthlyPage = () => {
   return (
     <div>
       <Header />
+      <div className="daily-container--btn">
+      <Link className="daily-transition--btn" to="/reservations/daily">
+        日毎表示
+        </Link>
+        <button className="daily-transition--btn" onClick={() => {setSelectedMonth(new Date())}}>
+        本日
+        </button>
+        <Link className="daily-transition--btn" to="/reservations/weekly">
+        週毎表示
+      </Link>
+      </div>
       <div className="reservations-daily--page">
         <MonthlyCalendar
           rooms={rooms}
