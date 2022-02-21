@@ -52,15 +52,17 @@ export const RoomAddButton = ({ updateRoom }) => {
             placeholder="追加する部屋の詳細"
           />
         </div>
-        <button className="rooms-add-form__item-submit" onClick={addRoom}>
-          追加
-        </button>
-        <button
-          className="rooms-add-form__item-delete-button"
-          onClick={() => setIsOpen(false)}
-        >
-          取り消し
-        </button>
+        <div className="rooms-add-form-item-buttons">
+          <button className="rooms-add-form__item-submit" onClick={addRoom}>
+            追加
+          </button>
+          <button
+            className="rooms-add-form__item-delete-button"
+            onClick={() => setIsOpen(false)}
+          >
+            取り消し
+          </button>
+        </div>
       </div>
     </div>
   );

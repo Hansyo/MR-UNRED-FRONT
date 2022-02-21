@@ -46,17 +46,17 @@ const getMonthDateCount = (month) => {
 };
 
 export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
-  const [selectedRoomIdx, setSelectedRoomIdx] = useState();
+  const [selectedRoomIdx, setSelectedRoomIdx] = useState(0);
+  const isSelectedRoomExist = selectedRoomIdx < rooms.length;
 
-  // 部屋情報が読み込まれ次第、最初の会議室を選択する
   useEffect(() => {
-    if (selectedRoomIdx == null && rooms.length > 0) {
+    if (!isSelectedRoomExist) {
       setSelectedRoomIdx(0);
     }
-  }, [rooms.length, selectedRoomIdx]);
+  }, [isSelectedRoomExist, rooms]);
 
   const dates = useMemo(() => {
-    if (selectedRoomIdx == null) {
+    if (!isSelectedRoomExist) {
       return [];
     }
 
@@ -121,8 +121,13 @@ export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
       })),
     );
 
+    // 各日付の中で、予約を時刻順にソート
+    arr.forEach((date) => {
+      date.reservations.sort((a, b) => a.startDateTime - b.startDateTime);
+    });
+
     return arr;
-  }, [rooms, selectedMonth, selectedRoomIdx]);
+  }, [isSelectedRoomExist, rooms, selectedMonth, selectedRoomIdx]);
 
   return (
     <div className="monthly-calendar">
@@ -168,6 +173,7 @@ export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
                 reserverName={reservation.reserverName}
                 guestName={reservation.guestName}
                 id={reservation.id}
+                key={reservation.id}
               />
             ))}
           </div>

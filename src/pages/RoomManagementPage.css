@@ -12,14 +12,9 @@
 }
 
 .rooms-item{
-    display: flex;
-    margin: 30px;
+    margin: 0  40px 40px 40px;
 }
 
 .room-list-erea{
     width: 60%;
-}
-
-.room-add-button-erea{
-    
 }

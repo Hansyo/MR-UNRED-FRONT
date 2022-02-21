@@ -1,12 +1,17 @@
 .room-add-container{
+    margin-bottom: 10px;
 }
+
+
+.rooms-add-form-item-buttons{
+    text-align: right;
+    margin-right: 40%;
+}
+
 
 .room-add-form-opener,
 .rooms-add-form__item-delete-button,
 .rooms-add-form__item-submit{
-    border-radius: 0.3rem;
-    border: 1px solid #585858;
-    display: inline-block;
     margin-bottom: 2px;
     margin-right: 2px;
     height: 20%;
@@ -14,10 +19,12 @@
     font-size: 2em;
 }
 
+
+
 .rooms-add-form__item-input{
     font-size: 2em;
     height: 80px;
-    width: 302px; 
+    width: 60%; 
     margin-bottom: 2px;
 }
 
@@ -25,6 +32,6 @@
     padding: 5px;
     font-size: 2em;
     height: 300px;
-    width: 302px;
+    width: 60%;
     resize: none;
 }

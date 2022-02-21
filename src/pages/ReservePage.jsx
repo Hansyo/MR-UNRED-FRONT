@@ -85,14 +85,14 @@ const ReservePage = () => {
           <RoomSelect rooms={rooms} setRoomid={setRoomid}/>
           <div>
             <button
-              className="reserve-saveButton reserve-saveButton--red"
+              className="reserve-saveButton"
               onClick={sendReserve}
             >
               保存
             </button>
           </div>
         </div>
-        <hr className="reserve-line"></hr>
+        {/* <hr className="reserve-line"></hr> */}
 
         {/* 開始カレンダー選択 */}
         <div className="reserve--upper-calendar">
@@ -148,6 +148,29 @@ const ReservePage = () => {
             <span className="SB_highlight"></span>
             <span className="SB_selectbar"></span>
           </div>
+
+        
+          {/*繰り返し回数*/}
+          {
+            (repitationType % 2 == 0 && repitationType != 0) &&
+            (<div className="reserve--upper-num">
+              <div className="reserve--num-label">繰り返し回数</div>
+              <div>
+                <input type="number" value={repitationNum} onChange={(e) => setRepitationNum(e.target.value)}></input>
+              </div>
+            </div>)
+          }
+
+          {/* 繰り返し予約のカレンダー */}
+          {
+            (repitationType %2 == 1) &&
+            (<div className="reserve--upper-calendar">
+            <div className="reserve--time-label">繰り返し終了日付</div>
+              <div>
+                <Calendar value={repitationFinishDate} onChange={setRepitationFinishDate}/>
+              </div>
+            </div>)
+          }
         </div>
         
         {/*繰り返し回数*/}
@@ -174,7 +197,7 @@ const ReservePage = () => {
 
         <div className="reserve--event-usertitle">
           <h2> 予約詳細</h2>
-          <hr className="reserve-line2"></hr>
+          <hr className="reserve-line"></hr>
           <br></br>
         </div>
       

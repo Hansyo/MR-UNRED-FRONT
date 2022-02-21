@@ -13,12 +13,6 @@
   margin-top: 10px;
 }
 
-C {
-  font-size: 18px;
-  font-weight: bold;
-  color: #ff0000;
-}
-
 b {
   font-size: 5em;
 }
@@ -38,11 +32,14 @@ h2 {
 
 .reserve--upper-grid {
   display: flex;
+  height: 25%;
+  align-items: center;
 }
 
 .reserve--upper-grid-roomname{
   height: 30%;
   width: 50%;
+  margin-right: 10%;
 }
 
 /* SAVEボタン */
@@ -57,10 +54,12 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
 }
+
+
+
 .reserve-saveButton,
 a.reserve-saveButton,
 button.reserve-saveButton {
-  margin: 20px 0 0 0px;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.5;
@@ -82,15 +81,15 @@ button.reserve-saveButton {
   border-radius: 0.5rem;
   border: 1px solid #585858;
 }
-.reserve-saveButton--red,
-a.reserve-saveButton--red {
+.reserve-saveButton,
+a.reserve-saveButton {
   color: #fff;
   background-color: #fafafa;
 }
-.reserve-saveButton--red:hover,
-a.reserve-saveButton--red:hover {
-  color: #fff;
-  background: #bbb9a5;
+.reserve-saveButton:hover,
+a.reserve-saveButton:hover {
+  color: rgb(0, 0, 0);
+  background: #d6d6d6;
 }
 
 .reserve--upper-calendar {
@@ -128,7 +127,7 @@ a.reserve-saveButton--red:hover {
 /* 繰り返し  */
 .ipselect {
   position: relative;
-  width: 30%;
+  width: 50%;
   text-align: center;
   margin-left: 20px;
 }
@@ -252,17 +251,9 @@ a.reserve-saveButton--red:hover {
 }
 
 .reserve-line {
-  width: 50%;
+  width: 70%;
   text-align: left;
   margin-left: 0px;
-  margin-right: 300px;
-}
-
-.reserve-line2 {
-  width: 60%;
-  text-align: left;
-  margin-left: 0px;
-  margin-right: 300px;
 }
 
 /* 入力フォーム */
