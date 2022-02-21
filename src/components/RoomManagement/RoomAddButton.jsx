@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { postRoom } from "../../apis/roomRequest";
-import './RoomAddButton.css'
+import "./RoomAddButton.css";
 
 export const RoomAddButton = ({ updateRoom }) => {
   const [name, setName] = useState("");
@@ -25,7 +25,11 @@ export const RoomAddButton = ({ updateRoom }) => {
 
   return (
     <div className="room-add-container">
-      <button className="room-add-form-opener" onClick={() => setIsOpen(true)}>
+      <button
+        className="room-add-form-opener"
+        onClick={() => setIsOpen(true)}
+        style={{ display: isOpen ? "none" : "" }}
+      >
         会議室を追加
       </button>
       <div
