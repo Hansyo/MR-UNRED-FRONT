@@ -26,12 +26,8 @@ const RoomManagementPage = () => {
       </div>
       
       <div className='rooms-item'>
-        <div className='room-list-erea'>
-          <RoomList rooms={rooms} updateRooms={updateRooms}/>
-        </div>
-        <div className='room-add-button-erea'>      
-          <RoomAddButton updateRoom={updateRooms}/>
-        </div>
+        <RoomAddButton updateRoom={updateRooms}/>
+        <RoomList rooms={rooms} updateRooms={updateRooms}/> 
       </div>
     </div>
   );
