@@ -16,7 +16,7 @@
   background: #fff;
 }
 
-.daily-calendar--header-room{
+.daily-calendar--header-room {
   display: flex;
   height: var(--daily-calendar--row-height);
 }
@@ -69,7 +69,7 @@
 }
 
 .daily-calendar--room-column {
-  width: 20%;
+  flex: 1;
   border-right: 1px solid var(--daily-calendar--divider-color);
 }
 
@@ -97,7 +97,7 @@
   font-weight: bold;
 }
 
-.daily-calendar--link{
+.daily-calendar--link {
   text-decoration: none;
   color: #fafafa;
 }
