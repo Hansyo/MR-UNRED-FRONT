@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './ReservePage.css';
 import { format } from'date-fns'
@@ -31,6 +32,7 @@ const ReservePage = () => {
   const [repitationFinishDate, setRepitationFinishDate] = useState(new Date());
   const [roomid, setRoomid] = useState('');
   const [rooms, setRooms] = useState([]);
+  const navigate = useNavigate();
 
   const updateRoooms = async () => {
     const rooms = await getRooms();
@@ -55,7 +57,7 @@ const ReservePage = () => {
     );
 
     try {
-      await postReserve(
+      const response = await postReserve(
         roomid,
         startDate,
         endDate,
@@ -67,6 +69,7 @@ const ReservePage = () => {
         (repitationType % 2 == 0 && repitationType != 0) ? repitationNum : null,
         (repitationType % 2 == 1) ? format(repitationFinishDate, 'yyyy-MM-dd') : null,
       );
+      navigate(`/reservations/${response.id}`);
     } catch (err) {
       alert(`保存に失敗しました：${err.message}`);
     }
