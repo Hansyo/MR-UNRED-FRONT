@@ -229,7 +229,7 @@ a.reserve-saveButton--red:hover {
 }
 
 .flexbox {
-  width: 100%;
+  width: 50%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -241,12 +241,10 @@ a.reserve-saveButton--red:hover {
 
 .reserve--event-user {
   height: auto;
-  width: 50%;
 }
 
 .reserve--event-guest {
   height: auto;
-  width: 50%;
 }
 
 .reserve--event-usertitle {

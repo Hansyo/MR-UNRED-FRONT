@@ -180,7 +180,7 @@ const ReservePage = () => {
       
 
         {/* 予約者情報入力 */}
-        <div className="reserve--event-grid">
+        {/* <div className="reserve--event-grid"> */}
           {/* 教員用入力画面 */}
           <div className="reserve--event-user">
             <div className="reserve--event-form">
@@ -198,7 +198,7 @@ const ReservePage = () => {
             </div>
           </div>
 
-          <div className="reserve--event-form">
+          {/* <div className="reserve--event-form"> */}
             <div className="flexbox">
               <div className="reserve--event-label">利用者名・団体名</div>
               <Input
@@ -221,8 +221,8 @@ const ReservePage = () => {
                 />
               </div>
             </div>
-          </div>
-        </div>
+          {/* </div> */}
+        {/* </div> */}
         {/* ゲスト用入力画面 */}
         <div className="reserve--event-guest">
           <div className="reserve--event-form">
