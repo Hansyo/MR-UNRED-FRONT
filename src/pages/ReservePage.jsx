@@ -153,16 +153,6 @@ const ReservePage = () => {
           <div>
             <Calendar value={repitationFinishDate} onChange={setRepitationFinishDate} />
           </div>
-          <div className="reserve--time-label">時間</div>
-          <div>
-            <input
-              value={reserveTimeFrom}
-              onChange={(e) => setRepitationFinishTime(e.target.value)}
-              type="time"
-              className="reserve-time"
-              required
-            />
-          </div>
         </div>
 
         <div className="reserve--event-usertitle">
