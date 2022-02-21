@@ -23,6 +23,8 @@ const ReservationsWeeklyPage = () => {
   // Fetch reservation data for the selected month
   useEffect(() => {
     (async () => {
+      setRooms([]);
+
       const dateFrom = startOfWeek(selectedDate);
       const dateTo = endOfWeek(selectedDate);
       const rooms = await getAllRooms();
@@ -46,15 +48,20 @@ const ReservationsWeeklyPage = () => {
     <div>
       <Header />
       <div className="daily-container--btn">
-      <Link className="daily-transition--btn" to="/reservations/daily">
-        日毎表示
+        <Link className="daily-transition--btn" to="/reservations/daily">
+          日毎表示
         </Link>
-        <button className="daily-transition--btn" onClick={() => {setSelectedDate(new Date())}}>
-        本日
+        <button
+          className="daily-transition--btn"
+          onClick={() => {
+            setSelectedDate(new Date());
+          }}
+        >
+          本日
         </button>
         <Link className="daily-transition--btn" to="/reservations/monthly">
-        月毎表示
-      </Link>
+          月毎表示
+        </Link>
       </div>
       <div className="reservations-weekly--page">
         <WeeklyCalendar
