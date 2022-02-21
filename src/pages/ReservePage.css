@@ -82,15 +82,15 @@ button.reserve-saveButton {
   border-radius: 0.5rem;
   border: 1px solid #585858;
 }
-.reserve-saveButton--red,
-a.reserve-saveButton--red {
+.reserve-saveButton,
+a.reserve-saveButton {
   color: #fff;
   background-color: #fafafa;
 }
-.reserve-saveButton--red:hover,
-a.reserve-saveButton--red:hover {
-  color: #fff;
-  background: #bbb9a5;
+.reserve-saveButton:hover,
+a.reserve-saveButton:hover {
+  color: rgb(0, 0, 0);
+  background: #dadada;
 }
 
 .reserve--upper-calendar {

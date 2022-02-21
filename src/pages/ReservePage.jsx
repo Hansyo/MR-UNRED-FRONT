@@ -66,7 +66,7 @@ const ReservePage = () => {
           </div>
           <div>
             <button
-              className="reserve-saveButton reserve-saveButton--red"
+              className="reserve-saveButton"
               onClick={sendReserve}
             >
               保存
