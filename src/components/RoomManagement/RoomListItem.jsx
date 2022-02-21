@@ -82,7 +82,7 @@ export const RoomListItem = ({ room, updateRoom }) => {
       <div className="roomlist-buttons">
         <div>
           <button className="rooms-list__item-edit-button" onClick={editOrUpdate}>
-            {isEdit ? "　更新　" : "　編集　"}
+            {isEdit ? "更新" : "編集"}
           </button>
         </div>
         <div>
@@ -90,7 +90,7 @@ export const RoomListItem = ({ room, updateRoom }) => {
             className="rooms-list__item-delete-button"
             onClick={cancelOrDelete}
           >
-            {isEdit ? "取り消し" : "　削除　"}
+            {isEdit ? "取り消し" : "削除"}
           </button>
         </div>
 
