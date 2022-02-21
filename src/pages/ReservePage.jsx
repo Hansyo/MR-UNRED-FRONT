@@ -221,7 +221,7 @@ const ReservePage = () => {
                   onChange={(e) => setGuestDetail(e.target.value)}
                   rows="3"
                   className="reserve--event-textarea"
-                  placeholder="メールアドレス,電話番号など"
+                  placeholder="メールアドレス、電話番号など"
                 />
               </div>
           {/* </div> */}
