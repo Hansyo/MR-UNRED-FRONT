@@ -15,7 +15,7 @@ export const WeeklyCalendarReservationItem = ({
   reserverName,
 }) => {
   const startDate = dateToHourAndMinute(new Date(startDateTime));
-  const endDate = dateToHourAndMinute(new Date(endDateTime)) === '00:00' ? '24:00' : new Date(endDateTime);
+  const endDate = dateToHourAndMinute(new Date(endDateTime)) === '00:00' ? '24:00' : dateToHourAndMinute(new Date(endDateTime));
   const periodStr = `${startDate} ~ ${endDate}`;
 
   return (
