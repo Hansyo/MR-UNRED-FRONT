@@ -27,6 +27,7 @@
     width: 90px;
     height: 50px;
     background: #447fdd;
+    border: #447fdd;
     color: #fff;
     font-size: 14px;
     border-radius: 4px;
@@ -43,4 +44,9 @@
     text-decoration: none;
     font-size: 14px;
     border-radius: 4px;
+ }
+
+ .reservations-detail--link {
+   text-decoration: none;
+   color:#447fdd;
  }

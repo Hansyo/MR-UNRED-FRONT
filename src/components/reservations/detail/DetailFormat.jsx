@@ -57,7 +57,7 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
                                 return (
                                     <div key={data.id}>
                                         {(detailData.id !== data.id) ?
-                                            <Link to={`../reservations/${data.id}`}>
+                                            <Link className="reservations-detail--link" to={`../reservations/${data.id}`}>
                                                 {`${data.startDateTime} - ${data.endDateTime}`}
                                             </Link>                                        
                                         :`${data.startDateTime} - ${data.endDateTime}`
