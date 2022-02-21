@@ -23,13 +23,3 @@
 .room-add-button-erea{
     
 }
-
-.rooms-list__item-edit-button{
-    min-width: 70px;
-    height: 40px;
-}
-
-.rooms-list__item-delete-button{
-    min-width: 70px;
-    height: 40px;
-}
