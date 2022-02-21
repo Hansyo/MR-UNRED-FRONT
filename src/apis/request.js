@@ -8,7 +8,6 @@ export const requestPost = async (path, body) => {
     },
     body: JSON.stringify(body),
   });
-  // console.log(await res.json());
   if (!res.ok) {
     const json = await res.json();
     throw new Error(JSON.stringify(json));
