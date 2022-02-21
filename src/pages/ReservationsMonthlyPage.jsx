@@ -24,6 +24,8 @@ const ReservationsMonthlyPage = () => {
   // Fetch reservation data for the selected month
   useEffect(() => {
     (async () => {
+      setRooms([]);
+
       const dateFrom = startOfMonth(selectedMonth);
       const dateTo = endOfMonth(selectedMonth);
       const rooms = await getAllRooms();
@@ -47,15 +49,20 @@ const ReservationsMonthlyPage = () => {
     <div>
       <Header />
       <div className="daily-container--btn">
-      <Link className="daily-transition--btn" to="/reservations/daily">
-        日毎表示
+        <Link className="daily-transition--btn" to="/reservations/daily">
+          日毎表示
         </Link>
-        <button className="daily-transition--btn" onClick={() => {setSelectedMonth(new Date())}}>
-        本日
+        <button
+          className="daily-transition--btn"
+          onClick={() => {
+            setSelectedMonth(new Date());
+          }}
+        >
+          本日
         </button>
         <Link className="daily-transition--btn" to="/reservations/weekly">
-        週毎表示
-      </Link>
+          週毎表示
+        </Link>
       </div>
       <div className="reservations-daily--page">
         <MonthlyCalendar
