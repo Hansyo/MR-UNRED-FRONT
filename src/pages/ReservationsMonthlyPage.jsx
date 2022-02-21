@@ -1,5 +1,5 @@
 import { endOfMonth, startOfMonth } from 'date-fns';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getReserve } from '../apis/getReservation';
@@ -19,16 +19,27 @@ const convertReservationResponse = (data) => ({
 
 const ReservationsMonthlyPage = () => {
   const [selectedMonth, setSelectedMonth] = useState(new Date());
-  const [rooms, setRooms] = useState([]);
+  const [reservations, setReservations] = useState([]);
+  const cachedRooms = useRef();
 
   // Fetch reservation data for the selected month
   useEffect(() => {
     (async () => {
-      setRooms([]);
+      if (cachedRooms.current) {
+        setReservations(
+          cachedRooms.current.map(({ id, name }) => ({
+            id,
+            name,
+            reservations: [],
+          })),
+        );
+      }
 
       const dateFrom = startOfMonth(selectedMonth);
       const dateTo = endOfMonth(selectedMonth);
-      const rooms = await getAllRooms();
+      const rooms =
+        cachedRooms.current ||
+        (await getAllRooms().then((rooms) => (cachedRooms.current = rooms)));
       const roomsWithReservations = await Promise.all(
         rooms.map(async ({ id, name }) => {
           const reservations = (await getReserve(dateFrom, dateTo, id)).map(
@@ -41,9 +52,9 @@ const ReservationsMonthlyPage = () => {
           };
         }),
       );
-      setRooms(roomsWithReservations);
+      setReservations(roomsWithReservations);
     })();
-  }, [selectedMonth]);
+  }, [cachedRooms, selectedMonth]);
 
   return (
     <div>
@@ -66,7 +77,7 @@ const ReservationsMonthlyPage = () => {
       </div>
       <div className="reservations-daily--page">
         <MonthlyCalendar
-          rooms={rooms}
+          rooms={reservations}
           selectedMonth={selectedMonth}
           onMonthChange={setSelectedMonth}
         />

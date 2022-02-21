@@ -1,10 +1,12 @@
-import { React, useCallback, useEffect } from 'react';
+import { React, useCallback, useEffect, useRef } from 'react';
 import { getReserve } from '../../../apis/getReservation';
 import { getAllRooms } from '../../../apis/rooms';
 
 import './DateSwitcher.css';
 
 export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
+  const cachedRooms = useRef();
+
   const onClickPrev = () => {
     const prevDate = new Date(selectedDate);
     prevDate.setDate(prevDate.getDate() - 1);
@@ -18,7 +20,15 @@ export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
   };
 
   const receiveReserve = useCallback(async () => {
-    onChangeData([]);
+    if (cachedRooms.current) {
+      onChangeData(
+        cachedRooms.current.map(({ id, name }) => ({
+          id,
+          name,
+          reservations: [],
+        })),
+      );
+    }
 
     let getReserveData;
     const startDateTime = new Date(selectedDate);
@@ -26,7 +36,9 @@ export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
     startDateTime.setHours(0, 0, 0, 0);
     endDateTime.setHours(23, 59, 59, 0);
 
-    const rooms = await getAllRooms();
+    const rooms =
+      cachedRooms.current ||
+      (await getAllRooms().then((rooms) => (cachedRooms.current = rooms)));
     const items = await Promise.all(
       rooms.map(async ({ id, name }) => {
         getReserveData = await getReserve(startDateTime, endDateTime, id);

@@ -5,6 +5,7 @@ import { WeeklyCalendar } from '../components/reservations/weekly/WeeklyCalendar
 import { getReserve } from '../apis/getReservation';
 import { getAllRooms } from '../apis/rooms';
 import { Link } from 'react-router-dom';
+import { useRef } from 'react';
 
 const convertReservationResponse = (data) => ({
   id: data.id,
@@ -18,16 +19,27 @@ const convertReservationResponse = (data) => ({
 
 const ReservationsWeeklyPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [rooms, setRooms] = useState([]);
+  const [reservations, setReservations] = useState([]);
+  const cachedRooms = useRef();
 
   // Fetch reservation data for the selected month
   useEffect(() => {
     (async () => {
-      setRooms([]);
+      if (cachedRooms.current) {
+        setReservations(
+          cachedRooms.current.map(({ id, name }) => ({
+            id,
+            name,
+            reservations: [],
+          })),
+        );
+      }
 
       const dateFrom = startOfWeek(selectedDate);
       const dateTo = endOfWeek(selectedDate);
-      const rooms = await getAllRooms();
+      const rooms =
+        cachedRooms.current ||
+        (await getAllRooms().then((rooms) => (cachedRooms.current = rooms)));
       const roomsWithReservations = await Promise.all(
         rooms.map(async ({ id, name }) => {
           const reservations = (await getReserve(dateFrom, dateTo, id)).map(
@@ -40,7 +52,7 @@ const ReservationsWeeklyPage = () => {
           };
         }),
       );
-      setRooms(roomsWithReservations);
+      setReservations(roomsWithReservations);
     })();
   }, [selectedDate]);
 
@@ -65,7 +77,7 @@ const ReservationsWeeklyPage = () => {
       </div>
       <div className="reservations-weekly--page">
         <WeeklyCalendar
-          rooms={rooms}
+          rooms={reservations}
           selectedDate={selectedDate}
           onDateChange={setSelectedDate}
         />
