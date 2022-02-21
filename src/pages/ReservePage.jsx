@@ -37,6 +37,7 @@ const ReservePage = () => {
   const updateRoooms = async () => {
     const rooms = await getRooms();
     setRooms(rooms);
+    setRoomid(rooms[0].id);
   }
 
   const sendReserve = async (e) => {
