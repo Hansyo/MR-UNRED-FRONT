@@ -4,6 +4,7 @@ import { Header } from '../components/common/Header';
 import { WeeklyCalendar } from '../components/reservations/weekly/WeeklyCalendar/WeeklyCalendar';
 import { getReserve } from '../apis/getReservation';
 import { getAllRooms } from '../apis/rooms';
+import { Link } from 'react-router-dom';
 
 const convertReservationResponse = (data) => ({
   id: data.id,
@@ -44,6 +45,17 @@ const ReservationsWeeklyPage = () => {
   return (
     <div>
       <Header />
+      <div className="daily-container--btn">
+      <Link className="daily-transition--btn" to="/reservations/daily">
+        日毎表示
+        </Link>
+        <button className="daily-transition--btn" onClick={() => {setSelectedDate(new Date())}}>
+        本日
+        </button>
+        <Link className="daily-transition--btn" to="/reservations/monthly">
+        月毎表示
+      </Link>
+      </div>
       <div className="reservations-weekly--page">
         <WeeklyCalendar
           rooms={rooms}
