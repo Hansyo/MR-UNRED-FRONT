@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 
 import './ReservePage.css';
+import { format } from'date-fns'
 import { Header } from '../components/common/Header/Header';
 import { Calendar, Input } from '../components/reserve/Input';
 import { postReserve } from '../apis/reserve';
 //import Select from 'react-select';
 
 const Repeat = {
-  NO_REPEAT: '0',
-  DAILY_TIME: '1',
-  DAILY_DATE: '1',
-  WEEKLY_TIME: '2',
-  WEEKLY_DATE: '2',
+  NO_REPEAT: 0,
+  DAILY_TIME: 1,
+  DAILY_DATE: 1,
+  WEEKLY_TIME: 2,
+  WEEKLY_DATE: 2,
 };
 
 const ReservePage = () => {
@@ -30,7 +31,7 @@ const ReservePage = () => {
   const sendReserve = async () => {
     const startDate = new Date(reserveDateFrom);
     const endDate = new Date(reserveDateTo);
-    const repitationDate = new Date(repitationFinishDate);
+    let repitationDate = null;
     startDate.setHours(
       Number(reserveTimeFrom.slice(0, 2)),
       Number(reserveTimeFrom.slice(-2)),
@@ -43,6 +44,8 @@ const ReservePage = () => {
       0,
       0,
     );
+
+    if((repitationType==React.DAILY_DATE)||(repitationType==React.WEEKLY_DATE))repitationDate = format(new Date(repitationFinishDate), 'yyyy-MM-dd');
 
     try {
       await postReserve(
