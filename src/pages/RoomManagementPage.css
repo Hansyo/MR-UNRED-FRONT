@@ -1,3 +1,8 @@
+.room-management-page-line{
+    width: 50%;
+    margin: 0px;
+}
+
 .rooms-title{
     font-size: 45px;
     font-weight: bold;
@@ -8,6 +13,7 @@
 
 .rooms-item{
     display: flex;
+    margin: 30px;
 }
 
 .room-list-erea{
@@ -16,4 +22,14 @@
 
 .room-add-button-erea{
     
+}
+
+.rooms-list__item-edit-button{
+    min-width: 70px;
+    height: 40px;
+}
+
+.rooms-list__item-delete-button{
+    min-width: 70px;
+    height: 40px;
 }

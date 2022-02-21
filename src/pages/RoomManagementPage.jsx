@@ -9,11 +9,9 @@ import './RoomManagementPage.css'
 const RoomManagementPage = () => {
   const [rooms, setRooms] = useState([]);
 
-  const updateRooms = () => {
-    (async () => {
-      const rooms = await getRooms();
-      setRooms(rooms);  
-    })();
+  const updateRooms = async () => {
+    const rooms = await getRooms();
+    setRooms(rooms);  
   };
 
   // oneshot
@@ -22,7 +20,11 @@ const RoomManagementPage = () => {
   return (
     <div>
       <Header />
-      <div className='rooms-title'>会議室一覧</div>
+      <div className='rooms-title'>
+        <div>会議室一覧</div>
+        <hr className="room-management-page-line"></hr>
+      </div>
+      
       <div className='rooms-item'>
         <div className='room-list-erea'>
           <RoomList rooms={rooms} updateRooms={updateRooms}/>

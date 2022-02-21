@@ -11,7 +11,6 @@ export const RoomAddButton = ({ updateRoom }) => {
     if (window.confirm(`「${name}」を追加してもよろしいですか？`)) {
       try {
         await postRoom(name, detail);
-        console.log(`${name}を追加したよ`);
         setName("");
         setDetail("");
         alert("追加しました");

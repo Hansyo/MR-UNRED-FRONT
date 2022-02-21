@@ -24,7 +24,6 @@ export const RoomListItem = ({ room, updateRoom }) => {
       ) {
         try {
           await putRoom(room.id, name, detail);
-          console.log(`${name}を更新したよ`);
           alert("更新しました");
           updateRoom();
         } catch (err) {
@@ -46,7 +45,6 @@ export const RoomListItem = ({ room, updateRoom }) => {
       if (window.confirm(`「${name}」を削除してもよろしいですか？`)) {
         try {
           await deleteRoom(room.id);
-          console.log(`${name}を削除したよ`);
           alert("削除しました");
           updateRoom();
         } catch (err) {
@@ -57,7 +55,6 @@ export const RoomListItem = ({ room, updateRoom }) => {
   };
 
   useEffect(() => {
-    console.log("isEdit: " + isEdit);
   }, [isEdit]);
 
   return (

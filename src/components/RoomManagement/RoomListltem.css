@@ -1,7 +1,6 @@
 .rooms-list__item{
     display: flex;
-    height: 10%;
-    /* margin-bottom: 5px; */
+    height: 80px;
 }
 
 .rooms-list__item-name{
