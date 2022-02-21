@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { deleteReserve } from '../../../apis/delete';
 import './DetailFormat.css';
 
@@ -55,8 +55,13 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
                             }
                             if (checkRepeatDate) {
                                 return (
-                                    <div>
-                                        {`${data.startDateTime} - ${data.endDateTime}`}
+                                    <div key={data.id}>
+                                        {(detailData.id !== data.id) ?
+                                            <Link to={`../reservations/${data.id}`}>
+                                                {`${data.startDateTime} - ${data.endDateTime}`}
+                                            </Link>                                        
+                                        :`${data.startDateTime} - ${data.endDateTime}`
+                                        }
                                     </div>
                                 );
                             }
