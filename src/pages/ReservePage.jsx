@@ -82,9 +82,7 @@ const ReservePage = () => {
       <div className="page">
         {/* 部屋の名前 */}
         <div className="reserve--upper-grid">
-          <div className="reserve--upper-grid-roomname">
-            <RoomSelect rooms={rooms} setRoomid={setRoomid}/>
-          </div>
+          <RoomSelect rooms={rooms} setRoomid={setRoomid}/>
           <div>
             <button
               className="reserve-saveButton reserve-saveButton--red"
