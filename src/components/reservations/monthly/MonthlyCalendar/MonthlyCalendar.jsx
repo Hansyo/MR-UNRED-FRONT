@@ -168,6 +168,7 @@ export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
                 reserverName={reservation.reserverName}
                 guestName={reservation.guestName}
                 id={reservation.id}
+                key={reservation.id}
               />
             ))}
           </div>
