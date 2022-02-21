@@ -27,6 +27,7 @@ export const WeeklyCalendarDayRow = ({ rooms, date }) => {
           endDateTime: endsAtToday ? endDateTime : endOfDay(date),
         });
       }
+      reservations.sort((a, b) => a.startDateTime - b.startDateTime);
       return { ...room, reservations };
     });
   }, [date, rooms]);
