@@ -37,7 +37,8 @@ const ReservePage = () => {
     setRooms(rooms);
   }
 
-  const sendReserve = async () => {
+  const sendReserve = async (e) => {
+    e.preventDefault()
     const startDate = new Date(reserveDateFrom);
     const endDate = new Date(reserveDateTo);
     startDate.setHours(
@@ -80,13 +81,14 @@ const ReservePage = () => {
       <Header />
       {/* 入力フォーム */}
       <div className="page">
+        <form onSubmit={sendReserve}>
         {/* 部屋の名前 */}
         <div className="reserve--upper-grid">
           <RoomSelect rooms={rooms} setRoomid={setRoomid}/>
           <div>
             <button
               className="reserve-saveButton"
-              onClick={sendReserve}
+              type='submit'
             >
               保存
             </button>
@@ -97,7 +99,7 @@ const ReservePage = () => {
         {/* 開始カレンダー選択 */}
         <div className="reserve--upper-calendar">
         <div className="reserve--time-label">開始日付</div>
-          <div>
+          <div className='reserve-time-selecter'>
             <Calendar value={reserveDateFrom} onChange={setReserveDateFrom} />
           </div>
           <div className="reserve--time-label">時間</div>
@@ -148,15 +150,20 @@ const ReservePage = () => {
             <span className="SB_highlight"></span>
             <span className="SB_selectbar"></span>
           </div>
-
+        </div>
         
           {/*繰り返し回数*/}
           {
             (repitationType % 2 == 0 && repitationType != 0) &&
-            (<div className="reserve--upper-num">
-              <div className="reserve--num-label">繰り返し回数</div>
+            (<div className="reserve--upper-calendar">
+              <div className="reserve--time-label">繰り返し回数</div>
               <div>
-                <input type="number" value={repitationNum} onChange={(e) => setRepitationNum(e.target.value)}></input>
+                <input 
+                  type="number" 
+                  value={repitationNum} 
+                  onChange={(e) => setRepitationNum(e.target.value)}
+                  className = "reserve-repeat-input"
+                 />
               </div>
             </div>)
           }
@@ -171,29 +178,7 @@ const ReservePage = () => {
               </div>
             </div>)
           }
-        </div>
-        
-        {/*繰り返し回数*/}
-        {
-          (repitationType % 2 == 0 && repitationType != 0) &&
-          (<div className="reserve--upper-num">
-            <div className="reserve--num-label">繰り返し回数</div>
-            <div>
-              <input type="number" value={repitationNum} onChange={(e) => setRepitationNum(e.target.value)}></input>
-            </div>
-          </div>)
-        }
 
-        {/* 繰り返し予約のカレンダー */}
-        {
-          (repitationType %2 == 1) &&
-          (<div className="reserve--upper-calendar">
-          <div className="reserve--time-label">繰り返し終了日付</div>
-            <div>
-              <Calendar value={repitationFinishDate} onChange={setRepitationFinishDate}/>
-            </div>
-          </div>)
-        }
 
         <div className="reserve--event-usertitle">
           <h2> 予約詳細</h2>
@@ -205,8 +190,6 @@ const ReservePage = () => {
         {/* 予約者情報入力 */}
         {/* <div className="reserve--event-grid"> */}
           {/* 教員用入力画面 */}
-          <div className="reserve--event-user">
-            <div className="reserve--event-form">
               <div className="flexbox">
                 <div className="reserve--event-label">
                   予約者名
@@ -218,8 +201,7 @@ const ReservePage = () => {
                   placeholder="予約をした人の名前"
                 />
               </div>
-            </div>
-          </div>
+
 
           {/* <div className="reserve--event-form"> */}
             <div className="flexbox">
@@ -232,37 +214,41 @@ const ReservePage = () => {
               />
             </div>
 
-            <div className="reserve--event-form">
               <div className="flexbox">
                 <div className="reserve--event-label">利用者詳細</div>
                 <textarea
                   value={guestDetail}
                   onChange={(e) => setGuestDetail(e.target.value)}
-                  rows="8"
+                  rows="3"
                   className="reserve--event-textarea"
                   placeholder="メールアドレス,電話番号など"
                 />
               </div>
-            </div>
           {/* </div> */}
         {/* </div> */}
         {/* ゲスト用入力画面 */}
-        <div className="reserve--event-guest">
-          <div className="reserve--event-form">
             <div className="flexbox">
               <div className="reserve--event-label">利用目的</div>
               <textarea
                 value={purpose}
                 onChange={(e) => setPurpose(e.target.value)}
-                rows={10}
-                className="reserve--event-guesttextarea"
+                rows={3}
+                className="reserve--event-textarea"
                 placeholder="~の会議で使用するなど"
               />
             </div>
+            <div className='reserve-under-saveButton'>
+            <button
+              className="reserve-saveButton"
+              type='submit'
+            >
+              保存
+            </button>
           </div>
+            </form>
+          </div>
+
         </div>
-      </div>
-    </div>
   );
 };
 
