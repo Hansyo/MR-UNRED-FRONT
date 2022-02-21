@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './ReservePage.css';
 import { format } from'date-fns'
 import { Header } from '../components/common/Header/Header';
 import { Calendar, Input } from '../components/reserve/Input';
 import { postReserve } from '../apis/reserve';
+import { getRooms } from '../apis/roomRequest';
+import { RoomSelect } from '../components/reserve/RoomSelect.jsx'
 //import Select from 'react-select';
 
 const Repeat = {
@@ -27,6 +29,13 @@ const ReservePage = () => {
   const [repitationType, setRepitationType] = useState(Repeat.NO_REPEAT);
   const [repitationNum, setRepitationNum] = useState(0);
   const [repitationFinishDate, setRepitationFinishDate] = useState(new Date());
+  const [roomid, setRoomid] = useState('');
+  const [rooms, setRooms] = useState([]);
+
+  const updateRoooms = async () => {
+    const rooms = await getRooms();
+    setRooms(rooms);
+  }
 
   const sendReserve = async () => {
     const startDate = new Date(reserveDateFrom);
@@ -60,6 +69,9 @@ const ReservePage = () => {
       alert(`保存に失敗しました：${err.message}`);
     }
   };
+  
+  //oneshot
+  useEffect(() => updateRoooms(), []);
 
   //Room Name，電話番号，メールアドレスは自動で入る？
   return (
@@ -70,7 +82,14 @@ const ReservePage = () => {
         {/* 部屋の名前 */}
         <div className="reserve--upper-grid">
           <div className="reserve--upper-grid-roomname">
-            <b>会議室の名前</b>
+          <select
+              value={roomid}
+              onChange={(e) => setRoomid(e.target.value)}
+              className="room-select"
+              required
+            >
+              <RoomSelect rooms={rooms}/>
+            </select>
           </div>
           <div>
             <button
