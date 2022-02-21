@@ -32,7 +32,7 @@ export const Header = () => {
         </Link>
         <Link
           to="/admin/room"
-          className={getLinkClassName(pathname, /^\/admin\^room/)}
+          className={getLinkClassName(pathname, /^\/admin\/room/)}
         >
           部屋管理
         </Link>
