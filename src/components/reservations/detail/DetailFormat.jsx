@@ -50,7 +50,7 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
                 <div className="reservations-detail--data">
                     {repetitionData.map((data) => {
                         if (new Date(data.startDateTime) > currentDate.getTime()) {
-                            if (data.id !== detailData.id) {
+                            if (repetitionData.slice(-1)[0].id !== data.id) {
                                 checkRepeatDate = true;
                             }
                             if (checkRepeatDate) {
