@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { React, useCallback, useEffect } from 'react';
 import { getReserve } from '../../../apis/getReservation';
 import { getAllRooms } from '../../../apis/rooms';
 
@@ -16,8 +16,10 @@ export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
     nextDate.setDate(nextDate.getDate() + 1);
     onChange(nextDate);
   };
-  
-  const receiveReserve = async () => {
+
+  const receiveReserve = useCallback(async () => {
+    onChangeData([]);
+
     let getReserveData;
     const startDateTime = new Date(selectedDate);
     const endDateTime = new Date(selectedDate);
@@ -25,25 +27,23 @@ export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
     endDateTime.setHours(23, 59, 59, 0);
 
     const rooms = await getAllRooms();
-    const items = await Promise.all(rooms.map(async ({ id, name }) => {
-      getReserveData = await getReserve(
-        startDateTime,
-        endDateTime,
-        id,
-      );
-      
-      return {
-        id,
-        name,
-        reservations: getReserveData,
-      };
-    }))
+    const items = await Promise.all(
+      rooms.map(async ({ id, name }) => {
+        getReserveData = await getReserve(startDateTime, endDateTime, id);
+
+        return {
+          id,
+          name,
+          reservations: getReserveData,
+        };
+      }),
+    );
     onChangeData(items);
-  };
+  }, [onChangeData, selectedDate]);
 
   useEffect(() => {
     receiveReserve();
-  }, [selectedDate]);
+  }, [receiveReserve, selectedDate]);
 
   const dateString = `${selectedDate.getFullYear()}/${
     selectedDate.getMonth() + 1
@@ -51,21 +51,21 @@ export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
 
   return (
     <div className="reservations-daily--date-switch-container">
-      <div className='reservations-daily--date-switch-buttons'>
+      <div className="reservations-daily--date-switch-buttons">
         <button
           className="reservations-daily--date-switch-button"
           onClick={onClickPrev}
         >
-         前へ
+          前へ
         </button>
       </div>
-        <div className="reservations-daily--date">{dateString}</div>
-      <div className='reservations-daily--date-switch-buttons'>
+      <div className="reservations-daily--date">{dateString}</div>
+      <div className="reservations-daily--date-switch-buttons">
         <button
           className="reservations-daily--date-switch-button"
           onClick={onClickNext}
         >
-         次へ
+          次へ
         </button>
       </div>
     </div>
