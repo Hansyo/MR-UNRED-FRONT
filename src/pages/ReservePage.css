@@ -268,9 +268,12 @@ a.reserve-saveButton--red:hover {
 }
 
 /* 入力フォーム */
-input:first-of-type {
+.reserve-time,
+.reserve-date {
   height: 40px;
 }
+
+reserve-time
 
 input:focus {
   background: #ffffff;

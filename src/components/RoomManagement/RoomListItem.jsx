@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { deleteRoom, putRoom } from "../../apis/roomRequest";
+import './RoomListltem.css'
 
 export const RoomListItem = ({ room, updateRoom }) => {
   const [name, setName] = useState(room.name);
@@ -78,15 +79,22 @@ export const RoomListItem = ({ room, updateRoom }) => {
           readOnly={!isEdit}
         />
       </div>
-      <button className="rooms-list__item-edit-button" onClick={editOrUpdate}>
-        {isEdit ? "　更新　" : "　編集　"}
-      </button>
-      <button
-        className="rooms-list__item-delete-button"
-        onClick={cancelOrDelete}
-      >
-        {isEdit ? "取り消し" : "　削除　"}
-      </button>
+      <div className="roomlist-buttons">
+        <div>
+          <button className="rooms-list__item-edit-button" onClick={editOrUpdate}>
+            {isEdit ? "　更新　" : "　編集　"}
+          </button>
+        </div>
+        <div>
+          <button
+            className="rooms-list__item-delete-button"
+            onClick={cancelOrDelete}
+          >
+            {isEdit ? "取り消し" : "　削除　"}
+          </button>
+        </div>
+
+      </div>
     </div>
   );
 };
