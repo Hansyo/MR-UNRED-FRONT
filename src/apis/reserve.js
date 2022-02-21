@@ -7,6 +7,9 @@ export const postReserve = (
   purpose,
   guestName,
   guestDetail,
+  repitationType,
+  repitationNum,
+  repitationDate,
 ) => {
   return requestPost('/reserve', {
     start_date_time: startDateTime.toISOString(),
@@ -16,5 +19,10 @@ export const postReserve = (
     guest_name: guestName,
     guest_detail: guestDetail,
     room_id: 1, // TODO: roomIdをセット
+    repitation: {
+      type: repitationType,
+      num: repitationNum,
+      finish_at: repitationDate,
+    }
   });
 };
