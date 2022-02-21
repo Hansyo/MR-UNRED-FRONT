@@ -28,7 +28,7 @@ const ReservePage = () => {
   const [purpose, setPurpose] = useState('');
   const [guestDetail, setGuestDetail] = useState('');
   const [repitationType, setRepitationType] = useState(Repeat.NO_REPEAT);
-  const [repitationNum, setRepitationNum] = useState(0);
+  const [repitationNum, setRepitationNum] = useState(1);
   const [repitationFinishDate, setRepitationFinishDate] = useState(new Date());
   const [roomid, setRoomid] = useState('');
   const [rooms, setRooms] = useState([]);
@@ -164,10 +164,11 @@ const ReservePage = () => {
               <div>
                 <input 
                   type="number" 
+                  min={1}
                   value={repitationNum} 
                   onChange={(e) => setRepitationNum(e.target.value)}
                   className = "reserve-repeat-input"
-                 />
+                />
               </div>
             </div>)
           }
