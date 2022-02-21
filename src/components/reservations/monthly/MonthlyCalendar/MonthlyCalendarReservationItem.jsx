@@ -14,11 +14,9 @@ export const MonthlyCalendarReservationItem = ({
   reserverName,
   id,
 }) => {
-  const startDate = new Date(startDateTime);
-  const endDate = new Date(endDateTime);
-  const periodStr = `${dateToHourAndMinute(startDate)} ~ ${dateToHourAndMinute(
-    endDate,
-  )}`;
+  const startDate = dateToHourAndMinute(new Date(startDateTime));
+  const endDate = dateToHourAndMinute(new Date(endDateTime)) === '00:00' ? '24:00': dateToHourAndMinute(new Date(endDateTime));
+  const periodStr = `${startDate} ~ ${endDate}`;
 
   return (
     <div className="monthly-calendar--reservation-item">
