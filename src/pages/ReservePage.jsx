@@ -67,9 +67,10 @@ const ReservePage = () => {
         guestName,
         guestDetail,
         Math.ceil(repitationType / 2),
-        (repitationType % 2 == 0 && repitationType != 0) ? repitationNum : null,
-        (repitationType % 2 == 1) ? format(repitationFinishDate, 'yyyy-MM-dd') : null,
+        (repitationType % 2 === 0 && repitationType !== 0) ? repitationNum : null,
+        (repitationType % 2 === 1) ? format(repitationFinishDate, 'yyyy-MM-dd') : null,
       );
+      console.log(response);
       navigate(`/reservations/${response.id}`);
     } catch (err) {
       alert(`保存に失敗しました：${err.message}`);
@@ -158,7 +159,7 @@ const ReservePage = () => {
         
           {/*繰り返し回数*/}
           {
-            (repitationType % 2 == 0 && repitationType != 0) &&
+            (repitationType % 2 === 0 && repitationType !== 0) &&
             (<div className="reserve--upper-calendar">
               <div className="reserve--time-label">繰り返し回数</div>
               <div>
@@ -175,7 +176,7 @@ const ReservePage = () => {
 
           {/* 繰り返し予約のカレンダー */}
           {
-            (repitationType %2 == 1) &&
+            (repitationType %2 === 1) &&
             (<div className="reserve--upper-calendar">
             <div className="reserve--time-label">繰り返し終了日付</div>
               <div>
