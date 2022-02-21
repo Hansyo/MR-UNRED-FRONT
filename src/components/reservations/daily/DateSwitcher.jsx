@@ -1,5 +1,7 @@
 import { React, useEffect } from 'react';
 import { getReserve } from '../../../apis/getReservation';
+import { getAllRooms } from '../../../apis/rooms';
+
 import './DateSwitcher.css';
 
 export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
@@ -16,30 +18,26 @@ export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
   };
   
   const receiveReserve = async () => {
-    const roomTotal = 6;
-    const roomNames = ["会議室1","会議室2","会議室3","会議室4","会議室5","会議室6"];
-    let roomId = '';
     let getReserveData;
-    const items = [];
     const startDateTime = new Date(selectedDate);
     const endDateTime = new Date(selectedDate);
     startDateTime.setHours(0, 0, 0, 0);
     endDateTime.setHours(23, 59, 59, 0);
-    
-    for (let i = 1; i <= roomTotal; i++) {
-      roomId = String(i);
+
+    const rooms = await getAllRooms();
+    const items = await Promise.all(rooms.map(async ({ id, name }) => {
       getReserveData = await getReserve(
         startDateTime,
         endDateTime,
-        roomId,
-      ); 
+        id,
+      );
       
-      items.push({
-        id: i,
-        name: roomNames[i - 1],
+      return {
+        id,
+        name,
         reservations: getReserveData,
-      });
-    };
+      };
+    }))
     onChangeData(items);
   };
 

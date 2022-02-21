@@ -7,25 +7,26 @@ const dateToHourAndMinute = (date) => {
   ).slice(-2)}`;
 };
 
-export const MonthlyCalendarReservationItem = ({
+export const WeeklyCalendarReservationItem = ({
+  id,
+
   startDateTime,
   endDateTime,
   guestName,
   reserverName,
-  id,
 }) => {
   const startDate = new Date(startDateTime);
   const endDate = new Date(endDateTime);
   const periodStr = `${dateToHourAndMinute(startDate)} ~ ${dateToHourAndMinute(
     endDate,
   )}`;
-
   return (
-    <div className="monthly-calendar--reservation-item">
-      <Link to={`./../${id}`} className="monthly-calendar--link">
+    <Link
+      className="weekly-calendar--reservation-item"
+      to={`/reservations/${id}`}
+    >
       {periodStr}
-        {`（${guestName || reserverName}）`}
+      {`（${guestName || reserverName}）`}
     </Link>
-    </div>
   );
 };

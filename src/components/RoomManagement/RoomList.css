@@ -1,0 +1,23 @@
+.rooms-list-detail-graph{
+    display: flex;
+    height: 20%;
+}
+
+.rooms-list-roomname{
+    width: 30%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.room-list-roomdetail{
+    width: 50%;
+    font-size: 30px;
+    font-weight: bold;
+}
+.room-list-changes-button{
+    width: 10%;
+}
+
+.rooms-list-header{
+
+}

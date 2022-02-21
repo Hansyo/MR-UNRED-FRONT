@@ -2,6 +2,9 @@ import React, { useMemo, useState } from 'react';
 import { MonthSwitcher } from './MonthSwitcher';
 import './MonthlyCalendar.css';
 import { MonthlyCalendarReservationItem } from './MonthlyCalendarReservationItem';
+import { differenceInHours, endOfDay, startOfDay } from 'date-fns';
+import { addDays } from 'date-fns/esm';
+import { useEffect } from 'react';
 
 const days = [
   {
@@ -43,9 +46,20 @@ const getMonthDateCount = (month) => {
 };
 
 export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
-  const [selectedRoomIdx, setSelectedRoomIdx] = useState(0);
+  const [selectedRoomIdx, setSelectedRoomIdx] = useState();
+
+  // 部屋情報が読み込まれ次第、最初の会議室を選択する
+  useEffect(() => {
+    if (selectedRoomIdx == null && rooms.length > 0) {
+      setSelectedRoomIdx(0);
+    }
+  }, [rooms.length, selectedRoomIdx]);
 
   const dates = useMemo(() => {
+    if (selectedRoomIdx == null) {
+      return [];
+    }
+
     const monthDateCount = getMonthDateCount(selectedMonth);
     const arr = new Array(monthDateCount).fill().map((_, idx) => ({
       value: idx + 1,
@@ -55,8 +69,32 @@ export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
 
     // 予定を追加
     for (const reservation of rooms[selectedRoomIdx].reservations) {
-      const date = new Date(reservation.startDateTime);
-      arr[date.getDate() - 1].reservations.push(reservation);
+      const startDateTime = reservation.startDateTime;
+      const endDateTime = reservation.endDateTime;
+
+      // 複数日に渡る予定は一日単位に分割する
+      // 開始日と終了日はそれぞれ始端/終端時刻を維持し、中間日は0:00~23:59とする
+      const durationInDays = Math.ceil(
+        differenceInHours(endDateTime, startDateTime) / 24,
+      );
+      for (let i = 0; i < durationInDays; i++) {
+        const date = addDays(startDateTime, i);
+
+        // 前月、翌月に続く予定は、今月分のみ表示する
+        if (date.getMonth() !== selectedMonth.getMonth()) {
+          continue;
+        }
+
+        const startsFromToday = i === 0;
+        const endsAtToday = i === durationInDays - 1;
+        arr[date.getDate() - 1].reservations.push({
+          ...reservation,
+          // 開始日の場合は開始時刻を、そうでない場合は0:00を設定
+          startDateTime: startsFromToday ? startDateTime : startOfDay(date),
+          // 終了日の場合は終了時刻を、そうでない場合は23:59を設定
+          endDateTime: endsAtToday ? endDateTime : endOfDay(date),
+        });
+      }
     }
 
     // カレンダー左上の、月が始まる位置合わせを追加
@@ -95,8 +133,10 @@ export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
             value={selectedRoomIdx}
             onChange={(e) => setSelectedRoomIdx(e.target.value)}
           >
-            {rooms.map(({ name }, idx) => (
-              <option value={idx}>{name}</option>
+            {rooms.map(({ id, name }, idx) => (
+              <option value={idx} key={id}>
+                {name}
+              </option>
             ))}
           </select>
           <MonthSwitcher

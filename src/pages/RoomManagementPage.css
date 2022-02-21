@@ -1,0 +1,25 @@
+.room-management-page-line{
+    width: 50%;
+    margin: 0px;
+}
+
+.rooms-title{
+    font-size: 45px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+.rooms-item{
+    display: flex;
+    margin: 30px;
+}
+
+.room-list-erea{
+    width: 60%;
+}
+
+.room-add-button-erea{
+    
+}

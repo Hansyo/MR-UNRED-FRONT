@@ -1,11 +1,10 @@
-import { endOfMonth, startOfMonth } from 'date-fns';
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { endOfWeek, startOfWeek } from 'date-fns';
+import { Header } from '../components/common/Header';
+import { WeeklyCalendar } from '../components/reservations/weekly/WeeklyCalendar/WeeklyCalendar';
 import { getReserve } from '../apis/getReservation';
 import { getAllRooms } from '../apis/rooms';
-import { Header } from '../components/common/Header/Header';
-import { MonthlyCalendar } from '../components/reservations/monthly/MonthlyCalendar';
+import { Link } from 'react-router-dom';
 
 const convertReservationResponse = (data) => ({
   id: data.id,
@@ -17,15 +16,15 @@ const convertReservationResponse = (data) => ({
   roomId: data.room.id,
 });
 
-const ReservationsMonthlyPage = () => {
-  const [selectedMonth, setSelectedMonth] = useState(new Date());
+const ReservationsWeeklyPage = () => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [rooms, setRooms] = useState([]);
 
   // Fetch reservation data for the selected month
   useEffect(() => {
     (async () => {
-      const dateFrom = startOfMonth(selectedMonth);
-      const dateTo = endOfMonth(selectedMonth);
+      const dateFrom = startOfWeek(selectedDate);
+      const dateTo = endOfWeek(selectedDate);
       const rooms = await getAllRooms();
       const roomsWithReservations = await Promise.all(
         rooms.map(async ({ id, name }) => {
@@ -41,7 +40,7 @@ const ReservationsMonthlyPage = () => {
       );
       setRooms(roomsWithReservations);
     })();
-  }, [selectedMonth]);
+  }, [selectedDate]);
 
   return (
     <div>
@@ -50,21 +49,21 @@ const ReservationsMonthlyPage = () => {
       <Link className="daily-transition--btn" to="/reservations/daily">
         日毎表示
         </Link>
-        <button className="daily-transition--btn" onClick={() => {setSelectedMonth(new Date())}}>
+        <button className="daily-transition--btn" onClick={() => {setSelectedDate(new Date())}}>
         本日
         </button>
-        <Link className="daily-transition--btn" to="/reservations/weekly">
-        週毎表示
+        <Link className="daily-transition--btn" to="/reservations/monthly">
+        月毎表示
       </Link>
       </div>
-      <div className="reservations-daily--page">
-        <MonthlyCalendar
+      <div className="reservations-weekly--page">
+        <WeeklyCalendar
           rooms={rooms}
-          selectedMonth={selectedMonth}
-          onMonthChange={setSelectedMonth}
+          selectedDate={selectedDate}
+          onDateChange={setSelectedDate}
         />
       </div>
     </div>
   );
 };
-export default ReservationsMonthlyPage;
+export default ReservationsWeeklyPage;
