@@ -90,7 +90,7 @@ a.reserve-saveButton {
 .reserve-saveButton:hover,
 a.reserve-saveButton:hover {
   color: rgb(0, 0, 0);
-  background: #dadada;
+  background: #d6d6d6;
 }
 
 .reserve--upper-calendar {
