@@ -121,6 +121,11 @@ export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
       })),
     );
 
+    // 各日付の中で、予約を時刻順にソート
+    arr.forEach((date) => {
+      date.reservations.sort((a, b) => a.startDateTime - b.startDateTime);
+    });
+
     return arr;
   }, [rooms, selectedMonth, selectedRoomIdx]);
 
