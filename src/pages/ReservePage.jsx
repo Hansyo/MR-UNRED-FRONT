@@ -9,10 +9,10 @@ import { postReserve } from '../apis/reserve';
 
 const Repeat = {
   NO_REPEAT: 0,
-  DAILY_TIME: 1,
+  DAILY_TIME: 2,
   DAILY_DATE: 1,
-  WEEKLY_TIME: 2,
-  WEEKLY_DATE: 2,
+  WEEKLY_TIME: 4,
+  WEEKLY_DATE: 3,
 };
 
 const ReservePage = () => {
@@ -25,13 +25,12 @@ const ReservePage = () => {
   const [purpose, setPurpose] = useState('');
   const [guestDetail, setGuestDetail] = useState('');
   const [repitationType, setRepitationType] = useState(Repeat.NO_REPEAT);
-  const [repitationNum, setRepitationNum] = useState('');
+  const [repitationNum, setRepitationNum] = useState(0);
   const [repitationFinishDate, setRepitationFinishDate] = useState(new Date());
 
   const sendReserve = async () => {
     const startDate = new Date(reserveDateFrom);
     const endDate = new Date(reserveDateTo);
-    let repitationDate = null;
     startDate.setHours(
       Number(reserveTimeFrom.slice(0, 2)),
       Number(reserveTimeFrom.slice(-2)),
@@ -45,8 +44,6 @@ const ReservePage = () => {
       0,
     );
 
-    if((repitationType==React.DAILY_DATE)||(repitationType==React.WEEKLY_DATE))repitationDate = format(new Date(repitationFinishDate), 'yyyy-MM-dd');
-
     try {
       await postReserve(
         startDate,
@@ -55,9 +52,9 @@ const ReservePage = () => {
         purpose,
         guestName,
         guestDetail,
-        repitationType,
-        repitationNum,
-        repitationDate,
+        Math.ceil(repitationType / 2),
+        (repitationType % 2 == 0) ? repitationNum : null,
+        (repitationType % 2 == 1) ? format(repitationFinishDate, 'yyyy-MM-dd') : null,
       );
     } catch (err) {
       alert(`保存に失敗しました：${err.message}`);
@@ -146,7 +143,7 @@ const ReservePage = () => {
         <div className="reserve--upper-num">
           <div className="reserve--num-label">繰り返し回数</div>
           <div>
-            <input type="number" value={repitationNum} onChange={setRepitationNum}></input>
+            <input type="number" value={repitationNum} onChange={(e) => setRepitationNum(e.target.value)}></input>
           </div>
         </div>
 
@@ -154,7 +151,7 @@ const ReservePage = () => {
         <div className="reserve--upper-calendar">
         <div className="reserve--time-label">繰り返し終了日付</div>
           <div>
-            <Calendar value={repitationFinishDate} onChange={setRepitationFinishDate} />
+            <Calendar value={repitationFinishDate} onChange={setRepitationFinishDate}/>
           </div>
         </div>
 

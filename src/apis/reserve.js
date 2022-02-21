@@ -9,9 +9,9 @@ export const postReserve = (
   guestDetail,
   repitationType,
   repitationNum,
-  repitationDate,
+  repitationFinishDate,
 ) => {
-  return requestPost('/reserve', {
+  let body = {
     start_date_time: startDateTime.toISOString(),
     end_date_time: endDateTime.toISOString(),
     reserver_name: reserverName,
@@ -21,8 +21,9 @@ export const postReserve = (
     room_id: 1, // TODO: roomIdをセット
     repitation: {
       type: repitationType,
-      num: repitationNum,
-      finish_at: repitationDate,
     }
-  });
+  }
+  if(repitationNum)body.repitation.num = repitationNum;
+  if(repitationFinishDate)body.repitation.finish_at = repitationFinishDate;
+  return requestPost('/reserve', body);
 };
