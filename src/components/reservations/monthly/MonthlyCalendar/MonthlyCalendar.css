@@ -22,12 +22,13 @@
 }
 
 .monthly-calendar--header-room-month {
+  position: relative;
   display: flex;
   align-items: center;
 }
 
 .monthly-calendar--header-room {
-  flex: 0 0 auto;
+  position: absolute;
   padding: 4px 12px;
   font-size: 16px;
 }
