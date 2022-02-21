@@ -30,7 +30,12 @@ export const Header = () => {
         <Link to="/log" className={getLinkClassName(pathname, /^\/log/)}>
           予約履歴
         </Link>
-        {/* TODO: 部屋管理ページへのリンクを追加 */}
+        <Link
+          to="/admin/room"
+          className={getLinkClassName(pathname, /^\/admin\^room/)}
+        >
+          部屋管理
+        </Link>
         {/* TODO: ユーザー管理ページへのリンクを追加 */}
         <div className="header__flex-spacer" />
         {!isReservePage && (

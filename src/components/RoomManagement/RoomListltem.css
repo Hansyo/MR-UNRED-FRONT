@@ -1,0 +1,44 @@
+.rooms-list__item{
+    display: flex;
+    height: 150px;
+}
+
+.rooms-list__item-name{
+    width: 30%;
+}
+
+.rooms-list__item-input{
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.rooms-list__item-detail{
+    width: 50%;
+
+}
+
+.rooms-list__item-textarea{
+    height: 100%;
+    width: 100%;
+    resize: none;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.roomlist-buttons{
+    width: 10%;
+}
+
+.rooms-list__item-edit-button{
+    min-width: 70px;
+    height: 75px;
+}
+
+.rooms-list__item-delete-button{
+    min-width: 70px;
+    height: 75px;
+}
