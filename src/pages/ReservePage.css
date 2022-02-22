@@ -121,9 +121,6 @@ a.reserve-saveButton:hover {
 }
 
 /* 日付選択フォーム */
-.reserve-time-selecter{
-}
-
 .react-datepicker__day{
   width: 3rem !important; 
   line-height: 3rem !important; 
@@ -149,10 +146,6 @@ a.reserve-saveButton:hover {
   width: 50%;
   text-align: center;
   margin: 20px 0 0 15px;
-}
-
-.reserve--num-label{
-  
 }
 
 .reserve-repeat-input{
