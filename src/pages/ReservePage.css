@@ -101,7 +101,6 @@ a.reserve-saveButton:hover {
 .reserve--upper-DAY {
   height: 15%;
   width: 60%;
-  display: flex;
 }
 
 /* 時計 */
