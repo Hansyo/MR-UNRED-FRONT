@@ -67,8 +67,8 @@ const ReservePage = () => {
         guestName,
         guestDetail,
         Math.ceil(repitationType / 2),
-        (repitationType === Repeat.DAILY_TIME || repitationType === Repeat.MONTHLY_TIME) ? repitationNum : null,
-        (repitationType === Repeat.DAILY_DATE || repitationType === Repeat.MONTHLY_DATE) ? format(repitationFinishDate, 'yyyy-MM-dd') : null,
+        (repitationType === Repeat.DAILY_TIME || repitationType === Repeat.WEEKLY_TIME) ? repitationNum : null,
+        (repitationType === Repeat.DAILY_DATE || repitationType === Repeat.WEEKLY_DATE) ? format(repitationFinishDate, 'yyyy-MM-dd') : null,
       );
       navigate(`/reservations/${((Array.isArray(response)) ? response[0] : response).id}`);
     } catch (err) {
@@ -158,7 +158,7 @@ const ReservePage = () => {
         
           {/*繰り返し回数*/}
           {
-            (repitationType === Repeat.DAILY_TIME || repitationType === Repeat.MONTHLY_TIME) &&
+            (repitationType === Repeat.DAILY_TIME || repitationType === Repeat.WEEKLY_TIME) &&
             (<div className="reserve--upper-calendar">
               <div className="reserve--time-label">繰り返し回数</div>
               <div>
@@ -175,7 +175,7 @@ const ReservePage = () => {
 
           {/* 繰り返し予約のカレンダー */}
           {
-            (repitationType === Repeat.DAILY_DATE || repitationType === Repeat.MONTHLY_DATE) &&
+            (repitationType === Repeat.DAILY_DATE || repitationType === Repeat.WEEKLY_DATE) &&
             (<div className="reserve--upper-calendar">
             <div className="reserve--time-label">繰り返し終了日付</div>
               <div>
