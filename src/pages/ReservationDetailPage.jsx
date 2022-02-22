@@ -32,22 +32,20 @@ const ReservationDetailPage = () => {
   }, [reservationId]);
 
   useEffect(() => {
-    if (detailData.repitationId !== undefined && detailData.repitationId !== null) {
-      const receiveRepeatDetail = async () => {
+    const receiveRepeatDetail = async () => {
         const rawRepDetails = await getRepeatReservation(detailData.repitationId);
-          const repDetails = rawRepDetails.map((repDetail) => ({
+        const repDetails = rawRepDetails.map((repDetail) => ({
             id: repDetail.id,
             startDateTime: format(new Date(repDetail.start_date_time), 'yyyy-MM-dd HH:mm'),
             endDateTime: format(new Date(repDetail.end_date_time), 'yyyy-MM-dd HH:mm'),
-          }));
+        }));
         setRepetitionData(repDetails);
-      };
-      receiveRepeatDetail();
-    }
+    };
     if (ref.current) {
-      ref.current = false;
-      return;
+        ref.current = false;
+        return;
     }
+    receiveRepeatDetail();
   }, [detailData]);
   
   return (
