@@ -95,6 +95,7 @@
 }
 
 .monthly-calendar--reservation-item {
+  display: block;
   min-height: 2em;
   margin-top: 2px;
   padding: 0 8px;
@@ -105,9 +106,5 @@
   font-size: 12px;
   line-height: 2em;
   font-weight: bold;
-}
-
-.monthly-calendar--link {
   text-decoration: none;
-  color: #fafafa;
 }

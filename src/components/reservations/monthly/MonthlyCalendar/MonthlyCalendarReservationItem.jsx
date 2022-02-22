@@ -15,15 +15,16 @@ export const MonthlyCalendarReservationItem = ({
   id,
 }) => {
   const startDate = dateToHourAndMinute(new Date(startDateTime));
-  const endDate = dateToHourAndMinute(new Date(endDateTime)) === '00:00' ? '24:00': dateToHourAndMinute(new Date(endDateTime));
+  const endDate =
+    dateToHourAndMinute(new Date(endDateTime)) === '00:00' ? '24:00' : dateToHourAndMinute(new Date(endDateTime));
   const periodStr = `${startDate} ~ ${endDate}`;
 
   return (
-    <div className="monthly-calendar--reservation-item">
-      <Link to={`./../${id}`} className="monthly-calendar--link">
+    <Link
+      className="monthly-calendar--reservation-item"
+      to={`./../${id}`}>
       {periodStr}
         {`（${guestName || reserverName}）`}
     </Link>
-    </div>
   );
 };
