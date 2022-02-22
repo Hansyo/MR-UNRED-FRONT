@@ -101,7 +101,7 @@ const ReservePage = () => {
         {/* <hr className="reserve-line"></hr> */}
 
         {/* 開始カレンダー選択 */}
-        <div className="reserve--upper-calendar">
+        <div className="reserve--upper-calendar reserve-required">
         <div className="reserve--time-label">開始日付</div>
           <div className='reserve-time-selecter'>
             <Calendar value={reserveDateFrom} onChange={setReserveDateFrom} />
@@ -119,7 +119,7 @@ const ReservePage = () => {
         </div>
 
         {/* 終了カレンダー選択 */}
-        <div className="reserve--upper-calendar">
+        <div className="reserve--upper-calendar reserve-required">
         <div className="reserve--time-label">終了日付</div>
           <div>
             <Calendar value={reserveDateTo} onChange={setReserveDateTo} />
@@ -159,7 +159,7 @@ const ReservePage = () => {
           {/*繰り返し回数*/}
           {
             (repitationType % 2 == 0 && repitationType != 0) &&
-            (<div className="reserve--upper-calendar">
+            (<div className="reserve--upper-calendar reserve-required">
               <div className="reserve--time-label">繰り返し回数</div>
               <div>
                 <input 
@@ -175,7 +175,7 @@ const ReservePage = () => {
           {/* 繰り返し予約のカレンダー */}
           {
             (repitationType %2 == 1) &&
-            (<div className="reserve--upper-calendar">
+            (<div className="reserve--upper-calendar reserve-required">
             <div className="reserve--time-label">繰り返し終了日付</div>
               <div>
                 <Calendar value={repitationFinishDate} onChange={setRepitationFinishDate}/>
@@ -195,7 +195,7 @@ const ReservePage = () => {
         {/* <div className="reserve--event-grid"> */}
           {/* 教員用入力画面 */}
               <div className="flexbox">
-                <div className="reserve--event-label">
+                <div className="reserve--event-label reserve-required">
                   予約者名
                 </div>
                 <Input
@@ -209,7 +209,7 @@ const ReservePage = () => {
 
           {/* <div className="reserve--event-form"> */}
             <div className="flexbox">
-              <div className="reserve--event-label">利用者名・団体名</div>
+              <div className="reserve--event-label reserve-required">利用者名・団体名</div>
               <Input
                 value={guestName}
                 onChange={setGuestName}

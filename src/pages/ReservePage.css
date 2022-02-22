@@ -352,3 +352,22 @@ input:focus {
 .reserve-under-saveButton{
   margin-top: 10px;
 }
+
+/*必須入力マーク表示*/
+.reserve-required::after {
+  content: "必須";
+  background-color: #f04e4e;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 10px;
+  padding: 3px 7px;
+  margin: 0px 5px;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 10px;
+  display: inline-block;
+}
+
