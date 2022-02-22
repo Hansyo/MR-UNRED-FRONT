@@ -34,7 +34,7 @@ export const Header = () => {
           to="/admin/room"
           className={getLinkClassName(pathname, /^\/admin\/room/)}
         >
-          部屋管理
+          会議室一覧
         </Link>
         {/* TODO: ユーザー管理ページへのリンクを追加 */}
         <div className="header__flex-spacer" />
