@@ -154,12 +154,12 @@ const ReservePage = () => {
             <span className="SB_highlight"></span>
             <span className="SB_selectbar"></span>
           </div>
-        </div>
+
         
           {/*繰り返し回数*/}
           {
             (repitationType === Repeat.DAILY_TIME || repitationType === Repeat.WEEKLY_TIME) &&
-            (<div className="reserve--upper-calendar">
+            (<div className="reserve--upper-calendar reserve-required">
               <div className="reserve--time-label">繰り返し回数</div>
               <div>
                 <input 
@@ -176,21 +176,20 @@ const ReservePage = () => {
           {/* 繰り返し予約のカレンダー */}
           {
             (repitationType === Repeat.DAILY_DATE || repitationType === Repeat.WEEKLY_DATE) &&
-            (<div className="reserve--upper-calendar">
+            (<div className="reserve--upper-calendar reserve-required">
             <div className="reserve--time-label">繰り返し終了日付</div>
               <div>
                 <Calendar value={repitationFinishDate} onChange={setRepitationFinishDate}/>
               </div>
             </div>)
           }
-
+        </div>
 
         <div className="reserve--event-usertitle">
           <h2> 予約詳細</h2>
           <hr className="reserve-line"></hr>
           <br></br>
         </div>
-      
 
         {/* 予約者情報入力 */}
         {/* <div className="reserve--event-grid"> */}
