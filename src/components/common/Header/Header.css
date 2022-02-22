@@ -62,10 +62,13 @@
 .header__reserve-btn {
   padding: 6px 12px;
   border-radius: 4px;
-  background: #447fdd;
-
+  background: #1a73e8;
   color: #fff;
   font-size: 16px;
-  font-weight: bold;
   text-decoration: none;
+}
+
+.header__reserve-btn:hover{
+  background: #447fdd;
+  border: 1px solid #447fdd;
 }

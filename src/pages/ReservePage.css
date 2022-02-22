@@ -61,13 +61,11 @@ html {
 a.reserve-saveButton,
 button.reserve-saveButton {
   font-size: 1.6rem;
-  font-weight: 700;
   line-height: 1.5;
   position: relative;
   display: inline-block;
   padding: 1rem 4rem;
   cursor: pointer;
-  -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -77,19 +75,18 @@ button.reserve-saveButton {
   vertical-align: middle;
   text-decoration: none;
   letter-spacing: 0.1em;
-  color: #212529;
   border-radius: 0.5rem;
-  border: 1px solid #585858;
 }
 .reserve-saveButton,
 a.reserve-saveButton {
   color: #fff;
-  background-color: #fafafa;
+  border: 1px solid #1a73e8;
+  background: #1a73e8;
 }
 .reserve-saveButton:hover,
 a.reserve-saveButton:hover {
-  color: rgb(0, 0, 0);
-  background: #f0f0f0;
+  background: #447fdd;
+  border: 1px solid #447fdd;
 }
 
 .reserve--upper-calendar {
