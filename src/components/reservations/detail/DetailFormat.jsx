@@ -96,7 +96,7 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
             </div>
             <div className="reservations-detail--container">
                 <div className="reservations-detail--label">日時</div>
-                {viewSingleDate(detailData.id)}
+                {viewSingleDate()}
             </div>
             <div className="reservations-detail--container">
                 <div className="reservations-detail--label">今後の予約</div>
