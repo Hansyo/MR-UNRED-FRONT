@@ -40,17 +40,14 @@ export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
     const rooms =
       cachedRooms.current ||
       (await getAllRooms().then((rooms) => (cachedRooms.current = rooms)));
-    const items = await Promise.all(
-      rooms.map(async ({ id, name }) => {
-        getReserveData = await getReserve(startDateTime, endDateTime, id);
-
-        return {
-          id,
-          name,
-          reservations: getReserveData,
-        };
-      }),
-    );
+    const allReserves = (await getReserve(startDateTime, endDateTime, null));
+    const items = rooms.map(({ id, name }) => {
+      return {
+        id,
+        name,
+        reservations: allReserves.filter((reserve) => reserve.room.id === id),
+      };
+    });
     onChangeData(items);
   }, [onChangeData, selectedDate]);
 

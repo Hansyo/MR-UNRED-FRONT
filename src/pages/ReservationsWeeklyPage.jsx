@@ -40,18 +40,14 @@ const ReservationsWeeklyPage = () => {
       const rooms =
         cachedRooms.current ||
         (await getAllRooms().then((rooms) => (cachedRooms.current = rooms)));
-      const roomsWithReservations = await Promise.all(
-        rooms.map(async ({ id, name }) => {
-          const reservations = (await getReserve(dateFrom, dateTo, id)).map(
-            convertReservationResponse,
-          );
-          return {
-            id,
-            name,
-            reservations,
-          };
-        }),
-      );
+      const allReserves = (await getReserve(dateFrom, dateTo, null)).map(convertReservationResponse,);
+      const roomsWithReservations = rooms.map(({ id, name }) => {
+        return {
+          id,
+          name,
+          reservations: allReserves.filter((reserve) => reserve.roomId === id),
+        };
+      });
       setReservations(roomsWithReservations);
     })();
   }, [selectedDate]);
