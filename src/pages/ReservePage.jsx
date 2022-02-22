@@ -70,7 +70,6 @@ const ReservePage = () => {
         (repitationType % 2 === 0 && repitationType !== 0) ? repitationNum : null,
         (repitationType % 2 === 1) ? format(repitationFinishDate, 'yyyy-MM-dd') : null,
       );
-      console.log(response);
       navigate(`/reservations/${response.id}`);
     } catch (err) {
       alert(`保存に失敗しました：${err.message}`);
