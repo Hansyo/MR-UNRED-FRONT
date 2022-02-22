@@ -352,3 +352,7 @@ input:focus {
 .reserve-under-saveButton{
   margin-top: 10px;
 }
+
+.react-datepicker__day-name{
+  width: 3rem !important;
+}
