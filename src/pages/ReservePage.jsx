@@ -154,7 +154,7 @@ const ReservePage = () => {
             <span className="SB_highlight"></span>
             <span className="SB_selectbar"></span>
           </div>
-        </div>
+
         
           {/*繰り返し回数*/}
           {
@@ -183,14 +183,13 @@ const ReservePage = () => {
               </div>
             </div>)
           }
-
+        </div>
 
         <div className="reserve--event-usertitle">
           <h2> 予約詳細</h2>
           <hr className="reserve-line"></hr>
           <br></br>
         </div>
-      
 
         {/* 予約者情報入力 */}
         {/* <div className="reserve--event-grid"> */}
