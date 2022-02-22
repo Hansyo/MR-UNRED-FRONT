@@ -36,6 +36,14 @@ export const Header = () => {
         >
           会議室一覧
         </Link>
+        <a
+          className="header__link"
+          href="/manual.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          マニュアル
+        </a>
         {/* TODO: ユーザー管理ページへのリンクを追加 */}
         <div className="header__flex-spacer" />
         {!isReservePage && (
