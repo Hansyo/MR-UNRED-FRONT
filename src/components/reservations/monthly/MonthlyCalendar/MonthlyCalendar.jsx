@@ -2,7 +2,12 @@ import React, { useMemo, useState } from 'react';
 import { MonthSwitcher } from './MonthSwitcher';
 import './MonthlyCalendar.css';
 import { MonthlyCalendarReservationItem } from './MonthlyCalendarReservationItem';
-import { differenceInCalendarDays, endOfDay, startOfDay } from 'date-fns';
+import {
+  differenceInCalendarDays,
+  endOfDay,
+  isEqual,
+  startOfDay,
+} from 'date-fns';
 import { addDays } from 'date-fns/esm';
 import { useEffect } from 'react';
 
@@ -86,12 +91,23 @@ export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
 
         const startsFromToday = i === 0;
         const endsAtToday = i === durationInDays - 1;
+        const splittedStart = startsFromToday
+          ? startDateTime
+          : startOfDay(date);
+        const splittedEnd = endsAtToday ? endDateTime : endOfDay(date);
+
+        // 終了時刻を翌日の00:00と設定した場合、翌日まで予約があると判定されてしまってカレンダーに表示されてしまう
+        // 分割後、開始時刻と終了時刻が同じ場合は弾く
+        if (isEqual(splittedEnd, splittedStart)) {
+          continue;
+        }
+
         arr[date.getDate() - 1].reservations.push({
           ...reservation,
           // 開始日の場合は開始時刻を、そうでない場合は0:00を設定
-          startDateTime: startsFromToday ? startDateTime : startOfDay(date),
+          startDateTime: splittedStart,
           // 終了日の場合は終了時刻を、そうでない場合は23:59を設定
-          endDateTime: endsAtToday ? endDateTime : endOfDay(date),
+          endDateTime: splittedEnd,
         });
       }
     }
