@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDetails } from '../apis/getDetails';
 import { DetailFormat } from '../components/reservations/detail/DetailFormat';
-import { format, isFuture } from 'date-fns';
+import { format } from 'date-fns';
 import { Header } from '../components/common/Header/Header';
 import { getRepeatReservation } from '../apis/getRepeatReservation';
 
@@ -32,21 +32,21 @@ const ReservationDetailPage = () => {
   }, [reservationId]);
 
   useEffect(() => {
-    if (detailData.repitationId !== null) {
-        const receiveRepeatDetail = async () => {
-            const rawRepDetails = await getRepeatReservation(detailData.repitationId);
-            const repDetails = rawRepDetails.map((repDetail) => ({
-                id: repDetail.id,
-                startDateTime: format(new Date(repDetail.start_date_time), 'yyyy-MM-dd HH:mm'),
-                endDateTime: format(new Date(repDetail.end_date_time), 'yyyy-MM-dd HH:mm'),
-            }));
-            setRepetitionData(repDetails);
-        };
-        if (ref.current) {
-            ref.current = false;
-            return;
-        }
-        receiveRepeatDetail();
+    if (detailData.repitationId !== undefined && detailData.repitationId !== null) {
+      const receiveRepeatDetail = async () => {
+        const rawRepDetails = await getRepeatReservation(detailData.repitationId);
+          const repDetails = rawRepDetails.map((repDetail) => ({
+            id: repDetail.id,
+            startDateTime: format(new Date(repDetail.start_date_time), 'yyyy-MM-dd HH:mm'),
+            endDateTime: format(new Date(repDetail.end_date_time), 'yyyy-MM-dd HH:mm'),
+          }));
+        setRepetitionData(repDetails);
+      };
+      receiveRepeatDetail();
+    }
+    if (ref.current) {
+      ref.current = false;
+      return;
     }
   }, [detailData]);
   
