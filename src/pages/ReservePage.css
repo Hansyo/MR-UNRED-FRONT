@@ -121,9 +121,6 @@ a.reserve-saveButton:hover {
 }
 
 /* 日付選択フォーム */
-.reserve-time-selecter{
-}
-
 .react-datepicker__day{
   width: 3rem !important; 
   line-height: 3rem !important; 
@@ -149,10 +146,6 @@ a.reserve-saveButton:hover {
   width: 50%;
   text-align: center;
   margin: 20px 0 0 15px;
-}
-
-.reserve--num-label{
-  
 }
 
 .reserve-repeat-input{
@@ -351,6 +344,24 @@ input:focus {
 
 .reserve-under-saveButton{
   margin-top: 10px;
+}
+
+/*必須入力マーク表示*/
+.reserve-required::after {
+  content: "必須";
+  background-color: #f04e4e;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 10px;
+  padding: 3px 7px;
+  margin: 0px 5px;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 10px;
+  display: inline-block;
 }
 
 .react-datepicker__day-name{
