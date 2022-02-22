@@ -23,9 +23,9 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
         }
     };
 
-    const viewSingleDate = (key) => {
+    const viewSingleDate = () => {
         const repeatItems = [
-            <div className="reservations-detail--data" key={key}>
+            <div className="reservations-detail--data" key={detailData.id}>
                 {`${detailData.startDateTime} - ${detailData.endDateTime}`}
             </div>
         ];
@@ -47,7 +47,7 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
         if (new Date(repetitionData.slice(-1)[0].startDateTime) > currentDate.getTime()) {
             let checkRepeatDate = false;
             const repeatItems = [
-                <div className="reservations-detail--data" key="nan">
+                <div className="reservations-detail--data" key={detailData.repitationId}>
                     {repetitionData.map((data) => {
                         if (new Date(data.startDateTime) > currentDate.getTime()) {
                             if (repetitionData.slice(-1)[0].id !== data.id) {
