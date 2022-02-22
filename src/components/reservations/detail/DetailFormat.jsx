@@ -9,17 +9,25 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
 
     const deleteSingleReservations = async () => {
         if (window.confirm("この予約を削除してもよろしいですか？")) {
-            await deleteReserve(detailData.id, false);
-            alert('削除しました');
-            navigate(`./../weekly`);
+            try {
+                await deleteReserve(detailData.id, false);
+                alert('削除しました');
+                navigate(`./../weekly`);
+            }catch(err){
+                alert(`削除に失敗しました：${err.message}`);
+            }
         }
     };
 
     const deleteRepeatReservations = async () => {
         if (window.confirm("すべての予約削除してもよろしいですか？")) {
-            await deleteReserve(detailData.id, true);
-            alert('削除しました');
-            navigate(`./../weekly`);
+            try {
+                await deleteReserve(detailData.id, true);
+                alert('削除しました');
+                navigate(`./../weekly`);
+            } catch (err) {
+                alert(`削除に失敗しました：${err.message}`);
+            }
         }
     };
 
