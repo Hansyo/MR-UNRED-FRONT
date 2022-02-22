@@ -6,7 +6,8 @@ import './DateSwitcher.css';
 
 export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
   const cachedRooms = useRef();
-
+  const days = ["日", "月", "火", "水", "木", "金", "土"];
+  
   const onClickPrev = () => {
     const prevDate = new Date(selectedDate);
     prevDate.setDate(prevDate.getDate() - 1);
@@ -59,7 +60,7 @@ export const DateSwitcher = ({ selectedDate, onChange, onChangeData }) => {
 
   const dateString = `${selectedDate.getFullYear()}/${
     selectedDate.getMonth() + 1
-  }/${selectedDate.getDate()}`;
+  }/${selectedDate.getDate()} (${days[selectedDate.getDay()]})`;
 
   return (
     <div className="reservations-daily--date-switch-container">

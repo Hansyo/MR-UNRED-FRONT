@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { MonthSwitcher } from './MonthSwitcher';
 import './MonthlyCalendar.css';
 import { MonthlyCalendarReservationItem } from './MonthlyCalendarReservationItem';
-import { differenceInHours, endOfDay, startOfDay } from 'date-fns';
+import { differenceInCalendarDays, endOfDay, startOfDay } from 'date-fns';
 import { addDays } from 'date-fns/esm';
 import { useEffect } from 'react';
 
@@ -74,9 +74,8 @@ export const MonthlyCalendar = ({ rooms, selectedMonth, onMonthChange }) => {
 
       // 複数日に渡る予定は一日単位に分割する
       // 開始日と終了日はそれぞれ始端/終端時刻を維持し、中間日は0:00~23:59とする
-      const durationInDays = Math.ceil(
-        differenceInHours(endDateTime, startDateTime) / 24,
-      );
+      const durationInDays =
+        differenceInCalendarDays(endDateTime, startDateTime) + 1;
       for (let i = 0; i < durationInDays; i++) {
         const date = addDays(startDateTime, i);
 

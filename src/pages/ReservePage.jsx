@@ -28,7 +28,7 @@ const ReservePage = () => {
   const [purpose, setPurpose] = useState('');
   const [guestDetail, setGuestDetail] = useState('');
   const [repitationType, setRepitationType] = useState(Repeat.NO_REPEAT);
-  const [repitationNum, setRepitationNum] = useState(0);
+  const [repitationNum, setRepitationNum] = useState(1);
   const [repitationFinishDate, setRepitationFinishDate] = useState(new Date());
   const [roomid, setRoomid] = useState('');
   const [rooms, setRooms] = useState([]);
@@ -67,10 +67,10 @@ const ReservePage = () => {
         guestName,
         guestDetail,
         Math.ceil(repitationType / 2),
-        (repitationType % 2 == 0 && repitationType != 0) ? repitationNum : null,
-        (repitationType % 2 == 1) ? format(repitationFinishDate, 'yyyy-MM-dd') : null,
+        (repitationType === Repeat.DAILY_TIME || repitationType === Repeat.MONTHLY_TIME) ? repitationNum : null,
+        (repitationType === Repeat.DAILY_DATE || repitationType === Repeat.MONTHLY_DATE) ? format(repitationFinishDate, 'yyyy-MM-dd') : null,
       );
-      navigate(`/reservations/${response.id}`);
+      navigate(`/reservations/${((Array.isArray(response)) ? response[0] : response).id}`);
     } catch (err) {
       alert(`保存に失敗しました：${err.message}`);
     }
@@ -158,24 +158,25 @@ const ReservePage = () => {
         
           {/*繰り返し回数*/}
           {
-            (repitationType % 2 == 0 && repitationType != 0) &&
-            (<div className="reserve--upper-calendar reserve-required">
+            (repitationType === Repeat.DAILY_TIME || repitationType === Repeat.MONTHLY_TIME) &&
+            (<div className="reserve--upper-calendar">
               <div className="reserve--time-label">繰り返し回数</div>
               <div>
                 <input 
                   type="number" 
+                  min={1}
                   value={repitationNum} 
                   onChange={(e) => setRepitationNum(e.target.value)}
                   className = "reserve-repeat-input"
-                 />
+                />
               </div>
             </div>)
           }
 
           {/* 繰り返し予約のカレンダー */}
           {
-            (repitationType %2 == 1) &&
-            (<div className="reserve--upper-calendar reserve-required">
+            (repitationType === Repeat.DAILY_DATE || repitationType === Repeat.MONTHLY_DATE) &&
+            (<div className="reserve--upper-calendar">
             <div className="reserve--time-label">繰り返し終了日付</div>
               <div>
                 <Calendar value={repitationFinishDate} onChange={setRepitationFinishDate}/>

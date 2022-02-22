@@ -6,7 +6,7 @@ import TopPage from './pages/TopPage';
 import ReservePage from './pages/ReservePage';
 import ReservationsDailyPage from './pages/ReservationsDailyPage';
 import ReservationsMonthlyPage from './pages/ReservationsMonthlyPage';
-import ReservationsWeeklyPage from './pages/ReservationWeeklyPage';
+import ReservationsWeeklyPage from './pages/ReservationsWeeklyPage';
 import ReservationDetailPage from './pages/ReservationDetailPage';
 import ReservationLogPage from './pages/ReservationLogPage';
 import RoomManagementPage from './pages/RoomManagementPage';

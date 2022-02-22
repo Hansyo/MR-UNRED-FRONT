@@ -12,7 +12,7 @@ export const requestPost = async (path, body) => {
     const json = await res.json();
     throw new Error(JSON.stringify(json));
   }
-  return res.json();
+  return await res.json();
 };
 
 export const requestGet = async (path) => {

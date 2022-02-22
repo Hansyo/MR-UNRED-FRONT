@@ -364,3 +364,6 @@ input:focus {
   display: inline-block;
 }
 
+.react-datepicker__day-name{
+  width: 3rem !important;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { startOfWeek, endOfWeek, format } from 'date-fns';
-
+import ja from 'date-fns/locale/ja'
 import './DateSwitcher.css';
 
 export const DateSwitcher = ({ selectedDate, onChange }) => {
@@ -16,8 +16,8 @@ export const DateSwitcher = ({ selectedDate, onChange }) => {
     onChange(nextDate);
   };
 
-  const ThisWeekStart = format(startOfWeek(selectedDate), 'PPP');
-  const ThisWeekEnd = format(endOfWeek(selectedDate), 'PPP');
+  const ThisWeekStart = format(startOfWeek(selectedDate), 'PPPP', {locale: ja});
+  const ThisWeekEnd = format(endOfWeek(selectedDate), 'PPPP', {locale: ja});
 
   return (
     <div className="reservations-weekly--date-switch-container">
