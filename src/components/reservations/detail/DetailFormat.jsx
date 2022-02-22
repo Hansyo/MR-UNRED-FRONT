@@ -31,31 +31,34 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
         }
     };
 
-    const viewSingleDate = () => {
-        const repeatItems = [
-            <div className="reservations-detail--data" key={detailData.id}>
+    const viewSingleDate = () => {return (
+        <div className="reservations-detail--container">
+            <div className="reservations-detail--label">日時</div>
+            <div className="reservations-detail--data">
                 {`${detailData.startDateTime} - ${detailData.endDateTime}`}
             </div>
-        ];
-        /* 予定の開始時刻が現在の時刻以降の場合のみ，削除ボタンが表示される */
-        if (new Date(detailData.startDateTime) > currentDate.getTime()) {
-            repeatItems.push(
-                <div key="NaN">
-                    <button className="reservations-detail--button"
-                        onClick={deleteSingleReservations}>削除</button>
+            {(new Date(detailData.startDateTime) > currentDate.getTime()) && (
+                <div>
+                    <button
+                        className="reservations-detail--button"
+                        onClick={deleteSingleReservations}
+                    >
+                        削除
+                    </button>
                 </div>
-            );
-        }
-        return repeatItems;
-    };
+            )}
+        </div>
+    )};
 
     const viewRepeatDate = () => {
         /* 繰り返し予定の開始時刻が現在の時刻以降の場合のみ表示される
         ただし，残りの繰り返し予定が現在表示している予定だけの場合は表示されない */
-        if (new Date(repetitionData.slice(-1)[0].startDateTime) > currentDate.getTime()) {
-            let checkRepeatDate = false;
-            const repeatItems = [
-                <div className="reservations-detail--data" key={detailData.repitationId}>
+        let checkRepeatDate = false;
+        return (
+            <div className="reservations-detail--container">
+                <div className="reservations-detail--label">今後の予約</div>
+                {(new Date(repetitionData.slice(-1)[0].startDateTime) > currentDate.getTime()) && (
+                    <div className="reservations-detail--data">
                     {repetitionData.map((data) => {
                         if (new Date(data.startDateTime) > currentDate.getTime()) {
                             if (repetitionData.slice(-1)[0].id !== data.id) {
@@ -75,17 +78,16 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
                             }
                         }
                     })}
-                </div>
-            ];
-            if (checkRepeatDate)
-                repeatItems.push(
-                    <div key="NaN">
+                    </div>
+                )}
+                {(checkRepeatDate) && (
+                    <div>
                         <button className="reservations-detail--button"
                             onClick={deleteRepeatReservations}>すべて削除</button>
                     </div>
-                );
-            return repeatItems;
-        }
+                )}
+            </div>
+        );
     };
 
     return (
@@ -94,14 +96,8 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
                 <div className="reservations-detail--label">会議室名</div>
                 <div className="reservations-detail--data">{detailData.roomName}</div>
             </div>
-            <div className="reservations-detail--container">
-                <div className="reservations-detail--label">日時</div>
-                {viewSingleDate()}
-            </div>
-            <div className="reservations-detail--container">
-                <div className="reservations-detail--label">今後の予約</div>
-                {viewRepeatDate()}
-            </div>
+            {viewSingleDate()}
+            {viewRepeatDate()}
             <div className="reservations-detail--container">
                 <div className="reservations-detail--label">予約者</div>
                 <div className="reservations-detail--data">{detailData.reserverName}</div>
