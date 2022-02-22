@@ -78,7 +78,7 @@ const ReservePage = () => {
   
   //oneshot
   useEffect(() => updateRoooms(), []);
-
+  
   //Room Name，電話番号，メールアドレスは自動で入る？
   return (
     <div>
@@ -141,7 +141,7 @@ const ReservePage = () => {
           <div className="ipselect">
             <select
               value={repitationType}
-              onChange={(e) => setRepitationType(e.target.value)}
+              onChange={(e) => setRepitationType(Number(e.target.value))}
               className="SB"
               required
             >
