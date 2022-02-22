@@ -23,7 +23,7 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
         }
     };
 
-    const viewSingleDate = (key, btn) => {
+    const viewSingleDate = (key) => {
         const repeatItems = [
             <div className="reservations-detail--data" key={key}>
                 {`${detailData.startDateTime} - ${detailData.endDateTime}`}
@@ -32,7 +32,7 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
         /* 予定の開始時刻が現在の時刻以降の場合のみ，削除ボタンが表示される */
         if (new Date(detailData.startDateTime) > currentDate.getTime()) {
             repeatItems.push(
-                <div key={btn}>
+                <div key="NaN">
                     <button className="reservations-detail--button"
                         onClick={deleteSingleReservations}>削除</button>
                 </div>
@@ -41,21 +41,21 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
         return repeatItems;
     };
 
-    const viewRepeatDate = (repetitionData, btn) => {
+    const viewRepeatDate = () => {
         /* 繰り返し予定の開始時刻が現在の時刻以降の場合のみ表示される
         ただし，残りの繰り返し予定が現在表示している予定だけの場合は表示されない */
         if (new Date(repetitionData.slice(-1)[0].startDateTime) > currentDate.getTime()) {
             let checkRepeatDate = false;
             const repeatItems = [
-                <div className="reservations-detail--data">
-                    {repetitionData.map((data,index) => {
+                <div className="reservations-detail--data" key="nan">
+                    {repetitionData.map((data) => {
                         if (new Date(data.startDateTime) > currentDate.getTime()) {
                             if (repetitionData.slice(-1)[0].id !== data.id) {
                                 checkRepeatDate = true;
                             }
                             if (checkRepeatDate) {
                                 return (
-                                    <div key={repetitionData[index].id}>
+                                    <div key={data.id}>
                                         {(detailData.id !== data.id) ?
                                             <Link className="reservations-detail--link" to={`../reservations/${data.id}`}>
                                                 {`${data.startDateTime} - ${data.endDateTime}`}
@@ -71,7 +71,7 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
             ];
             if (checkRepeatDate)
                 repeatItems.push(
-                    <div key={btn}>
+                    <div key="NaN">
                         <button className="reservations-detail--button"
                             onClick={deleteRepeatReservations}>すべて削除</button>
                     </div>
@@ -88,11 +88,11 @@ export const DetailFormat = ({ detailData, repetitionData}) => {
             </div>
             <div className="reservations-detail--container">
                 <div className="reservations-detail--label">日時</div>
-                {viewSingleDate(detailData.id, "NaN")}
+                {viewSingleDate(detailData.id)}
             </div>
             <div className="reservations-detail--container">
                 <div className="reservations-detail--label">今後の予約</div>
-                {viewRepeatDate(repetitionData, "NaN")}
+                {viewRepeatDate()}
             </div>
             <div className="reservations-detail--container">
                 <div className="reservations-detail--label">予約者</div>
