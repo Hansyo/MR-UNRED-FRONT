@@ -33,14 +33,16 @@ const ReservationDetailPage = () => {
 
   useEffect(() => {
     const receiveRepeatDetail = async () => {
+      if (detailData.repitationId) {
         const rawRepDetails = await getRepeatReservation(detailData.repitationId);
         const repDetails = rawRepDetails.map((repDetail) => ({
-            id: repDetail.id,
-            startDateTime: format(new Date(repDetail.start_date_time), 'yyyy-MM-dd HH:mm'),
-            endDateTime: format(new Date(repDetail.end_date_time), 'yyyy-MM-dd HH:mm'),
+          id: repDetail.id,
+          startDateTime: format(new Date(repDetail.start_date_time), 'yyyy-MM-dd HH:mm'),
+          endDateTime: format(new Date(repDetail.end_date_time), 'yyyy-MM-dd HH:mm'),
         }));
         setRepetitionData(repDetails);
-    };
+      };
+    }; 
     if (ref.current) {
         ref.current = false;
         return;
